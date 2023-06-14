@@ -1,0 +1,83 @@
+#section1{
+  width : 100%;
+  height : 100vh;
+  // overflow: hidden;
+  .container{ 
+    width : 100%;
+    height : 100%;
+    .gap{
+      width : 100%;
+      height : 100%;
+      .title{}
+      .content{
+        width : 100%;
+        height : 100%;
+        .slide-container{
+          width : 100%;
+          height : 100%;
+          .slide-view{
+            width : 100%;
+            height : 100%;
+            .slide-wrap{
+              width : 300%;
+              height : 100%;
+              display: flex;
+              .slide{
+                width: 100%;
+                height : 100%;
+                position: relative;
+                .text{
+                  position: absolute;
+                  bottom: 110px;
+                  left : 244px;
+                  transform: translateY(-50%);
+                  .t01{
+                    font-size: 18px;
+                    line-height: 24px;
+                    color : #fff;
+                    text-shadow: 3px 3px 13px rgba(0,0,0,0.15);
+                    // opacity: 0;
+                    // transform: translateY(20px);
+                    margin-bottom: 20px;
+                  }
+                  .t02{
+                    font-family: 'ivypresto-display','Red Hat Display','Pretendard', sans-serif;
+                    // opacity: 0;
+                    // transform: translateY(20px);
+                    margin-bottom: 24px;
+                    font-size: 100px;
+                    line-height: 100px;
+                    font-weight: 300;
+                    color: #fff;
+                    text-shadow: 3px 3px 13px rgba(0, 0, 0, 0.15);
+                    margin-left: -6px;
+                  }
+                  .logo{
+                    width : 270px;
+                    opacity: 0.8;
+                    >img{
+                      width : 100%;
+                    }
+                  }
+                }
+                video{
+                  width : 100%;
+                  height : 100%;
+                  object-fit: cover;
+                }
+              }
+              .slide2{
+                background: url('../img/sl8.jpg') no-repeat 50% 50%;
+                background-size: cover;
+              }
+              .slide3{
+                background: url('../img/sl9.jpg') no-repeat 50% 50%;
+                background-size: cover;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
