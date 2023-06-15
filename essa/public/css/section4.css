@@ -1,0 +1,56 @@
+#section4 {
+  width: 100%;
+  padding: 100px 0;
+}
+#section4 .container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+#section4 .container .gap {
+  width: 100%;
+}
+#section4 .container .gap .title {
+  width: 100%;
+}
+#section4 .container .gap .title h2 {
+  font-size: 42px;
+  font-weight: 300;
+  text-align: center;
+}
+#section4 .container .gap .content {
+  width: 100%;
+}
+#section4 .container .gap .content .title2 {
+  width: 100%;
+}
+#section4 .container .gap .content .title2 ul {
+  width: 100%;
+}
+#section4 .container .gap .content .title2 ul li {
+  width: 100%;
+}
+#section4 .container .gap .content .title2 ul li button {
+  height: 50px;
+  width: 50%;
+  font-size: 16px;
+  color: #888;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transform: translateY(1px);
+}
+#section4 .container .gap .content .title2 ul li button.on {
+  color: #5f0080;
+  border-color: #5f0080;
+}
+#section4 .container .gap .content .product_box ul li .item_cont {
+  width: 345.328px;
+  height: 406.141px;
+}
+#section4 .container .gap .content .product_box ul li .item_cont .item_photo_box a img {
+  width: 345px;
+  height: 247px;
+}
