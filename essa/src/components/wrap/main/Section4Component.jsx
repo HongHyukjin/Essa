@@ -53,7 +53,7 @@ export default function Section4Component () {
                                                 <div className="item_review_cnt">
                                                     <ul>
                                                         <li>
-                                                            <a href="">
+                                                            <a href="!#">
                                                                 <i className='xi-comment-o'></i>
                                                                 <span>12</span>
                                                             </a>
@@ -82,12 +82,12 @@ export default function Section4Component () {
                                             </div>
                                             <div className="item_info_cont">
                                                 <div className="item_tit_box">
-                                                    <strong className='item_name'>엠마 4인 리프트기능 슈렁큰텐더 소가죽 소파</strong>
-                                                    <span className='item_name_explain'>#스페셜오더 스툴무료!(~6/15)</span>
+                                                    <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
+                                                    <p className='item_name_explain'>#5% 할인 혜택 (~6/30)</p>
                                                 </div>
                                                 <div className="item_money_box">
-                                                    <strong className='item_sale'>5,199,000원 </strong>
-                                                    <strong className='m_price'>3,100,000원 </strong>
+                                                    <strong className='item_sale'>3,100,000원</strong>
+                                                    <strong className='m_price'>2,945,000원</strong>
                                                     <span className='sale_per'>5%</span>
                                                 </div>
                                                 <div className="item_icon_box">
@@ -127,11 +127,11 @@ export default function Section4Component () {
                                             <div className="item_info_cont">
                                                 <div className="item_tit_box">
                                                     <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    <span className='item_name_explain'>#5% 할인 혜택 (~6/30)</span>
+                                                    <p className='item_name_explain'>#5% 할인 혜택 (~6/30)</p>
                                                 </div>
                                                 <div className="item_money_box">
-                                                    <strong className='item_sale'> 2,945,000원</strong>
-                                                    <strong className='m_price'>3,100,000원 </strong>
+                                                    <strong className='item_sale'>3,100,000원</strong>
+                                                    <strong className='m_price'>2,945,000원</strong>
                                                     <span className='sale_per'>5%</span>
                                                 </div>
                                                 <div className="item_icon_box">
@@ -171,11 +171,11 @@ export default function Section4Component () {
                                             <div className="item_info_cont">
                                                 <div className="item_tit_box">
                                                     <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    <span className='item_name_explain'>#5% 할인 혜택 (~6/30)</span>
+                                                    <p className='item_name_explain'>#5% 할인 혜택 (~6/30)</p>
                                                 </div>
                                                 <div className="item_money_box">
-                                                    <strong className='item_sale'> 2,945,000원</strong>
-                                                    <strong className='m_price'>3,100,000원 </strong>
+                                                    <strong className='item_sale'>3,100,000원</strong>
+                                                    <strong className='m_price'>2,945,000원</strong>
                                                     <span className='sale_per'>5%</span>
                                                 </div>
                                                 <div className="item_icon_box">
@@ -217,11 +217,11 @@ export default function Section4Component () {
                                             <div className="item_info_cont">
                                                 <div className="item_tit_box">
                                                     <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    <span className='item_name_explain'>#5% 할인 혜택 (~6/30)</span>
+                                                    <p className='item_name_explain'>#5% 할인 혜택 (~6/30)</p>
                                                 </div>
                                                 <div className="item_money_box">
-                                                    <strong className='item_sale'> 2,945,000원</strong>
-                                                    <strong className='m_price'>3,100,000원 </strong>
+                                                    <strong className='item_sale'>3,100,000원</strong>
+                                                    <strong className='m_price'>2,945,000원</strong>
                                                     <span className='sale_per'>5%</span>
                                                 </div>
                                                 <div className="item_icon_box">
@@ -261,11 +261,11 @@ export default function Section4Component () {
                                             <div className="item_info_cont">
                                                 <div className="item_tit_box">
                                                     <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    <span className='item_name_explain'>#5% 할인 혜택 (~6/30)</span>
+                                                    <p className='item_name_explain'>#5% 할인 혜택 (~6/30)</p>
                                                 </div>
                                                 <div className="item_money_box">
-                                                    <strong className='item_sale'> 2,945,000원</strong>
-                                                    <strong className='m_price'>3,100,000원 </strong>
+                                                    <strong className='item_sale'>3,100,000원</strong>
+                                                    <strong className='m_price'>2,945,000원</strong>
                                                     <span className='sale_per'>5%</span>
                                                 </div>
                                                 <div className="item_icon_box">
@@ -276,7 +276,7 @@ export default function Section4Component () {
                                                     <ul>
                                                         <li>
                                                             <a href="">
-                                                                <i className='xi-comment-o'></i>
+                                                                <i className='xi-comment-o'><img src="" alt="" /></i>
                                                                 <span>12</span>
                                                             </a>
                                                         </li>
@@ -305,11 +305,11 @@ export default function Section4Component () {
                                             <div className="item_info_cont">
                                                 <div className="item_tit_box">
                                                     <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    <span className='item_name_explain'>#5% 할인 혜택 (~6/30)</span>
+                                                    <p className='item_name_explain'>#5% 할인 혜택 (~6/30)</p>
                                                 </div>
                                                 <div className="item_money_box">
-                                                    <strong className='item_sale'> 2,945,000원</strong>
-                                                    <strong className='m_price'>3,100,000원 </strong>
+                                                    <strong className='item_sale'>3,100,000원</strong>
+                                                    <strong className='m_price'>2,945,000원</strong>
                                                     <span className='sale_per'>5%</span>
                                                 </div>
                                                 <div className="item_icon_box">
@@ -349,11 +349,11 @@ export default function Section4Component () {
                                             <div className="item_info_cont">
                                                 <div className="item_tit_box">
                                                     <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    <span className='item_name_explain'>#5% 할인 혜택 (~6/30)</span>
+                                                    <p className='item_name_explain'>#5% 할인 혜택 (~6/30)</p>
                                                 </div>
                                                 <div className="item_money_box">
-                                                    <strong className='item_sale'> 2,945,000원</strong>
-                                                    <strong className='m_price'>3,100,000원 </strong>
+                                                    <strong className='item_sale'>3,100,000원</strong>
+                                                    <strong className='m_price'>2,945,000원</strong>
                                                     <span className='sale_per'>5%</span>
                                                 </div>
                                                 <div className="item_icon_box">

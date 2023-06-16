@@ -120,7 +120,18 @@
   font-size: 16px;
   color: #000;
 }
+#section4 .container .gap .content .top .product_box ul li .item_cont .item_info_cont .item_icon_box img {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+#section4 .container .gap .content .top .product_box ul li .item_cont .item_info_cont .item_review_cnt {
+  margin: 21px 0 0 0;
+}
+#section4 .container .gap .content .top .product_box ul li .item_cont .item_info_cont .item_review_cnt ul li a .xi-comment-o {
+  font-family: "xeicon!important";
+}
 #section4 .container .gap .content .bottom {
+  padding: 80px 0 0 0;
   display: flex;
   justify-content: space-between;
 }
@@ -137,7 +148,6 @@
 #section4 .container .gap .content .bottom .product_box ul li .item_cont {
   width: 345.328px;
   height: 406.141px;
-  display: block;
 }
 #section4 .container .gap .content .bottom .product_box ul li .item_cont .item_photo_box {
   display: flex;
@@ -149,27 +159,41 @@
   height: 247px;
 }
 #section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont {
-  padding: 20px 0;
+  padding: 20px 0 10px 0;
 }
 #section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_tit_box {
   text-align: left;
-  padding: 0;
+  padding: 5px 0;
 }
 #section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_tit_box .item_name {
   font-size: 16px;
+  padding: 0 0 10px 0;
 }
 #section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_tit_box .item_name_explain {
   font-size: 13px;
   color: #7e9fc2;
+  padding: 10px 0 0 0;
 }
 #section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_money_box {
-  width: 100%;
+  padding: 10px 0;
 }
 #section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_money_box .item_sale {
+  display: inline-block;
+  padding: 0 8px 0 0;
   font-size: 14px;
   color: #a8a8a8;
 }
 #section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_money_box .m_price {
   font-size: 16px;
   color: #000;
+}
+#section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_icon_box {
+  width: 100%;
+}
+#section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_icon_box img {
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+#section4 .container .gap .content .bottom .product_box ul li .item_cont .item_info_cont .item_review_cnt {
+  margin: 21px 0 0 0;
 }

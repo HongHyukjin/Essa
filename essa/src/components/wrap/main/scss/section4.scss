@@ -70,7 +70,6 @@
                 .top {
                     display: flex;
                     justify-content: space-between;
-                
                     .product_box {
                         width: 345.328px;
                         display: block;
@@ -136,13 +135,19 @@
                                             }
                                         }
                                         .item_icon_box {
-                                            img {}
+                                            img {
+                                                display: inline-block;
+                                            margin: 0 5px 0 0;
+                                            }
                                         }
                                         .item_review_cnt {
+                                            margin:21px 0 0 0;
                                             ul {
                                                 li {
                                                     a {
-                                                    .xi-comment-o{}
+                                                    .xi-comment-o{
+                                                        font-family: 'xeicon!important';
+                                                    }
                                                     span {} 
                                                     }
                                                 }
@@ -155,6 +160,7 @@
                     }
                 }
                 .bottom {
+                    padding: 80px 0 0 0;
                     display: flex;
                     justify-content: space-between;
                     .product_box {
@@ -168,7 +174,7 @@
                                 .item_cont {
                                     width: 345.328px;
                                     height: 406.141px;
-                                    display: block;
+                                    // display: block;
                                     
                                     .item_photo_box {
                                         display: flex;
@@ -191,21 +197,25 @@
                                         }
                                     }
                                     .item_info_cont {
-                                        padding: 20px 0;
+                                        padding: 20px 0 10px 0;
                                         .item_tit_box {
                                             text-align: left;
-                                            padding: 0;
+                                            padding: 5px 0;
                                             .item_name {
                                                 font-size: 16px;
+                                                padding: 0 0 10px 0;
                                             }
                                             .item_name_explain {
                                                 font-size: 13px;
                                                 color:#7e9fc2;
+                                                padding: 10px 0 0 0;
                                             }
                                         }
                                         .item_money_box {
-                                            width: 100%;
+                                            padding: 10px 0 ;
                                             .item_sale {
+                                                display: inline-block;
+                                                padding: 0 8px 0 0;
                                                 font-size: 14px;
                                                 color: #a8a8a8;
                                             }
@@ -213,12 +223,22 @@
                                                 font-size: 16px;
                                                 color: #000;
                                             }
-                                            .sale_per {}
+                                            .sale_per {
+
+                                            }
                                         }
                                         .item_icon_box {
-                                            img {}
+                                            
+                                            width: 100%;
+                                            img {
+                                            display: inline-block;
+                                            margin: 0 5px 0 0;
+                                              
+                                               
+                                            }
                                         }
                                         .item_review_cnt {
+                                            margin:21px 0 0 0;
                                             ul {
                                                 li {
                                                     a {
