@@ -54,7 +54,7 @@ export default function Section4Component () {
                                                     <ul>
                                                         <li>
                                                             <a href="!#">
-                                                                <i className='xi-comment-o'></i>
+                                                            <span class="material-symbols-outlined"></span>
                                                                 <span>12</span>
                                                             </a>
                                                         </li>
@@ -338,12 +338,12 @@ export default function Section4Component () {
                                             <div className="item_photo_box">
                                                 <a href="!#">
                                                     <img src="./img/section4_08.jpg" alt="" />
-                                                    {/* <div className="item_link">
+                                                    <div className="item_link">
                                                         <div className="inner">
-                                                            <button><img src="" alt="" /></button>
-                                                            <button><img src="" alt="" /></button>
+                                                            <button></button>
+                                                            <button></button>
                                                         </div>
-                                                    </div> */}
+                                                    </div>
                                                 </a>
                                             </div>
                                             <div className="item_info_cont">

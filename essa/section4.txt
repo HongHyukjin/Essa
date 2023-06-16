@@ -5,3 +5,20 @@ ivypresto-display, serif
 			<div class="t01">Weekly Sofa</div>
 			<!-- <div class="t02">ESSA 베스트 제품과 신제품을 확인하세요</div> -->
 		</div>
+
+
+		<i class="xi-comment-o"></i>
+
+		<span class="material-symbols-outlined">
+rate_review
+</span>
+
+<style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+</style>
