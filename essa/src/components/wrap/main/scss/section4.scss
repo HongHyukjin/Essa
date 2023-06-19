@@ -23,7 +23,7 @@
             .title {
                 width: 100%;
                 padding: 0 0 30px 0;
-                h2 {
+                .main-title {
                     color:#1a1a1a;
                     font-size: 42px;
                     font-weight: 300;
@@ -40,7 +40,6 @@
             }
             .content {
                 width: 100%;
-                
                 .title2 {
                     width: 100%;
                     ul {
@@ -85,23 +84,45 @@
                                     
                                     .item_photo_box {
                                         display: flex;
-                                        justify-content: space-between;
-                                        align-items: center;
-                                        a {
+                                        position: relative;
+                                        cursor: pointer;
+                                        overflow: hidden;
+                                        
                                             img {
                                                 width: 345px;
                                                 height: 247px;
-                                                .item_link {
-                                                    .inner {
+                                            }
+                                                .button-box {
+                                                    padding: 15px 0 0 0;
+                                                    opacity: 0;
+                                                    width: 100%;
+                                                    height: 56px;
+                                                    position: absolute;
+                                                    z-index: 5;
+                                                    bottom:0;
+                                                    left:0;
+                                                    transform: translateY(200%);
+                                                    background: rgba(255,255,255,0.5);
+                                                    transition: all 0.3s;
+                                                    backdrop-filter: blur(4px);
+                                                    cursor: pointer;
+                                                    transition: all 0.5s;
+                                                    .button {
+                                                        display:flex;
+                                                        justify-content: space-around;
                                                         button {
+                                                            background: none;
+                                                            border:0;
                                                             img {
-
+                                                               width:25px;
+                                                               height:24px; 
+                                                                
                                                             }
                                                         }
                                                     }
                                                 }
-                                            }
-                                        }
+                                            
+                                       
                                     }
                                     .item_info_cont {
                                         padding: 20px 0 10px 0;
@@ -180,47 +201,45 @@
                                     
                                     .item_photo_box {
                                         display: flex;
-                                        justify-content: space-between;
-                                        align-items: center;
-                                        a {
-                                            width: 100%;
+                                        position: relative;
+                                        cursor: pointer;
+                                        overflow: hidden;
+                                        
                                             img {
                                                 width: 345px;
                                                 height: 247px;
-                                                position: relative;
-                                                .item_link {
-                                                    position: relative;
-                                                    .inner {
-                                                        width: 345.328px;
-                                                        height: 56px;
-                                                        position: relative;
+                                            }
+                                                .button-box {
+                                                    padding: 15px 0 0 0;
+                                                    opacity: 0;
+                                                    width: 100%;
+                                                    height: 56px;
+                                                    position: absolute;
+                                                    z-index: 5;
+                                                    bottom:0;
+                                                    left:0;
+                                                    transform: translateY(200%);
+                                                    background: rgba(255,255,255,0.5);
+                                                    transition: all 0.3s;
+                                                    backdrop-filter: blur(4px);
+                                                    cursor: pointer;
+                                                    transition: all 0.5s;
+                                                    .button {
+                                                        display:flex;
+                                                        justify-content: space-around;
                                                         button {
-                                                            width: 100%;
-                                                            position: absolute;
-                                                            bottom: 0;
-                                                            
-                                                            z-index: 5;
-                                                            &:first-child{
-                                                                width: 172.672px;
-                                                                height: 56px;
-                                                            }
-                                                            &:last-child{}
-                                                            &.on {
+                                                            background: none;
+                                                            border:0;
+                                                            img {
+                                                               width:25px;
+                                                               height:24px; 
                                                                 
-                                                                color: #5f0080;
-                                                                background-color: #fafafa;
-                                                                background-image: url(../../../../../public/img/product_01.png);
-                                                            }
-                                                            &:hover{
-                                                                color: #5f0080;
-                                                                background-color: #fafafa;
-                                                                background-image: url(../../../../../public/img/product_01.png);
                                                             }
                                                         }
                                                     }
                                                 }
-                                            }
-                                        }
+                                            
+                                       
                                     }
                                     .item_info_cont {
                                         padding: 20px 0 10px 0;
