@@ -9,6 +9,8 @@ import Section6Component from './main/Section6Component';
 import Section7Component from './main/Section7Component';
 import Section8Component from './main/Section8Component';
 import Section9Component from './main/Section9Component';
+import Section10Component from './main/Section10Component';
+import Section12Component from './main/Section12Component';
 
 export default function MainComponent () {
     return (
@@ -22,6 +24,8 @@ export default function MainComponent () {
             <Section7Component/>
             <Section8Component/>
             <Section9Component/>
+            <Section10Component/>
+            <Section12Component/>
         </main>
     );
 };
