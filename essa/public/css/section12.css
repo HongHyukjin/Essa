@@ -62,6 +62,7 @@
 }
 #section12 .container .gap .content .insta-img-box img {
   position: absolute;
+  user-select: none;
 }
 #section12 .container .gap .content .insta-img-box img:nth-child(1) {
   top: 330px;
