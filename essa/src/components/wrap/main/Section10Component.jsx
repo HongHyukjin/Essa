@@ -14,7 +14,7 @@ function Section10Component(props) {
 
         function mainSlide(){
             $slideWrap.stop().animate({left: `${-428 * cnt}px`}, 1000, function(){
-                if(cnt === 8) cnt = 7;
+                // if(cnt === 8) cnt = 7;
                 // else if(cnt === -2) cnt =2;
                 setState({
                     ...state,
@@ -48,25 +48,52 @@ function Section10Component(props) {
         let mousedown = false;
         let $tagA = $('#section10 .slide a')
 
+
         $slideView.on({
             mousedown(e){
                 mousedown = true;
                 touchStart = e.clientX;
                 dragStart = e.clientX - $slideWrap.offset().left;
-                console.log(touchStart);
+                // console.log(touchStart);
             },
             mouseup(e){
                 mousedown = false;
                 touchEnd = e.clientX;
+                let cnt1 = 0;
+                let move = Math.abs(touchEnd - touchStart);
+                console.log(move)
                 $tagA.css({"pointer-events":"auto"});
+                if($slideWrap.position().left>0){
+                    $slideWrap.stop().animate({left : this.style=`${0}px`});
+                }
+                if($slideWrap.position().left>`${1903}px`){
+                    $slideWrap.stop().animate({left:this.style=-`${1903}px`});
+                }    
+                if (move > 0 && move < 620) {
+                    cnt1 = 1;
+                } 
+                else if (move < 1050) {
+                  cnt1 = 2;
+                } 
+                else if (move < 1480) {
+                  cnt1 = 3;
+                } 
+                else if (move < 1850) {
+                  cnt1 = 4;
+                }
+                console.log(cnt1);
                 if((touchStart - touchEnd) > 0){
                     if(!$slideWrap.is(':animated')){
-                        nextCount();
+                        for(let i=0; i<cnt1; i++){
+                            nextCount();
+                        }
                     }
                 }
                 if((touchStart - touchEnd) < 0){
                     if(!$slideWrap.is(':animated')){
-                        prevCount();
+                        for(let i=0; i<cnt1; i++){
+                            prevCount();
+                        }
                     }
                 }
             },
@@ -77,7 +104,7 @@ function Section10Component(props) {
                 }
                 dragEnd = e.clientX;
                 if(!$slideWrap.is(':animated')){
-                    $slideWrap.css({left: (dragEnd - dragStart)});
+                    $slideWrap.css({left: (dragEnd - dragStart-200)});
                 }
             }
         })
@@ -97,10 +124,10 @@ function Section10Component(props) {
         //     $img1.css({filter : "brightness(100%)"});
         //     $article1.css({opacity : 1})
         // }
-        // // else if(state.cnt===0){
-        // //     $slide2.css({padding : "20px 0"})
+        // else if(state.cnt===0){
+        //     $slide2.css({padding : "20px 0"})
 
-        // // }
+        // }
     },[state.cnt])
 
 

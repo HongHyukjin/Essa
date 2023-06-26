@@ -8,15 +8,18 @@
             width:100%;
             .content {
                 width:100%;
-                .product-box {
+                .slide-container {
                     width:100%;
                     padding-left:400px;
-                    ul {
-                        display:flex;
+                    .slide-view {
                         overflow:hidden;
-                        li {
+                        display:flex;
+                        .slide-wrap {
+                            width : 396.719px * 6;
+                            display:flex;
                             padding: 0 11px;
-                            .product {
+                            position: relative;
+                            .slide {
                                 width:396.719px;
                                 position: relative;
                                 .img-box {

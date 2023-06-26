@@ -46,12 +46,15 @@
                     .video-wrap {
                         position: relative;
                         z-index: 1;
-                        width: 663.891px;
+                        width: 723.891px;
+                        height:750px;
                         video {
                             padding: 0;
                             width: 663.891px;
+                            height:750px;
                             // height: 750px;
                             border-radius: 20px;
+                            object-fit: fill;
                         }
                         .inner-wrap {
                             // width:298.188px;
