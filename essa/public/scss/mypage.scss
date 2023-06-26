@@ -136,25 +136,35 @@
                                             vertical-align: middle;
                                             background: #f7f7f7;
                                             height:43px;
-                                            tr {
+                                            >tr {
                                                 display:table-row;
                                                 vertical-align: inherit;
                                                 font-size: 14px;
                                                 line-height: 21px;
                                                 color:#333;
                                                 th {
-
+                                                    display:table-cell;
+                                                    border-top:1px solid #dbdbdb;
+                                                    border-bottom:1px solid #dbdbdb;
                                                 } 
                                             }
                                         }
                                         tbody {
-                                            display:table-row-group;
+                                            width: 1360px;
+                                            height:181px;
                                             vertical-align: middle;
-                                            tr {
-                                                display:table-row;
-                                                
+                                            text-align: center;
+                                            .infro-answer {
+                                                width: 1360px;
+                                                height:181px;
+                                                text-align: center;
                                                 td {
-                                                    p {}
+                                                    border-bottom: 1px solid #dbdbdb;
+                                                    p {
+                                                        color:#777;
+                                                        font-size: 14px;
+                                                        line-height: 21px;
+                                                    }
                                                 }
                                             }
                                         }
