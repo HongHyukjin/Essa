@@ -183,7 +183,7 @@ export default function HeaderComponent() {
                                         </div>
                                         <div className="two">
                                             <ul>
-                                                <li><a href="!#">마이페이지</a></li>
+                                                <li><Link to="/마이페이지">마이페이지</Link></li>
                                                 <li><a href="!#">주문/배송조회</a></li>
                                                 <li><a href="!#">관심상품</a></li>
                                                 <li><a href="!#">쿠폰</a></li>
