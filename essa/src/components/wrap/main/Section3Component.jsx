@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import { Link } from 'react-router-dom';
 
 export default function Section3Component () {
 
@@ -162,6 +163,14 @@ export default function Section3Component () {
             </div>
             <div className="bottom">
               <ul>
+                <li>
+                  <Link to='/클럽페이지'>
+                    <span className='round on'>
+                      <img src="./img/point_thumb6.png" alt="" />
+                    </span>
+                  </Link>
+                  <span className='tit'>ESSA CLUB</span>
+                </li>
                 <li>
                   <a href="!#">
                     <span className='round'>

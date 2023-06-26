@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import { Link } from 'react-router-dom';
 
 export default function HeaderComponent() {
 
@@ -47,9 +48,9 @@ export default function HeaderComponent() {
             <div className="container">
                 <div className="gap">
                     <div className="logo">
-                        <a href="!#">
+                        <Link to='/메인'>
                             <svg width="100" viewBox="0 0 301.89 89.15" fill="#fff"><g><polygon className="st0" points="23.88,51.81 57.78,51.81 57.78,38.02 23.88,38.02 23.88,19.26 61.29,19.26 61.29,5.6 6.65,5.6 6.65,83.4 64.85,83.4 64.85,69.41 23.88,69.41"></polygon><path className="st0" d="M104.78,3.22c-13.27,0-27.47,7.62-27.47,23.84c0,29.47,43.72,18.66,43.72,35.43c0,8.06-8.64,9.82-14.3,9.82c-5.87,0-14.32-1.41-16.16-11.35H75c1.56,17.16,15.61,24.82,31.12,24.82c20.06,0,30.55-10.82,30.55-25.28c0-17.88-16.36-21.52-21.81-22.96c-18.41-4.75-21.91-6.07-21.91-11.92c0-6.62,5.97-8.94,11.11-8.94c4.95,0,12.28,0.34,14.39,9.05h15.62C132.66,9.64,119.28,3.22,104.78,3.22"></path><path className="st0" d="M187.63,37.55c-18.41-4.75-21.91-6.07-21.91-11.92c0-6.62,5.96-8.94,11.11-8.94c4.95,0,12.28,0.34,14.38,9.05h15.62c-1.42-16.1-14.79-22.52-29.29-22.52c-13.27,0-27.47,7.62-27.47,23.84c0,29.47,43.72,18.66,43.72,35.43c0,8.06-8.64,9.82-14.3,9.82c-5.87,0-14.32-1.41-16.16-11.35h-15.58c1.55,17.16,15.61,24.82,31.12,24.82c20.06,0,30.55-10.82,30.55-25.28C209.44,42.62,193.08,38.98,187.63,37.55"></path><path className="st0" d="M261.87,5.76h-7.8h-0.01h-0.15h-0.01h-7.8l-32.04,77.48h16.17l7.31-17.88h32.87l7.31,17.88h16.17L261.87,5.76zM243.28,51.37l10.71-26.18l10.71,26.18H243.28z"></path></g></svg>
-                        </a>
+                        </Link>
                     </div>
                     <div className="col col1">
                         <ul>
@@ -176,9 +177,9 @@ export default function HeaderComponent() {
                                 <div className="sub  mypage">
                                     <div className="container-my">
                                         <div className="one">
-                                            <a href="!#">로그인</a>
+                                            <Link to="/로그인">로그인</Link>
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="#333" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="12" transform="translate(14.5674 7.41992) rotate(30)" fill="#111"></rect></svg>
-                                            <a href="!#">회원가입</a>
+                                            <Link to="/회원가입">회원가입</Link>
                                         </div>
                                         <div className="two">
                                             <ul>

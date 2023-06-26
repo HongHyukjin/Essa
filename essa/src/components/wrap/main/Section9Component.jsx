@@ -20,7 +20,7 @@ function Section9Component(props) {
         <div id='section9'>
             <div className="container">
                 <div className="gap">
-                    <div className="row1">
+                    <div className="row1">``
                         <div className="title">
                             <h1>keyword<span className='shop'>#</span></h1>        
                         </div>
