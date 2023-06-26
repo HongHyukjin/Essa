@@ -5,6 +5,7 @@ import FooterComponent from './wrap/FooterComponent';
 import Section4Component from './wrap/main/Section4Component';
 import Section6Component from './wrap/main/Section6Component';
 import Section11Component from './wrap/main/Section11Component';
+import BoardComponent from './wrap/BoardComponent';
 
 export default function WrapComponent ()  {
     return (
@@ -14,6 +15,7 @@ export default function WrapComponent ()  {
             <Section4Component/>
             <Section6Component/>
             <Section11Component/>
+            <BoardComponent/>
             <FooterComponent/>
         </div>
     );
