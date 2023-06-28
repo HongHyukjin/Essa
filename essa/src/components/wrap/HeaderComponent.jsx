@@ -55,7 +55,7 @@ export default function HeaderComponent() {
                     <div className="col col1">
                         <ul>
                             <li className='sub-page'>
-                                <a className='sub-up' href="!#"><h3>PRODUCT</h3></a>
+                                <Link className='sub-up' to="/쇼핑"><h3>PRODUCT</h3></Link>
                                 <div className="sub sub1">
                                     <div className="container">
                                         <div className="col1">

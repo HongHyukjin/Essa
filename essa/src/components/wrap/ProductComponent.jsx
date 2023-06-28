@@ -2,6 +2,7 @@ import React from 'react';
 import FooterComponent from './FooterComponent';
 import HeaderComponent from './HeaderComponent';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default function ProductComponent () {
 
@@ -20,6 +21,7 @@ export default function ProductComponent () {
           ...state,
           쇼핑: res.data.쇼핑
         })
+        localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
       })
       .catch((err) => {
         console.log("AXIOS 오류!" + err)
@@ -32,28 +34,44 @@ export default function ProductComponent () {
 
   const [list, setList] = React.useState(4);  // 한화면에 보여질 목록개수
   const [pageNumber, setPageNumber] = React.useState(1); // 페이지번호
-  const [groupPage] = React.useState(8); // 페이지번호 그룹1(1(1~5) 그룹2(6!~10) 그룹3(11~15) 그룹4(16~20))
+  const [groupPage] = React.useState(10); // 페이지번호 그룹1(1(1~5) 그룹2(6!~10) 그룹3(11~15) 그룹4(16~20))
   const [cnt, setCnt] = React.useState(1); // 페이지번호 그룹 1
 
   const [startNum, setStartNum] = React.useState(); // 그룹 시작 번호
   const [endtNum, setEndtNum] = React.useState();  // 그룹 끝 번호
+  const [click, setClick] = React.useState('');
 
   //  페이지번호 클릭 이벤트
   const onClickPageNum = (e, num) => {
     e.preventDefault();
     setPageNumber(num);
+    window.scrollTo(0,0);
   }
 
   // 그룹페이지 클릭  다음카운트 이벤트
   const onClickNextGroup = (e) => {
     e.preventDefault();
     setCnt(cnt + 1);
+    setClick('');
+  }
+
+  const onClickNextGroupLastPage = (e) => {
+    e.preventDefault();
+    setCnt(Math.ceil(state.쇼핑.length / list / groupPage));
+    setClick('Last');
   }
 
   // 그룹페이지 클릭  이전카운트 이벤트
   const onClickPrevGroup = (e) => {
     e.preventDefault();
     setCnt(cnt - 1);
+    setClick('');
+  }
+
+  const onClickPrevGroupFirstPage = (e) => {
+    e.preventDefault();
+    setCnt(1);
+    setClick('First');
   }
 
   // 그룹 시작번호 설정 => cnt 또는 groupPage 값 변경이 있거나 설정되었다면 시작번호 설정 실행
@@ -68,7 +86,15 @@ export default function ProductComponent () {
 
   // 그룹 시작페이지 설정 => 그룹페이지 이동시 그룹의 첫페이지 설정
   React.useEffect(() => {
-    setPageNumber(startNum + 1);
+    if(click === ''){
+      setPageNumber(startNum + 1);
+    }
+    else if(click === 'First'){
+      setPageNumber(1);
+    }
+    else if(click === 'Last'){
+      setPageNumber(Math.ceil(state.쇼핑.length / list));
+    }
   }, [endtNum, startNum]);
 
   React.useEffect(() => {
@@ -207,7 +233,7 @@ export default function ProductComponent () {
                           <li>
                             <div className="item_cont">
                               <div className="photo_box">
-                                <a href="!#">
+                                <Link to="/상세보기">
                                   <img src={item.이미지} alt="" />
                                   <div className="item_link">
                                     <div className="inner">
@@ -219,7 +245,7 @@ export default function ProductComponent () {
                                       </button>
                                     </div>
                                   </div>
-                                </a>
+                                </Link>
                               </div>
                               <div className="info_box">
                                 <div className="tit_box">
@@ -255,6 +281,7 @@ export default function ProductComponent () {
               <div className="pagenation">
                 <div className="page-button-box">
 
+                  {cnt > 1 && <a href="!#" className="prev-btn" onClick={onClickPrevGroupFirstPage}>&lt;&lt;</a>}
                   {cnt > 1 && <a href="!#" className="prev-btn" onClick={onClickPrevGroup}>&lt;</a>}
                   {
                     (() => {
@@ -269,6 +296,7 @@ export default function ProductComponent () {
                     })()
                   }
                   {cnt < Math.ceil(state.쇼핑.length / list / groupPage) && <a href="!#" className="next-btn" onClick={onClickNextGroup}>&gt;</a>}
+                  {cnt < Math.ceil(state.쇼핑.length / list / groupPage) && <a href="!#" className="next-btn" onClick={onClickNextGroupLastPage}>&gt;&gt;</a>}
 
                 </div>    
               </div>
