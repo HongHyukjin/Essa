@@ -97,7 +97,7 @@
                                         background: #f9f9f9;
                                         outline: 1px solid transparent;
                                         transition: all 0.3s;
-                                        padding: 0 30px;
+                                        padding: 0 20px;
                                         font-size: 14px;
                                         color: #a8a8a8;
                                         &:focus{
@@ -107,17 +107,21 @@
                                         }
                                     }
                                     .err{
+                                        display: none;
                                         padding: 5px 0 0 0;
                                         letter-spacing: -1px;
                                         font-size: 13px;
                                         color: #222;
                                         line-height: 20px;
+                                        &.on{
+                                            display: block;
+                                        }
                                     }
                                     .possible{
                                         padding: 5px 0 0 0;
                                         letter-spacing: -1px;
                                         font-size: 13px;
-                                        color: #6184b1;;
+                                        color: #6184b1;
                                     }
                                     &.email{
                                         input{
