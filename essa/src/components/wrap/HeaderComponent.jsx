@@ -55,7 +55,7 @@ export default function HeaderComponent() {
                     <div className="col col1">
                         <ul>
                             <li className='sub-page'>
-                                <a className='sub-up' href="!#"><h3>PRODUCT</h3></a>
+                                <Link className='sub-up' to='/쇼핑'><h3>PRODUCT</h3></Link>
                                 <div className="sub sub1">
                                     <div className="container">
                                         <div className="col1">
@@ -185,15 +185,15 @@ export default function HeaderComponent() {
                                             <ul>
                                                 <li><Link to="/마이페이지">마이페이지</Link></li>
                                                 <li><a href="!#">주문/배송조회</a></li>
-                                                <li><a href="!#">관심상품</a></li>
+                                                <li><Link to="/찜페이지">관심상품</Link></li>
                                                 <li><a href="!#">쿠폰</a></li>
                                             </ul>
                                         </div>
                                         <div className="three">
-                                            <a href="!#">최근 본 상품</a>
+                                            <Link to="/마이페이지">최근 본 상품</Link>
                                         </div>
                                         <div className="four">
-                                            <a href="!#">고객센터</a>
+                                            <Link to="/고객센터">고객센터</Link>
                                         </div>
                                     </div>
                                 </div>

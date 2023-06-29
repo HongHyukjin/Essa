@@ -136,6 +136,7 @@
 }
 #mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table {
   width: 100%;
+  border-collapse: collapse;
 }
 #mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table thead {
   display: table-header-group;
@@ -143,17 +144,32 @@
   background: #f7f7f7;
   height: 43px;
 }
-#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table thead tr {
+#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table thead > tr {
   display: table-row;
   vertical-align: inherit;
   font-size: 14px;
   line-height: 21px;
   color: #333;
 }
-#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table tbody {
-  display: table-row-group;
-  vertical-align: middle;
+#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table thead > tr th {
+  display: table-cell;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
 }
-#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table tbody tr {
-  display: table-row;
+#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table tbody {
+  width: 1360px;
+  height: 181px;
+  vertical-align: middle;
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+}
+#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table tbody .infro-answer {
+  width: 1360px;
+  height: 181px;
+  text-align: center;
+}
+#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table tbody .infro-answer td p {
+  color: #777;
+  font-size: 14px;
+  line-height: 21px;
 }

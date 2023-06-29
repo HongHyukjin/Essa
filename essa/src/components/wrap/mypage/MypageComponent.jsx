@@ -89,8 +89,8 @@ function MypageComponent(props) {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>
+                                                    <tr className='info-answer'>
+                                                        <td colSpan="6">
                                                             <p>조회내역이 없습니다.</p>
                                                         </td>
                                                     </tr>

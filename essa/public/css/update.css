@@ -1,0 +1,148 @@
+#update {
+  width: 100%;
+}
+#update .container {
+  width: 100%;
+  max-width: 1752px;
+  padding: 0 76px;
+  margin: 0 auto;
+  height: 1600px;
+}
+#update .container .gap {
+  width: 100%;
+}
+#update .container .gap .content {
+  width: 100%;
+  margin-top: 200px;
+  display: flex;
+}
+#update .container .gap .content .left-box {
+  width: 200px;
+}
+#update .container .gap .content .left-box .sub-menu-box h2 {
+  color: #333;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 42px;
+}
+#update .container .gap .content .left-box .sub-menu-box .sub-menu-mypage {
+  margin-top: 43px;
+}
+#update .container .gap .content .left-box .sub-menu-box .sub-menu-mypage .sub-menu-tit {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  margin: 30px 0;
+  color: #333;
+}
+#update .container .gap .content .left-box .sub-menu-box .sub-menu-mypage .sub-menu-tit .sub-menu-detail .detail-tit {
+  font-size: 15px;
+  font-weight: 300;
+  color: #a8a8a8;
+  line-height: 22.5px;
+  padding: 8px 0;
+}
+#update .container .gap .content .right-box {
+  width: calc(100% - 240px);
+  padding-left: 40px;
+}
+#update .container .gap .content .right-box .mypage-cont {
+  width: 100%;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password .mypage-tit {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password .mypage-tit h2 {
+  color: #333;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 31.5px;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind {
+  width: 1360px;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box {
+  width: 1360px;
+  height: 212.5px;
+  border: 1px solid #dbdbdb;
+  padding: 50px 0 20px 0;
+  text-align: center;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box p {
+  color: #a8a8a8;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22.5px;
+  letter-spacing: -0.5px;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box .id-pw-box {
+  height: 118px;
+  width: 1385px;
+  padding: 28px 0 24px 0;
+  text-align: center;
+  overflow: hidden;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box .id-pw-box dl {
+  display: inline-block;
+  width: auto;
+  padding: 5px 20px;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box .id-pw-box dl dt {
+  padding: 0 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box .id-pw-box dl dd {
+  height: 58px;
+  display: inline-block;
+  text-align: left;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box .id-pw-box dl dd strong {
+  margin-top: 20px;
+  display: block;
+  color: #6184b1;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box .id-pw-box dl dd .password-waring {
+  display: inline;
+  position: relative;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box .id-pw-box dl dd .password-waring input {
+  height: 58px;
+  background: #f9f9f9;
+  border: 1px solid #f9f9f9;
+  display: block;
+  padding: 0 30px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 58px;
+  color: #333;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-box .id-pw-box dl dd .password-waring .text-waring {
+  display: none;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-button-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-button-box .cancel {
+  margin-right: 10px;
+  width: 220px;
+  height: 58px;
+  background: #fff;
+  color: #6184b1;
+  border: 1px solid #7e9fc2;
+  font-size: 18px;
+}
+#update .container .gap .content .right-box .mypage-cont .mypage-password #formFind .update-button-box .btn-pw-certify {
+  width: 220px;
+  height: 58px;
+  background: #7e9fc2;
+  border: 1px solid #7e9fc2;
+  color: #fff;
+  font-size: 18px;
+}
