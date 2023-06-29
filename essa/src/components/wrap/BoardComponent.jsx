@@ -23,7 +23,7 @@ export default function BoardComponent(){
                             <table className='board_list_table'>
                                 <colgroup>
                                     <col Style ="width:6%"/>
-                                    <col Style ="width:37%;"/>
+                                    <col Style ="width:37%"/>
                                     <col Style ="width:7%"/>
                                     <col Style ="width:15%"/>
                                     <col Style ="width:6%"/>
