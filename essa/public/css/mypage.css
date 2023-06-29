@@ -161,12 +161,14 @@
   height: 181px;
   vertical-align: middle;
   text-align: center;
-  border-bottom: 1px solid #dbdbdb;
 }
 #mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table tbody .infro-answer {
   width: 1360px;
   height: 181px;
   text-align: center;
+}
+#mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table tbody .infro-answer td {
+  border-bottom: 1px solid #dbdbdb;
 }
 #mypage .container .gap .content .right-box .mypage-main .mypage-row2 .mypage-myinfo-box .myinfo-table table tbody .infro-answer td p {
   color: #777;
