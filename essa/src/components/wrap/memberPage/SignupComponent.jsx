@@ -146,7 +146,7 @@ export default function SignupComponent(props) {
         }
         else{
             isPwErr=true;
-            isPwMsg='안전한 비밀번호입니다';
+            isPwMsg='사용가능한 비밀번호입니다';
             $('.errPw').css({"color":"#6184b1"});
         }
 
@@ -193,20 +193,22 @@ export default function SignupComponent(props) {
     const onChangeUserEmail =(e)=>{
 
         const {value} = e.target;
-        let user_email=state.user_domain;
+        let user_email='';
         
            setState({
             ...state,
-            user_email:user_email
+            user_email:value
         })
     }
 
     const onChangeUserDomain=(e)=>{
+        const {value} = e.target;
         setState({
             ...state,
-            user_domain:e.target.value
+            user_domain:value
         })
     }
+
     const onChangeUserHp =(e)=>{
 
         const {value} =e.target
@@ -375,7 +377,7 @@ export default function SignupComponent(props) {
                                             <tr>
                                                 <th className='important'><span>이메일</span></th>
                                                 <td className='email'>
-                                                <input type="text" name='user_email' id='userEmail' onChange={onChangeUserEmail} value={state.user_email}/>
+                                                <input type="text" name='user_email' id='userEmail' onChange={onChangeUserEmail} value={state.user_email + state.user_domain} />
                                                     <select name="user_domain" id="userDomain" onChange={onChangeUserDomain}>
                                                         <option value="">직접입력</option>
                                                         <option value="naver.com">naver.com</option>
