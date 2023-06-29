@@ -8,8 +8,8 @@ import MypageComponent from './wrap/mypage/MypageComponent';
 import ZzimComponent from './wrap/mypage/ZzimComponent';
 import ProductComponent from './wrap/ProductComponent';
 import ProductDetailComponent from './wrap/ProductDetailComponent';
-import UpdateComponent from './wrap/mypage/UpdateComponent';
 import BoardComponent from './wrap/BoardComponent';
+import BasketComponent from './wrap/mypage/BasketComponent';
 
 export default function WrapComponent ()  {
     return (
@@ -25,6 +25,7 @@ export default function WrapComponent ()  {
                     <Route path='/쇼핑' element={<ProductComponent />}/>
                     <Route path='/상세보기' element={<ProductDetailComponent />}/>
                     <Route path='/고객센터' element={<BoardComponent/>}/>
+                    <Route path='/장바구니' element={<BasketComponent/>}/>
                 </Routes>
             </HashRouter>
         </div>
