@@ -126,6 +126,7 @@
   border: 1px solid #ddd;
   outline: 0;
   padding: 0 10px;
+  color: #717171;
 }
 #productDetail .container .content .item_info .banner {
   width: 100%;
@@ -170,6 +171,7 @@
   font-size: 12px;
   line-height: 31px;
   outline: 0;
+  text-align: center;
 }
 #productDetail .container .content .item_info .goods-box table tbody tr td:nth-child(2) .count span {
   display: block;
@@ -205,6 +207,9 @@
   background: transparent;
   border: 0;
 }
+#productDetail .container .content .item_info .goods-box table tbody tr td:nth-child(4) button img {
+  width: auto;
+}
 #productDetail .container .content .item_info .total {
   width: 100%;
   padding: 20px 0 0 0;
@@ -212,6 +217,54 @@
 }
 #productDetail .container .content .item_info .total .row1 {
   padding: 0 0 16px 0;
+}
+#productDetail .container .content .item_info .total .row1 h5 {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333;
+  font-family: "Pretendard";
+  padding: 0 0 5px 0;
+}
+#productDetail .container .content .item_info .total .row1 h5 span {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 0 0 10px;
+}
+#productDetail .container .content .item_info .total .row1 h6 {
+  padding: 0 0 5px 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333;
+  font-family: "Pretendard";
+  padding: 0 0 5px 0;
+}
+#productDetail .container .content .item_info .total .row1 h6 span {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 0 0 10px;
+  color: #999;
+}
+#productDetail .container .content .item_info .total .row2 {
+  border-top: 1px solid #ededed;
+  padding: 10px 0 5px 0;
+}
+#productDetail .container .content .item_info .total .row2 h3 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 30px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+#productDetail .container .content .item_info .total .row2 h3 span {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  color: #1a1a1a;
+  padding: 0 0 5px 10px;
 }
 #productDetail .container .content .item_info .btn-box {
   width: 100%;
