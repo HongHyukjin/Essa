@@ -83,8 +83,8 @@ export default function ProductDetailComponent () {
                         <div className="count">
                           <input type="text" />
                           <span>
-                            <button></button>
-                            <button></button>
+                            <button className='up'></button>
+                            <button className='down'></button>
                           </span>
                         </div>
                       </td>
@@ -95,6 +95,15 @@ export default function ProductDetailComponent () {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+              <div className="total">
+                <div className="row1">
+                  <h5>총 상품금액<span>2,600,000원</span></h5>
+                  <h6>총 할안금액<span>-728,000원</span></h6>
+                </div>
+                <div className="row2">
+                  <h3>총 합계금액<span>1,827,000원</span></h3>
+                </div>
               </div>
               <div className="btn-box">
                 <button className='heart'>
