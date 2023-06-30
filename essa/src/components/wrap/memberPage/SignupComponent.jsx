@@ -3,7 +3,6 @@ import $ from 'jquery';
 import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
 
-
 export default function SignupComponent(props) {
  
     const [state,setState] = React.useState({
@@ -35,7 +34,7 @@ export default function SignupComponent(props) {
         isClick2:false
     });
 
-
+    
 
     const onClickAgr1 =(e) =>{
         if(state.isClick1===false){
@@ -308,20 +307,9 @@ export default function SignupComponent(props) {
         });
     }
 
-    const openPopupDaumPostApi=async()=>{
-        const popupFile='http://127.0.0.1:5500/public/popup.html';
-        const popupName='_popupAddressApi';
-        const popupWidth=530;
-        const popupHeight=570;
-        const popupTop= (window.innerHeight-popupHeight)/2;  
-        const popupLeft= (window.innerWidth-popupWidth)/2;
-        // 자식 팝업창
-        const childWindow = window.open(popupFile,popupName,`width=${popupWidth},height=${popupHeight},top=${popupTop},left=${popupLeft}`);
-    }
 
     const onClickAddrPopupOpenApi=(e)=>{
-        e.preventDefault();
-        openPopupDaumPostApi();      
+        e.preventDefault();   
     }
 
 

@@ -4,7 +4,6 @@ import SignupComponent from './wrap/memberPage/SignupComponent';
 import IntroComponent from './wrap/IntroComponent';
 import NomemberComponent from './wrap/memberPage/NomemberComponent';
 import { HashRouter, Routes , Route} from 'react-router-dom';
-import EssaClubComponent from './wrap/subPage/EssaClubComponent';
 
 export default function WrapComponent ()  {
     return (
