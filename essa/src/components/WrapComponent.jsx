@@ -8,6 +8,7 @@ import Section11Component from './wrap/main/Section11Component';
 import BoardComponent from './wrap/BoardComponent';
 import BoardViewPageComponent from './wrap/BoardViewPageComponent'
 import ProductInquiryComponent from './wrap/ProductInquiryComponent';
+import BoardWriteFormComponent from './wrap/BoardWriteFormComponent';
 
 export default function WrapComponent ()  {
     return (
@@ -20,6 +21,7 @@ export default function WrapComponent ()  {
             <BoardComponent/>
             <BoardViewPageComponent/>
             <ProductInquiryComponent/>
+            <BoardWriteFormComponent/>
             <FooterComponent/>
         </div>
     );

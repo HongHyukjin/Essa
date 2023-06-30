@@ -1,0 +1,68 @@
+#BoardWrite {
+    width: 100%;
+    font-family: 'Red Hat Display','Pretendard',sans-serif;
+    >.container {
+        width: 100%;
+        max-width: 1600px;
+        height: 1155.030px;
+        margin: 0 auto;
+        .title {
+            padding: 120px 0 80px 0;
+            text-align: center;
+            h2 {
+                font-size: 32px;
+                font-weight: 700;
+                color: #000;
+            }
+        }
+        .content {
+            form {
+                width: 1600px;
+                margin: 0 100px;
+                .board_zone_write {
+                    width: 100%;
+                    .board_write_box{ 
+                        width: 100%;
+                        .board_write_table {
+                            width: 100%;
+                            tbody {
+                                 width: 100%;
+                                tr {
+                                    th {
+                                        text-align: left;
+                                        width: 208.5px;
+                                        height: 47px;
+                                    }
+                                    &:nth-child(1){
+                                        th {
+                                            width: 208.5;
+                                            height: 47px;
+                                            padding: 13px 0 7px 25px;
+                                        }
+                                        td {}
+                                    }
+                                    &:nth-child(2){
+                                        th {}
+                                        td {}
+                                    }
+                                    &:nth-child(3){
+                                        th {}
+                                        td {}
+                                    }
+                                    &:nth-child(4){
+                                        th {}
+                                        td {}
+                                    }
+                                    &:nth-child(5){
+                                        th {}
+                                        td {}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
