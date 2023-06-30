@@ -1,6 +1,7 @@
 package essa;
 import java.sql.*;
 import java.util.*;
+import essa.UserDTO;
 
 public class UserDAO {
     private Connection conn;
@@ -36,8 +37,10 @@ public class UserDAO {
             ps.setString(7, userDTO.getUser_addr1()+" "+userDTO.getUser_addr2()+" "+userDTO.getUser_addr3());
             ps.setString(8, userDTO.getUser_birth_year()+userDTO.getUser_birth_month()+userDTO.getUser_birth_date());
             ps.setString(9, userDTO.getUser_agr1()+userDTO.getUser_agr2());
+            
             return ps.executeUpdate();
         } catch(Exception e){
+            
             e.printStackTrace();
         }
         finally {
@@ -51,5 +54,42 @@ public class UserDAO {
             }
         }
         return -1;
+    }
+
+    // 로그인
+
+    public int signin(String user_id, String user_pw){
+        String SQL = "SELECT user_pw FROM essa_member WHERE user_id = ?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_id);
+            
+            rs = ps.executeQuery();
+            if(rs.next()){
+                if(rs.getString("user_pw").equals(user_pw)){
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            }
+            else {
+                return -1;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally{
+            try {
+                if(rs!=null){rs.close();}
+                if(ps!=null){ps.close();}
+                if(conn!=null){conn.close();}
+            }
+            catch (Exception e) {   
+                e.printStackTrace();
+            }
+        }
+        return -2;
     }
 }

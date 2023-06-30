@@ -10,6 +10,7 @@ import ProductComponent from './wrap/ProductComponent';
 import ProductDetailComponent from './wrap/ProductDetailComponent';
 import BoardComponent from './wrap/BoardComponent';
 import BasketComponent from './wrap/mypage/BasketComponent';
+import UpdateComponent from './wrap/mypage/UpdateComponent';
 
 export default function WrapComponent ()  {
     return (
@@ -25,7 +26,7 @@ export default function WrapComponent ()  {
                     <Route path='/쇼핑' element={<ProductComponent />}/>
                     <Route path='/상세보기' element={<ProductDetailComponent />}/>
                     <Route path='/고객센터' element={<BoardComponent/>}/>
-                    <Route path='/장바구니' element={<BasketComponent/>}/>
+                    <Route path='/장바구니' element={<UpdateComponent/>}/>
                 </Routes>
             </HashRouter>
         </div>
