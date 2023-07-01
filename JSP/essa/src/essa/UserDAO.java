@@ -69,7 +69,8 @@ public class UserDAO {
                 if(rs.getString("user_pw").equals(user_pw)){
                     return 1;
                 }
-                else {
+                else { 
+                    
                     return 0;
                 }
             }
