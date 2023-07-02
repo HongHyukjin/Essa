@@ -137,10 +137,48 @@ export default function ProductComponent () {
   const onClickNav1 = (e) => {
     e.preventDefault();
     // console.log(e.target.innerHTML);
+    let nav1_last_click = '';
+    let filter_shopping = '';
+    nav1_last_click = e.target.innerHTML;
+    if(e.target.innerHTML === '전체'){
+      filter_shopping = state.쇼핑
+    }
+    else if(e.target.innerHTML === '사이즈'){
+      filter_shopping = state.쇼핑.filter((item) => item.제품명.includes('인'))
+    }
+    else if(e.target.innerHTML === '소재'){
+      filter_shopping = state.쇼핑.filter(
+        (item) => item.제품명.includes('패브릭') ||
+        item.제품명.includes('가죽')
+        )
+    }
+    else if(e.target.innerHTML === '타입'){
+      filter_shopping = state.쇼핑.filter(
+        (item) => item.제품명.includes('헤드기능') ||
+        item.제품명.includes('리프트기능') ||
+        item.제품명.includes('스윙기능') ||
+        item.제품명.includes('카우치') ||
+        item.제품명.includes('코너')
+        )
+    }
+    else if(e.target.innerHTML === 'LIFE'){
+      filter_shopping = state.쇼핑.filter(
+        (item) => item.제품명.includes('데이비드') ||
+        item.제품명.includes('스툴') ||
+        item.제품명.includes('체어') ||
+        item.제품명.includes('러그') ||
+        item.제품명.includes('조명')
+        )
+    }
+    else if(e.target.innerHTML === 'LOVE PET'){
+      filter_shopping = state.쇼핑.filter(
+        (item) => item.제품명.includes('펫')
+        )
+    }
     setState({
       ...state,
-      nav1_last_click : e.target.innerHTML,
-      filter_shopping : state.쇼핑.filter((item) => item.제품명.includes('인'))
+      nav1_last_click : nav1_last_click,
+      filter_shopping : filter_shopping
     })
     $('#product .nav-btn').on({
       click(e){
@@ -150,12 +188,15 @@ export default function ProductComponent () {
     })
   }
 
-  // React.useEffect(() => {
-  //   setState({
-  //     ...state,
-  //     filter_shopping : state.쇼핑.filter((item) => item.제품명.includes('3인'))
-  //   })
-  // },[state.nav1, state.nav2])
+  const onClickNav2 = (e) => {
+    e.preventDefault();
+    let filter_shopping = '';
+    filter_shopping = state.쇼핑.filter((item) => item.제품명.includes(e.target.innerHTML));
+    setState({
+      ...state,
+      filter_shopping : filter_shopping
+    })
+  }
 
   return (
     <>
@@ -169,16 +210,16 @@ export default function ProductComponent () {
             <div className="content">
               <div className="nav">
                 <ul>
-                  <li><a href="" className='nav-btn on'>전체</a></li>
+                  <li><a href="" className='nav-btn on' onClick={onClickNav1} >전체</a></li>
                   <li>
                     <a href="!#" className='nav-btn' onClick={onClickNav1} >사이즈</a>
                     {
                       state.nav1 === '사이즈' && (
                         <ul className='subCategory'>
-                          <li><a href="!#">1인</a></li>
-                          <li><a href="!#">3인</a></li>
-                          <li><a href="!#">4인</a></li>
-                          <li><a href="!#">6인</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>1인</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>3인</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>4인</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>6인</a></li>
                         </ul>
                       )
                     }
@@ -188,8 +229,8 @@ export default function ProductComponent () {
                     {
                       state.nav1 === '소재' && (
                         <ul className='subCategory'>
-                          <li><a href="!#">패브릭</a></li>
-                          <li><a href="!#">가죽</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>패브릭</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>가죽</a></li>
                         </ul>
                       )
                     }
@@ -199,11 +240,11 @@ export default function ProductComponent () {
                     {
                       state.nav1 === '타입' && (
                         <ul className='subCategory'>
-                          <li><a href="!#">헤드기능</a></li>
-                          <li><a href="!#">리프트기능</a></li>
-                          <li><a href="!#">스윙기능</a></li>
-                          <li><a href="!#">카우치</a></li>
-                          <li><a href="!#">코너</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>헤드기능</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>리프트기능</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>스윙기능</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>카우치</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>코너</a></li>
                         </ul>
                       )
                     }
@@ -213,11 +254,11 @@ export default function ProductComponent () {
                     {
                       state.nav1 === 'LIFE' && (
                         <ul className='subCategory'>
-                          <li><a href="!#">데이베드</a></li>
-                          <li><a href="!#">스툴</a></li>
-                          <li><a href="!#">체어</a></li>
-                          <li><a href="!#">러그</a></li>
-                          <li><a href="!#">조명</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>데이베드</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>스툴</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>체어</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>러그</a></li>
+                          <li><a href="!#" onClick={onClickNav2}>조명</a></li>
                         </ul>
                       )
                     }                    
@@ -278,7 +319,7 @@ export default function ProductComponent () {
               <div className="category">
                 <span className='pick_list_num'>
                   상품
-                  <strong>745</strong>
+                  <strong>{state.filter_shopping.length}</strong>
                   개
                 </span>
                 <form name="frmList">
