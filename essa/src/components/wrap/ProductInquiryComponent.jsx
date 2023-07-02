@@ -255,7 +255,7 @@ export default function ProductInquiryComponent (){
                         </div>
                         <div className="btn_right_box">
                             <button type='button' className='btn_write'>
-                                <strong>1:1 문의하기</strong>
+                                <a href=''>1:1 문의하기</a>
                             </button>
                         </div>
                     </div>
