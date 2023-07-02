@@ -27,7 +27,7 @@ export default function ProductComponent () {
           쇼핑: res.data.쇼핑,
           filter_shopping : res.data.쇼핑
         })
-        localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
+        localStorage.setItem('쇼핑', JSON.stringify(res.data.쇼핑));
       })
       .catch((err) => {
         console.log("AXIOS 오류!" + err)
@@ -197,6 +197,34 @@ export default function ProductComponent () {
       filter_shopping : filter_shopping
     })
   }
+
+  const setViewProduct = (value) =>{
+    let arr = [];
+    if(localStorage.getItem('최근본상품')!==null){
+      arr = JSON.parse(localStorage.getItem('최근본상품'));
+      arr = [value, ...arr]
+      localStorage.setItem('최근본상품', JSON.stringify(arr) );  
+    }
+    else {
+        arr = [value]
+        localStorage.setItem('최근본상품', JSON.stringify(arr) );
+    }     
+  }
+
+  const onClickProduct = (e, item) => {
+    // e.preventDefault();
+    let obj = {
+      제품코드 : item.제폼코드,
+      이미지 : item.이미지,
+      제품명 : item.제품명,
+      원가 : item.원가,
+      할인가 : item.할인가,
+      할인율 : item.할인율,
+      리뷰수 : item.리뷰수
+    }
+    setViewProduct(obj);
+  }
+  
 
   return (
     <>
@@ -370,7 +398,7 @@ export default function ProductComponent () {
                           <li>
                             <div className="item_cont">
                               <div className="photo_box">
-                                <Link to="/상세보기">
+                                <Link to="/상세보기" onClick={(e)=>onClickProduct(e, item)}>
                                   <img src={item.이미지} alt="" />
                                   <div className="item_link">
                                     <div className="inner">

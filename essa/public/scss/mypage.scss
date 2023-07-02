@@ -1,0 +1,206 @@
+#mypage {
+    width:100%;
+    .container {
+        width:100%;
+        max-width: 1752px;
+        padding: 0 76px;
+        margin:0 auto;
+        height:1600px;
+        .gap {
+            width:100%;
+            .content {
+                width:100%;
+                margin-top :200px;
+                display:flex;
+                .left-box {
+                    width:200px;
+                    .sub-menu-box {
+                        h2 {
+                            color:#333;
+                            font-size: 28px;
+                            font-weight: 700;
+                            line-height: 42px;
+                        }
+                        .sub-menu-mypage {
+                            margin-top:43px;
+                            .sub-menu-tit {
+                                font-size: 18px;
+                                font-weight: 700;
+                                line-height: 27px;
+                                margin: 30px 0;
+                                color:#333;
+                                .sub-menu-detail {
+                                    .detail-tit {
+                                        font-size: 15px;
+                                        font-weight: 300;
+                                        color:#a8a8a8;
+                                        line-height: 22.5px;
+                                        padding: 8px 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .right-box {
+                    width:calc(100% - 240px);
+                    padding-left:40px;
+                    .mypage-main {
+                        width: 100%;
+                        .mypage-row1 {
+                            width:100%;
+                            display:flex;
+                            border:1px solid #e3e3e3;
+                            .mypage-name-box {
+                                width:30%;
+                                .name-box {
+                                    width:421.109px;
+                                    height:188px;
+                                    padding: 0 20px;
+                                    display:table-cell;
+                                    text-align: center;
+                                    vertical-align: middle;
+                                    background: #f7f9f8;
+                                    .user-name {
+                                        font-size: 28px;
+                                        font-weight: 700;
+                                        color:#343534;
+                                        line-height: 42px;
+                                    }
+                                    p {
+                                        color:#6184b1;
+                                        font-size: 15px;
+                                        line-height: 22.5px;    
+                                    }
+                                }
+                            }
+                            .mypage-point-box {
+                                width:70%;
+                                ul {
+                                    padding:60px 10px;
+                                    display:block;
+                                    >li {
+                                        width:33%;
+                                        text-align: center;
+                                        display:inline-block;
+                                        span {
+                                            text-align: center;
+                                            em {
+                                                display:block;
+                                                padding: 15px 0;
+                                                font-weight: bold;
+                                                color:#333;
+                                                font-size: 14px;
+                                                line-height: 14px;
+                                            }
+                                            strong {
+                                                font-size: 24px;
+                                                font-weight: bold;
+                                                color:#6184b1;
+                                                line-height: 24px;
+                                                margin-right:3px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .mypage-row2 {
+                            margin-top:100px;
+                            .mypage-order-tit {
+                                display:flex;
+                                margin-bottom:10px;
+                                h3   {
+                                    font-size: 18px;
+                                    font-weight: 700;
+                                    line-height: 27px;
+                                    color:#333;
+                                }
+                                span {
+                                    color:#a8a8a8;
+                                    font-weight: 14px;
+                                    font-weight: 400;
+                                    line-height: 21px;
+                                    padding-left:10px;
+                                    padding-top:5px;
+                                }
+                            }
+                            .mypage-myinfo-box {
+                                width:100%;
+                                .myinfo-table {
+                                    width:100%;
+                                    table {
+                                        width:100%;
+                                        border-collapse:collapse;
+                                        thead {
+                                            display:table-header-group;
+                                            vertical-align: middle;
+                                            background: #f7f7f7;
+                                            height:43px;
+                                            >tr {
+                                                display:table-row;
+                                                vertical-align: inherit;
+                                                font-size: 14px;
+                                                line-height: 21px;
+                                                color:#333;
+                                                th {
+                                                    display:table-cell;
+                                                    border-top:1px solid #dbdbdb;
+                                                    border-bottom:1px solid #dbdbdb;
+                                                } 
+                                            }
+                                        }
+                                        tbody {
+                                            width: 1360px;
+                                            height:181px;
+                                            vertical-align: middle;
+                                            text-align: center;
+                                            border-bottom: 1px solid #dbdbdb;
+                                            .infro-answer {
+                                                width: 1360px;
+                                                height:181px;
+                                                text-align: center;
+                                                td {
+                                                    border-bottom: 1px solid #dbdbdb;
+                                                    p {
+                                                        color:#777;
+                                                        font-size: 14px;
+                                                        line-height: 21px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .mypage-row3{
+                            margin-top:100px;
+                            .mypage-order-tit {
+                                display:flex;
+                                padding-bottom:10px;
+                                border-bottom: 1px solid #ddd;
+                                h3   {
+                                    font-size: 18px;
+                                    font-weight: 700;
+                                    line-height: 27px;
+                                    color:#333;
+                                }
+                                span {
+                                    color:#a8a8a8;
+                                    font-weight: 14px;
+                                    font-weight: 400;
+                                    line-height: 21px;
+                                    padding-left:10px;
+                                    padding-top:5px;
+                                }
+                            }
+                            .product_list{
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
