@@ -17,10 +17,14 @@ export default function SignupComponent(props) {
         isPwOkMsg: '',
         isPwOkErr: false,
         user_name: "",
+        isNameMsg:'',
         user_email: "",
         user_domain: '',
         isEmailMsg: '',
+        isEmailErr:false,
         user_hp: "",
+        isHpMsg:'',
+        isHpErr:false,
         user_ph: "",
         user_addr1: "",
         user_addr2: "",
@@ -145,7 +149,7 @@ export default function SignupComponent(props) {
             $('.errPw').css({ "color": "#222" });
         }
         else {
-            isPwErr = true;
+            isPwErr = false;
             isPwMsg = '사용가능한 비밀번호입니다';
             $('.errPw').css({ "color": "#6184b1" });
         }
@@ -192,26 +196,27 @@ export default function SignupComponent(props) {
     }
     const onChangeUserEmail = (e) => {
         const {value}=e.target;
+        let isEmailErr=false;
+        let isEmailMsg='';
+        const regExp=/^[a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ\-_`~!#$%^&*+='?.]+(\.)?[a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ\-_]*@[a-z0-9가-힣ㄱ-ㅎㅏ-ㅣ.\-_]+\.[a-z]{2,5}$/gi;
+        if(regExp.test(value)===false){
+            isEmailErr=true;
+            isEmailMsg='이메일을 정확하게 입력해주세요.';
+            $('.errEmail').css({ "color": "#222" });
+        }
+        else{
+            isEmailErr=false;
+            isEmailMsg='사용가능한 이메일입니다.';
+            $('.errEmail').css({ "color": "#6184b1" });
+        }
         setState({
             ...state,
-            user_email: value
+            user_email: value,
+            isEmailErr:isEmailErr,
+            isEmailMsg:isEmailMsg
         })
     }
 
-    // React.useEffect(()=>{
-    // $("select[name=user_domain]").on("change", function(){
-    //     let $addr = $(this).closest(".sign_up").find("input[name=user_email]");
-    //     if ($(this).val() === "") {
-    //         $addr.val('');
-    //         $addr.prop("readonly",false);
-
-    //     } else {
-    //         $addr.val($(this).val());
-    //         $addr.prop("readonly",true);
-    //     }
-    // });
-  
-    // },[state.user_email,state.user_domain]);
 
     const onChangeUserDomain = (e) => {
         const { value } = e.target;
@@ -225,13 +230,26 @@ export default function SignupComponent(props) {
 
         const { value } = e.target
         let user_hp = '';
+        let isHpMsg='';
+        let isHpErr=false;
 
-        const regExp = /[^\d]/g;
-        user_hp = value.replace(regExp, '');
+        const regExp1 = /[^\d]/g;
+        const regExp2= /^01[0-9]{1}[0-9]{3,4}[0-9]{4}$/;
+        user_hp = value.replace(regExp1, '');
+        if(state.user_hp.length<10||regExp2.test(value)===false){
+            isHpMsg= '전화전호를 정확하게 입력해주세요.';
+            isHpErr=true;
+        }
+        else{
+            isHpMsg= '';
+            isHpErr=false;
+        }
 
         setState({
             ...state,
-            user_hp: user_hp
+            user_hp: user_hp,
+            isHpMsg:isHpMsg,
+            isHpErr:isHpErr
         })
     }
     const onChangeUserPh = (e) => {
@@ -288,36 +306,112 @@ export default function SignupComponent(props) {
     const onSubmitSignUp = (e) => {
         e.preventDefault();
 
-        const formData = {
-            "user_id": state.user_id,
-            "user_pw": state.user_pw,
-            "user_name": state.user_name,
-            "user_email": state.user_email,
-            "user_hp": state.user_hp,
-            "user_ph": state.user_ph,
-            "user_addr1": state.user_addr1,
-            "user_addr2": state.user_addr2,
-            "user_addr3": state.user_addr3,
-            "user_birth_year": state.user_birth_year,
-            "user_birth_month": state.user_birth_month,
-            "user_birth_date": state.user_birth_date,
-            "user_agr1": state.user_agr1,
-            "user_agr2": state.user_agr2
+        if(state.user_id===''){
+            $('.errId').css({ "color": "#222" });
+            $('#userId').focus();
+            setState({
+                ...state,
+                isIdMsg: '필수항목입니다'
+            })
+        }
+        else if(state.isIdErr===true){
+            $('#userId').focus();
+        }
+        else if(state.user_pw===''){
+            $('.errPw').css({ "color": "#222" });
+            $('#userPw').focus();
+            setState({
+                ...state,
+                isPwMsg: '필수항목입니다'
+            })
+        }
+        else if(state.isPwErr===true){
+            $('#userPw').focus();
+        }
+        else if(state.user_pw===''){
+            $('.errPw').css({ "color": "#222" });
+            $('#userPw').focus();
+            setState({
+                ...state,
+                isPwMsg: '필수항목입니다'
+            })
+        }
+        else if(state.isPwErr===true){
+            $('#userPw').focus();
+        }
+        else if(state.user_pw_ok===''){
+            $('.errPwOk').css({ "color": "#222" });
+            $('#userPwOk').focus();
+            setState({
+                ...state,
+                isPwOkMsg: '필수항목입니다'
+            })
+        }
+        else if(state.isPwOkErr===true){
+            $('#userPwOk').focus();
+        }
+        else if(state.user_name===''){
+            $('#userName').focus();
+            setState({
+                ...state,
+                isNameMsg: '필수항목입니다'
+            })
+        }
+        else if(state.user_email===''){
+            $('#userEmail').focus();
+            $('.errEmail').css({ "color": "#222" });
+            setState({
+                ...state,
+                isEmailMsg: '필수항목입니다'
+            })
+        }
+        else if(state.isEmailErr===true){
+            $('#userEmail').focus();
+        }
+        else if(state.user_hp===''){
+            $('#userHp').focus();
+            setState({
+                ...state,
+                isHpMsg: '필수항목입니다'
+            })
+        }
+        else if(state.isHpErr===true){
+            $('#userHp').focus();
+        }
+        else{
+            const formData = {
+                "user_id": state.user_id,
+                "user_pw": state.user_pw,
+                "user_name": state.user_name,
+                "user_email": state.user_email,
+                "user_hp": state.user_hp,
+                "user_ph": state.user_ph,
+                "user_addr1": state.user_addr1,
+                "user_addr2": state.user_addr2,
+                "user_addr3": state.user_addr3,
+                "user_birth_year": state.user_birth_year,
+                "user_birth_month": state.user_birth_month,
+                "user_birth_date": state.user_birth_date,
+                "user_agr1": state.user_agr1,
+                "user_agr2": state.user_agr2
+            }
+    
+            $.ajax({
+                url: 'http://localhost:8080/JSP/essa/signup_action.jsp',
+                type: 'POST',
+                data: formData,
+                success(res) {
+                    console.log('AJAX 성공!');
+                    console.log(res);
+                    console.log(JSON.parse(res));
+                },
+                error(err) {
+                    console.log('AJAX 실패!' + err);
+                }
+            });
         }
 
-        $.ajax({
-            url: 'http://localhost:8080/JSP/essa/signup_action.jsp',
-            type: 'POST',
-            data: formData,
-            success(res) {
-                console.log('AJAX 성공!');
-                console.log(res);
-                console.log(JSON.parse(res));
-            },
-            error(err) {
-                console.log('AJAX 실패!' + err);
-            }
-        });
+
     }
 
     const onCompletePost = (data) => {
@@ -390,17 +484,20 @@ export default function SignupComponent(props) {
                                             <th className='important'><span>비밀번호 확인</span></th>
                                             <td>
                                                 <input type="password" name='user_pw_ok' id='userPwOk' onChange={onChangeUserPwOk} />
-                                                <p className={`err ${state.isPwOkErr ? ' on' : ''}`}>{state.isPwOkMsg}</p>
+                                                <p className={`err ${state.isPwOkMsg!=='' ? ' on' : ''}`}>{state.isPwOkMsg}</p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th className='important'><span>이름</span></th>
-                                            <td><input type="text" name='user_name' id='userName' onChange={onChangeUserName} value={state.user_name} /></td>
+                                            <td>
+                                                <input type="text" name='user_name' id='userName' onChange={onChangeUserName} value={state.user_name} />
+                                                <p className={`err ${state.isNameMsg!=='' ? ' on' : ''}`}>{state.isNameMsg}</p>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th className='important'><span>이메일</span></th>
                                             <td className='email'>
-                                                <input type="text" name='user_email' id='user_email' onChange={onChangeUserEmail} value="" />
+                                                <input type="text" name='user_email' id='userEmail' onChange={onChangeUserEmail} value={state.user_email} />
                                                 <select name="user_domain" id="userDomain" onChange={onChangeUserDomain} value={state.user_domain}>
                                                     <option value="">직접입력</option>
                                                     <option value="naver.com">naver.com</option>
@@ -411,6 +508,7 @@ export default function SignupComponent(props) {
                                                     <option value="gmail.com">gmail.com</option>
                                                     <option value="icloud.com">icloud.com</option>
                                                 </select>
+                                                <p className={`err errEmail ${state.isEmailMsg !== '' ? ' on' : ''}`}>{state.isEmailMsg}</p>
                                                 <label className='agr1' htmlFor="" onClick={onClickAgr1}>정보/이벤트 메일 수신에 동의합니다.</label>
                                             </td>
                                         </tr>
@@ -418,6 +516,7 @@ export default function SignupComponent(props) {
                                             <th className='important'><span>휴대폰번호</span></th>
                                             <td>
                                                 <input type="text" placeholder=' - 없이 입력하세요.' maxLength={11} name='user_hp' id='userHp' onChange={onChangeUserHp} value={state.user_hp} />
+                                                <p className={`err ${state.isHpMsg!=='' ? ' on' : ''}`}>{state.isHpMsg}</p>
                                                 <label className='agr2' htmlFor="" onClick={onClickAgr2}>정보/이벤트 SMS 수신에 동의합니다.</label>
                                             </td>
                                         </tr>

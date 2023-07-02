@@ -256,8 +256,8 @@ export default function ProductComponent () {
                                   </a>
                                 </div>
                                 <div className="money_box">
-                                  <span className={`origin_price ${item.할인율===0?'on':''}`}>{item.원가}원</span>
-                                  <span className='sale_price' style={{"display":`${item.할인가===0?'none':'inline'}`}}>{item.할인가}원</span>
+                                  <span className={`origin_price ${item.할인율===0?'on':''}`}>{item.원가.toLocaleString('ko-KR')}원</span>
+                                  <span className='sale_price' style={{"display":`${item.할인가===0?'none':'inline'}`}}>{item.할인가.toLocaleString('ko-KR')}원</span>
                                   <span className='sale_per' style={{"display":`${item.할인가===0?'none':'inline'}`}}>{item.할인율}%</span>
                                 </div>
                                 <div className="icon_box">

@@ -18,14 +18,14 @@ export default function ProductDetailComponent () {
 
     const data = JSON.parse(localStorage.getItem('쇼핑'));
     let res = data.filter((item)=>
-      item.제품코드 ===id
+      item.제품코드 ===Number(id)
     )
-    console.log(res[0]);
+   
     setState({
       ...state,
-      쇼핑 : data[id-1]
-  })
-  
+      쇼핑 :res[0]
+    })
+
   },[]);
 
   const onChangeOption1=(e)=>{
@@ -101,10 +101,10 @@ export default function ProductDetailComponent () {
                   {state.쇼핑.할인율}% 
                 </div>
                 <div className="sale_price" >
-                  {`${state.쇼핑.할인가===0?state.쇼핑.원가:state.쇼핑.할인가}`}원
+                  {`${state.쇼핑.할인가===0?(Number)(state.쇼핑.원가).toLocaleString('ko-KR'):(Number)(state.쇼핑.할인가).toLocaleString('ko-KR')}`}원
                 </div>
                 <div className="origin_price" style={{"display":`${state.쇼핑.할인율===0?'none':'inline'}`}}>
-                {state.쇼핑.원가}원
+                {(Number)(state.쇼핑.원가).toLocaleString('ko-KR')}원
                 </div>
                 <div className="cardinfo">
                   <button>무이자 안내</button>
@@ -169,7 +169,7 @@ export default function ProductDetailComponent () {
                           </span>
                         </div>
                       </td>
-                      <td>{state.쇼핑.할인가!==0?(state.쇼핑.할인가)*state.cnt:(state.쇼핑.원가)*state.cnt}원</td>
+                      <td>{state.쇼핑.할인가!==0?((state.쇼핑.할인가)*state.cnt).toLocaleString('ko-KR'):((state.쇼핑.원가)*state.cnt).toLocaleString('ko-KR')}원</td>
                       <td>
                         <button onClick={onClickDel}><img src="./img/product/ico_cart_del.png" alt="" /></button>
                       </td>
@@ -179,11 +179,11 @@ export default function ProductDetailComponent () {
               </div>
               <div className="total" style={{"display":`${state.option1!==''&state.option2!==''?"block":"none"}`}}>
                 <div className="row1">
-                  <h5>총 상품금액<span>{(state.쇼핑.원가)*state.cnt}원</span></h5>
-                  <h6 style={{"display":`${state.쇼핑.할인가===0?"none":"block"}`}}>총 할안금액<span>-{(state.쇼핑.원가-state.쇼핑.할인가)*state.cnt}원</span></h6>
+                  <h5>총 상품금액<span>{((state.쇼핑.원가)*state.cnt).toLocaleString('ko-KR')}원</span></h5>
+                  <h6 style={{"display":`${state.쇼핑.할인가===0?"none":"block"}`}}>총 할안금액<span>-{((state.쇼핑.원가-state.쇼핑.할인가)*state.cnt).toLocaleString('ko-KR')}원</span></h6>
                 </div>
                 <div className="row2">
-                  <h3>총 합계금액<span>{state.쇼핑.할인가!==0?(state.쇼핑.할인가)*state.cnt:(state.쇼핑.원가)*state.cnt}원</span></h3>
+                  <h3>총 합계금액<span>{state.쇼핑.할인가!==0?((state.쇼핑.할인가)*state.cnt).toLocaleString('ko-KR'):((state.쇼핑.원가)*state.cnt).toLocaleString('ko-KR')}원</span></h3>
                 </div>
               </div>
               <div className="btn-box">
@@ -200,5 +200,4 @@ export default function ProductDetailComponent () {
       <FooterComponent />
     </>
   );
-};
-
+}
