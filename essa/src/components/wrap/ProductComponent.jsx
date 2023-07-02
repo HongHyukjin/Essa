@@ -3,12 +3,17 @@ import FooterComponent from './FooterComponent';
 import HeaderComponent from './HeaderComponent';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import $ from 'jquery';
 
 export default function ProductComponent () {
 
   const [state,setState] = React.useState({
       쇼핑 : [],
-      viewnum : 12
+      filter_shopping : [],
+      viewnum : 12,
+      nav1 : '전체',
+      nav1_last_click : '전체',
+      nav2 : ''
   });
 
   const getProduct = () => {
@@ -19,7 +24,8 @@ export default function ProductComponent () {
       .then((res) => {
         setState({
           ...state,
-          쇼핑: res.data.쇼핑
+          쇼핑: res.data.쇼핑,
+          filter_shopping : res.data.쇼핑
         })
         localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
       })
@@ -57,7 +63,7 @@ export default function ProductComponent () {
 
   const onClickNextGroupLastPage = (e) => {
     e.preventDefault();
-    setCnt(Math.ceil(state.쇼핑.length / list / groupPage));
+    setCnt(Math.ceil(state.filter_shopping.length / list / groupPage));
     setClick('Last');
   }
 
@@ -93,7 +99,7 @@ export default function ProductComponent () {
       setPageNumber(1);
     }
     else if(click === 'Last'){
-      setPageNumber(Math.ceil(state.쇼핑.length / list));
+      setPageNumber(Math.ceil(state.filter_shopping.length / list));
     }
   }, [endtNum, startNum]);
 
@@ -109,6 +115,48 @@ export default function ProductComponent () {
     })
   }
 
+  React.useEffect(() => {
+    $('#product .nav .nav-btn').on({
+      mouseenter(e){
+        setState({
+          ...state,
+          nav1 : e.target.innerHTML
+        })
+      }
+    })
+    $('#product .nav ul').on({
+      mouseleave(e){
+        setState({
+          ...state,
+          nav1 : state.nav1_last_click
+        })
+      }
+    })
+  })
+
+  const onClickNav1 = (e) => {
+    e.preventDefault();
+    // console.log(e.target.innerHTML);
+    setState({
+      ...state,
+      nav1_last_click : e.target.innerHTML,
+      filter_shopping : state.쇼핑.filter((item) => item.제품명.includes('인'))
+    })
+    $('#product .nav-btn').on({
+      click(e){
+        $('#product .nav-btn').removeClass('on');
+        $(this).addClass('on');
+      }
+    })
+  }
+
+  // React.useEffect(() => {
+  //   setState({
+  //     ...state,
+  //     filter_shopping : state.쇼핑.filter((item) => item.제품명.includes('3인'))
+  //   })
+  // },[state.nav1, state.nav2])
+
   return (
     <>
       <HeaderComponent />
@@ -122,11 +170,59 @@ export default function ProductComponent () {
               <div className="nav">
                 <ul>
                   <li><a href="" className='nav-btn on'>전체</a></li>
-                  <li><a href="" className='nav-btn'>사이즈</a></li>
-                  <li><a href="" className='nav-btn'>소재</a></li>
-                  <li><a href="" className='nav-btn'>타입</a></li>
-                  <li><a href="" className='nav-btn'>LIFE</a></li>
-                  <li><a href="" className='nav-btn'>LOVE PET</a></li>
+                  <li>
+                    <a href="!#" className='nav-btn' onClick={onClickNav1} >사이즈</a>
+                    {
+                      state.nav1 === '사이즈' && (
+                        <ul className='subCategory'>
+                          <li><a href="!#">1인</a></li>
+                          <li><a href="!#">3인</a></li>
+                          <li><a href="!#">4인</a></li>
+                          <li><a href="!#">6인</a></li>
+                        </ul>
+                      )
+                    }
+                  </li>
+                  <li>
+                    <a href="" className='nav-btn' onClick={onClickNav1} >소재</a>
+                    {
+                      state.nav1 === '소재' && (
+                        <ul className='subCategory'>
+                          <li><a href="!#">패브릭</a></li>
+                          <li><a href="!#">가죽</a></li>
+                        </ul>
+                      )
+                    }
+                  </li>
+                  <li>
+                    <a href="" className='nav-btn' onClick={onClickNav1} >타입</a>
+                    {
+                      state.nav1 === '타입' && (
+                        <ul className='subCategory'>
+                          <li><a href="!#">헤드기능</a></li>
+                          <li><a href="!#">리프트기능</a></li>
+                          <li><a href="!#">스윙기능</a></li>
+                          <li><a href="!#">카우치</a></li>
+                          <li><a href="!#">코너</a></li>
+                        </ul>
+                      )
+                    }
+                  </li>
+                  <li>
+                    <a href="" className='nav-btn' onClick={onClickNav1} >LIFE</a>
+                    {
+                      state.nav1 === 'LIFE' && (
+                        <ul className='subCategory'>
+                          <li><a href="!#">데이베드</a></li>
+                          <li><a href="!#">스툴</a></li>
+                          <li><a href="!#">체어</a></li>
+                          <li><a href="!#">러그</a></li>
+                          <li><a href="!#">조명</a></li>
+                        </ul>
+                      )
+                    }                    
+                  </li>
+                  <li><a href="" className='nav-btn' onClick={onClickNav1} >LOVE PET</a></li>
                 </ul>
               </div>
               <div className="best-seller">
@@ -227,8 +323,8 @@ export default function ProductComponent () {
               <div className="product_list">
                 <ul>
                   {
-                    state.쇼핑.map((item, idx) => {
-                      if( Math.ceil((idx+1)/list) === pageNumber ){
+                    state.filter_shopping.map((item, idx) => {
+                      if( Math.ceil((idx+1)/list) === pageNumber){
                         return (
                           <li>
                             <div className="item_cont">
@@ -287,7 +383,7 @@ export default function ProductComponent () {
                     (() => {
                       let arr = [];  // 페이지번호와 a 태그 모두 저장된 배열변수
                       for (let i = startNum; i < endtNum; i++) {
-                        if (i < Math.ceil(state.쇼핑.length / list)) { // 100/6
+                        if (i < Math.ceil(state.filter_shopping.length / list)) { // 100/6
                           arr = [...arr, <a key={i} data-key={`num${i}`} className={pageNumber === (i + 1) ? 'on' : null} href="!#" onClick={(e) => onClickPageNum(e, (i + 1))}>{i + 1}</a>]
                           // arr.push( <a href="!#" onClick={(e)=>onClickPageNum(e, (i+1))}>{i+1}</a> );
                         }
@@ -295,8 +391,8 @@ export default function ProductComponent () {
                       return arr
                     })()
                   }
-                  {cnt < Math.ceil(state.쇼핑.length / list / groupPage) && <a href="!#" className="next-btn" onClick={onClickNextGroup}>&gt;</a>}
-                  {cnt < Math.ceil(state.쇼핑.length / list / groupPage) && <a href="!#" className="next-btn" onClick={onClickNextGroupLastPage}>&gt;&gt;</a>}
+                  {cnt < Math.ceil(state.filter_shopping.length / list / groupPage) && <a href="!#" className="next-btn" onClick={onClickNextGroup}>&gt;</a>}
+                  {cnt < Math.ceil(state.filter_shopping.length / list / groupPage) && <a href="!#" className="next-btn" onClick={onClickNextGroupLastPage}>&gt;&gt;</a>}
 
                 </div>    
               </div>
