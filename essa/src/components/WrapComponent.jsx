@@ -14,6 +14,7 @@ import BoardComponent from './wrap/board/BoardComponent';
 import ProductInquiryComponent from './wrap/board/ProductInquiryComponent.jsx';
 import BoardWriteFormComponent from './wrap/board/BoardWriteFormComponent';
 import BoardViewPageComponent from './wrap/board/BoardViewPageComponent';
+import ProductInquiryViewPageComponent from './wrap/board/ProductInquiryViewPageComponent';
 
 export default function WrapComponent ()  {
     return (
@@ -29,8 +30,9 @@ export default function WrapComponent ()  {
                     <Route path='/쇼핑' element={<ProductComponent />}/>
                     <Route path='/상세보기' element={<ProductDetailComponent />}/>
                     <Route path='/고객센터' element={<BoardComponent/>}/>
-                    <Route path='/공지사항글' element={<BoardViewPageComponent/>}/>
+                    <Route path='/공지사항글내용' element={<BoardViewPageComponent/>}/>
                     <Route path='/상품문의글목록' element={<ProductInquiryComponent/>}/>
+                    <Route path='/상품문의글내용' element={<ProductInquiryViewPageComponent/>}/>
                     <Route path='/상품문의글작성' element={<BoardWriteFormComponent/>}/>
                     <Route path='/장바구니' element={<UpdateComponent/>}/>
                 </Routes>

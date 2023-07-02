@@ -58,11 +58,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -72,11 +72,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -86,11 +86,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -100,11 +100,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -114,11 +114,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -128,11 +128,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -142,11 +142,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -156,11 +156,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -170,11 +170,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -184,11 +184,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -198,11 +198,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -212,11 +212,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -226,11 +226,11 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
@@ -240,16 +240,17 @@ export default function ProductInquiryComponent (){
                                         <td> 19:50 </td>
                                         <td> [상품] </td>
                                         <td className='board_tit'>
-                                            <a href="!#">
+                                            <Link to="/상품문의글내용">
                                                 <strong>상품문의입니다.</strong>
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
                                                 <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                            </a>     
+                                            </Link>     
                                         </td>
                                         <td> 신** </td>
                                         <td> 접수 </td>
                                         <td> 2023.06.27 </td>
                                     </tr>
+                      
                                 </tbody>
                             </table>
                            

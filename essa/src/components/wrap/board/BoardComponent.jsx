@@ -42,7 +42,7 @@ export default function BoardComponent(){
                                     <tr>
                                         <td>115</td>
                                         <td className='board_tit'>
-                                            <Link to='/공지사항글'>
+                                            <Link to='/공지사항글내용'>
                                                 <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
                                             </Link>
                                         </td>
