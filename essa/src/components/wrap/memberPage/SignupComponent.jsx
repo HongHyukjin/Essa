@@ -191,20 +191,27 @@ export default function SignupComponent(props) {
         })
     }
     const onChangeUserEmail = (e) => {
-
-        const { value } = e.target;
-        let user_email = '';
-
+        const {value}=e.target;
         setState({
             ...state,
             user_email: value
         })
     }
 
-    React.useEffect(()=>{
+    // React.useEffect(()=>{
+    // $("select[name=user_domain]").on("change", function(){
+    //     let $addr = $(this).closest(".sign_up").find("input[name=user_email]");
+    //     if ($(this).val() === "") {
+    //         $addr.val('');
+    //         $addr.prop("readonly",false);
 
+    //     } else {
+    //         $addr.val($(this).val());
+    //         $addr.prop("readonly",true);
+    //     }
+    // });
   
-    },[state.user_email,state.user_domain]);
+    // },[state.user_email,state.user_domain]);
 
     const onChangeUserDomain = (e) => {
         const { value } = e.target;
@@ -393,8 +400,8 @@ export default function SignupComponent(props) {
                                         <tr>
                                             <th className='important'><span>이메일</span></th>
                                             <td className='email'>
-                                                <input type="text" name='user_email' id='userEmail' onChange={onChangeUserEmail} value={state.user_email} />
-                                                <select name="user_domain" id="userDomain" onChange={onChangeUserDomain} >
+                                                <input type="text" name='user_email' id='user_email' onChange={onChangeUserEmail} value="" />
+                                                <select name="user_domain" id="userDomain" onChange={onChangeUserDomain} value={state.user_domain}>
                                                     <option value="">직접입력</option>
                                                     <option value="naver.com">naver.com</option>
                                                     <option value="hanmail.net">hanmail.net</option>

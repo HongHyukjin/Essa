@@ -48,6 +48,7 @@
   padding: 24px 0;
   border-bottom: 1px solid #ededed;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 #productDetail .container .content .item_info .price .sale_per {
@@ -86,7 +87,7 @@
   text-decoration: line-through;
 }
 #productDetail .container .content .item_info .price .cardinfo {
-  padding: 0 0 0 90px;
+  padding: 0 0 0 70px;
 }
 #productDetail .container .content .item_info .price .cardinfo button {
   font-size: 13px;
@@ -97,7 +98,7 @@
   font-family: "Pretendard";
   line-height: 19.5px;
 }
-#productDetail .container .content .item_info .price a {
+#productDetail .container .content .item_info .price .cardinfo a {
   margin: 0 0 0 10px;
 }
 #productDetail .container .content .item_info .item_choice {
@@ -183,6 +184,7 @@
   height: 17px;
   border: 0;
   background: url(../img/product/btn_count_up.png) no-repeat 50% 50%;
+  cursor: pointer;
 }
 #productDetail .container .content .item_info .goods-box table tbody tr td:nth-child(2) .count span .down {
   width: 100%;
@@ -190,6 +192,7 @@
   border: 0;
   background: url(../img/product/btn_count_down.png) no-repeat 50% 50%;
   margin: -1px 0 0 0;
+  cursor: pointer;
 }
 #productDetail .container .content .item_info .goods-box table tbody tr td:nth-child(3) {
   width: 112px;
@@ -206,6 +209,7 @@
 #productDetail .container .content .item_info .goods-box table tbody tr td:nth-child(4) button {
   background: transparent;
   border: 0;
+  cursor: pointer;
 }
 #productDetail .container .content .item_info .goods-box table tbody tr td:nth-child(4) button img {
   width: auto;
@@ -279,6 +283,7 @@
   border: 1px solid #ddd;
   font-size: 18px;
   font-weight: 700;
+  cursor: pointer;
 }
 #productDetail .container .content .item_info .btn-box button.heart {
   width: 72px;
