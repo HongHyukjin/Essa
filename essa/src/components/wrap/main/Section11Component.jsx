@@ -1,5 +1,4 @@
 import React from 'react';
-import './scss/section11.scss';
 import $ from 'jquery';
 
 export default function Section11Component () {
@@ -24,14 +23,11 @@ export default function Section11Component () {
                     <div className="content">
                         <div className="left-box">
                             <div className="video-wrap">
+                                
                                 <video muted="muted" autoplay="autoplay" loop playsinline>
                                     <source src="https://essasvr.kr/video/live/kellypark.webm" type="video/webm"/>
                                     <source src="https://essasvr.kr/video/live/kellypark.mp4" type="video/mp4"/>
                                 </video>
-
-                            </div>
-                            <div className="inner-wrap">
-                               
                             </div>
                         </div>
                         <div className="right-box">

@@ -1,5 +1,4 @@
 import React from 'react';
-import './scss/section4.scss';
 import $ from 'jquery';
 
 export default function Section4Component (props) {

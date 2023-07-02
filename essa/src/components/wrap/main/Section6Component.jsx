@@ -1,5 +1,4 @@
 import React from 'react';
-import './scss/section6.scss'
 import $ from 'jquery';
 
 export default function Section6Component(){
