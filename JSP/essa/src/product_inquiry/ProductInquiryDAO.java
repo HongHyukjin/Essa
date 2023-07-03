@@ -57,7 +57,7 @@ public class ProductInquiryDAO {
             ps.setString(1, productInquiryDTO.getCategory());
             ps.setString(2, productInquiryDTO.getUser_name());
             ps.setString(3, productInquiryDTO.getSubject());
-            ps.setString(4, productInquiryDTO.getSubject());
+            ps.setString(4, productInquiryDTO.getContent());
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,14 +75,13 @@ public class ProductInquiryDAO {
         }
         return -1;
     }
-
+          
     public ProductInquiryDTO getJoin(String user_name){
         ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
-        String SQL = "SELECT * FROM product_inquiry WHERE user_name=?";
-        try{     
-            ps = conn.prepareStatement(SQL);
-            ps.setString(1, user_name);
-            rs = ps.executeQuery();
+        String SQL = "SELECT * FROM product_inquiry WHERE user_name='ㅇㄴㅁㅇㅁㄴ'"; 
+        try{                      
+            stmt = conn.createStatement();  
+            rs = stmt.executeQuery(SQL);
             if(rs.next()){
                 productInquiryDTO.setCategory(rs.getString("category"));
                 productInquiryDTO.setUser_name(rs.getString("user_name"));
@@ -106,6 +105,49 @@ public class ProductInquiryDAO {
         return productInquiryDTO;          
     }
 
+     
+
+         
+    public List<ProductInquiryDTO> getJoinList(){
+        // ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
+        List<ProductInquiryDTO> list = new ArrayList<>();
+      
+        String SQL = "SELECT * FROM product_inquiry";
+        try {
+            ps = conn.prepareStatement(SQL);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
+                productInquiryDTO.setIdx(rs.getInt("idx"));
+                productInquiryDTO.setCategory(rs.getString("category"));
+                productInquiryDTO.setUser_name(rs.getString("user_name"));
+                productInquiryDTO.setSubject(rs.getString("subject"));
+                productInquiryDTO.setContent(rs.getString("content"));
+                productInquiryDTO.setWrite_date(rs.getString("write_date"));
+                list.add(productInquiryDTO);
+            }
+        }      
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            try{
+                if(rs!= null){ rs.close(); }
+                if(ps!= null){ ps.close(); }
+                if(conn!= null){ conn.close(); }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
+
+
+
+
+
     public int delete(ProductInquiryDTO productInquiryDTO){
         String SQL = "DELETE FROM product_inquiry WHERE idx=?";
         try {
@@ -121,7 +163,7 @@ public class ProductInquiryDAO {
                 if(ps!=null){ps.close();}
                 if(conn!=null){conn.close();}
             }
-            catch(Exception e){ }
+            catch(Exception e){ e.printStackTrace();}
         }
         return -1;
     }

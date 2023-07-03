@@ -17,14 +17,14 @@
 
 <jsp:useBean id="userDTO" class="product_inquiry.ProductInquiryDTO" scope="page"/>
 
-<jsp:setProperty name="productInquiryDTO" property="user_email1" />
-<jsp:setProperty name="productInquiryDTO" property="user_email2" />
-<jsp:setProperty name="productInquiryDTO" property="user_nick" />
-<jsp:setProperty name="productInquiryDTO" property="user_url" />
+<jsp:setProperty name="productInquiryDTO" property="category" />
+<jsp:setProperty name="productInquiryDTO" property="subject" />
+<jsp:setProperty name="productInquiryDTO" property="content" />
+<jsp:setProperty name="productInquiryDTO" property="user_name" />
 
 <%
-    UserDAO userDAO = new UserDAO();
-    int result = userDAO.update(userDTO);
+    ProductInquiryDAO productInquiryDAO = new ProductInquiryDAO();
+    int result = ProductInquiryDAO.update(productInquiryDTO);
 %>
 
 {"AJAX실행 DTO & DAO 결과":"<%=result%>"}

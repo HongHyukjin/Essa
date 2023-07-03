@@ -12,7 +12,7 @@ import BasketComponent from './wrap/mypage/BasketComponent';
 import UpdateComponent from './wrap/mypage/UpdateComponent';
 import BoardComponent from './wrap/board/BoardComponent';
 import ProductInquiryComponent from './wrap/board/ProductInquiryComponent.jsx';
-import ProductWriteFormComponent from './wrap/board/ProductInquiryUpdateComponent';
+import ProductWriteFormComponent from './wrap/board/ProductWriteFormComponent';
 import BoardViewComponent from './wrap/board/BoardViewComponent';
 import ProductInquiryViewComponent from './wrap/board/ProductInquiryViewComponent';
 import ProductInquiryUpdateComponent from './wrap/board/ProductInquiryUpdateComponent';
@@ -35,7 +35,7 @@ export default function WrapComponent ()  {
                     <Route path='/상품문의글목록' element={<ProductInquiryComponent/>}/>
                     <Route path='/상품문의글내용' element={<ProductInquiryViewComponent/>}/>
                     <Route path='/상품문의글작성' element={<ProductWriteFormComponent/>}/>
-                    <Route path='/상품문의글수정' element={<ProductInquiryUpdateComponent/>}/>
+                    <Route path='/상품문의글수정폼' element={<ProductInquiryUpdateComponent/>}/>
                     <Route path='/장바구니' element={<UpdateComponent/>}/>
                 </Routes>
             </HashRouter>

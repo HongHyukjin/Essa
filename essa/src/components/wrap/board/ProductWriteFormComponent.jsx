@@ -1,11 +1,11 @@
 import React from 'react';
-import './board_scss/board_write_update.scss';
+import './board_scss/board_write.scss';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
 
-export default function ProductInquiryUpdateComponent (){
+export default function ProductWriteFormComponent (props){
     const [state, setState] = React.useState({
         category : '',
         user_name :'',
@@ -15,75 +15,55 @@ export default function ProductInquiryUpdateComponent (){
     })
 
     const onChangeCategory=(e)=>{
-        const {value} = e.target;
+        let 카테고리 = e.target.value;
         setState({
             ...state,
-            category: value
+            category: 카테고리
         })
     }
 
     const onChangeUserName = (e) => {
-        const {value} = e.target;
+        let 이름 = e.target.value;
         setState({
             ...state,
-            user_name: value
+            user_name:이름
           
         })
     }
     
     const onChangeSubject=(e)=>{
-        const {value} = e.target;
+        let 제목= e.target.value;
         setState({
             ...state,
-            subject: value
+            subject:제목
         })
     }
 
     
-
-    const onChangeContent=(e)=>{
-        const {value} = e.target;
+    React.useEffect(()=>{
+        let num=state.subject.length;
         setState({
             ...state,
-            content: value
+            num:num
+        })
+    },[state.subject]);
+
+    const onChangeContent=(e)=>{
+        let 내용 = e.target.value;
+        setState({
+            ...state,
+            content:내용
         })
     }
 
-    const getUserData = () => {
-        const user_name = sessionStorage.getItem('ㅇㄴㅁㅇㅁㄴ');
-        const form_data = {
-            "ㅇㄴㅁㅇㅁㄴ" : user_name
-        }
-  
-        $.ajax({
-            url: 'http://localhost:8080/JSP/essa/product_update_getjoin_action.jsp',
-            type:'POST',
-            data:form_data, 
-            dataType:'json',
-            success(res) {
-                console.log('AJAX 성공!');
-                console.log('---------');
-                console.log(res.result); // 결과 데이터 출력 
-                setState((prevState) => ({
-                    ...prevState,
-                    category : res.result.category === "null" ? '' : res.result.category,
-                    user_name : res.result.user_name === "null" ? '' : res.result.user_name,
-                    subject : res.result.subject === "null" ? '' : res.result.subject,
-                    content : res.result.content === "null" ? '' :res.result.content
-                }))
-            },
-            error(err){
-                console.log('AJAX 실패' + err);
-            }
-        })
-    }
-
-    React.useEffect(()=>{
-        getUserData();
-    },[])
-
-    const onSubmitProductInquiryUpdate=(e)=>{
+    const onClickSubmit=(e)=>{
         e.preventDefault();
+        console.log('클릭');
+        onSubmitProductInquiry();
+    
+    }
+   
+    const onSubmitProductInquiry=()=>{
         const formData = {
             "user_name":sessionStorage.getItem("user_name"),
             "category":state.category,
@@ -92,35 +72,35 @@ export default function ProductInquiryUpdateComponent (){
             "content":state.content
         }
         $.ajax({
-            url:'http://localhost:8080/JSP/essa/product_inquiry_update_action.jsp',
-            type:'POST',
+            url:'http://localhost:8080/JSP/essa/product_inpuriry_action.jsp',
+            type:'post',
             data:formData,
             success(res){
-                console.log('AJAX 성공!');
+                console.log('AJAX 성공');
                 console.log(res);
-                console.log(JSON.parse(res));
-                alert('회원 정보가 성공적으로 바뀌었습니다.');
-                // window.location.href = '/마이페이지/회원정보수정';
-                window.location.href='/상품문의글목록';
+                if( !state.category || !state.user_name || !state.subject || !state.content){
+                    alert('모든 항목을 입력해주세요!');
+                }
+                else {
+                    window.location.href = '#/상품문의글목록';
+                }
             },
             error(err){
                 console.log('AJAX 실패'+err);
             }
-        });
+        })
     }
 
-
- 
     return (
         <>
             <HeaderComponent/>
-                <div id='BoardWriteUpdate'>
+                <div id='BoardWrite'>
                     <div className="container">
                         <div className="title">
-                            <h2>상품문의 수정</h2>
+                            <h2>상품문의</h2>
                         </div>
                         <div className="content">
-                            <form action="" name='product_inquiry_update_form' id='productInquiryUpdateForm' onSubmit={onSubmitProductInquiryUpdate}>
+                            <form action="" name='product_inquiry' id='productInquiry' onSubmit={onSubmitProductInquiry}>
                                 <div className="board_zone_write">
                                     <div className="board_write_box">
                                         <table className='board_write_table'>
@@ -129,7 +109,7 @@ export default function ProductInquiryUpdateComponent (){
                                                     <th scope='row'>말머리</th>
                                                     <td>
                                                         <div className='category_select'>
-                                                            <select name="category" id="category" onChange={onChangeCategory} value={state.category}>
+                                                            <select name="category" id="category" onChange={onChangeCategory}>
                                                                 <option value="문의내용">문의내용</option>
                                                                 <option value="상품">상품</option>
                                                                 <option value="배송">배송</option>
@@ -147,8 +127,6 @@ export default function ProductInquiryUpdateComponent (){
                                                             id='user_name'
                                                             name='user_name'
                                                             onChange={onChangeUserName}
-                                                            value={state.user_name}
-                                                            disabled={true}
                                                         />
                                                     </td>
                                                 </tr>
@@ -172,7 +150,6 @@ export default function ProductInquiryUpdateComponent (){
                                                             id='content'
                                                             name='content' 
                                                             onChange={onChangeContent}
-                                                            value={state.content}
                                                         />
                                                     </td>
                                                 </tr>
@@ -181,7 +158,7 @@ export default function ProductInquiryUpdateComponent (){
                                     </div>
                                     <div className="btn_center_box">
                                         <button className='btn_before'><Link to="/상품문의글목록">이전</Link></button>
-                                        <button className='btn_before' type='submit'><a href="!#" >저장</a> </button>
+                                        <button className='btn_before' onClick={onClickSubmit}><a href="!#" >저장</a> </button>
                                     </div>
                                 </div>
                             </form>
