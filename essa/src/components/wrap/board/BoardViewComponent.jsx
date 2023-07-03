@@ -1,7 +1,7 @@
 import React from 'react';
 import './board_scss/board_view.scss';
 
-export default function BoardViewPageComponent (){
+export default function BoardViewComponent (){
     return (
         <div id='boardView'>
             <div className="container">

@@ -2,7 +2,7 @@ import React from 'react';
 import './board_scss/product_inquiry_view.scss';
 import { Link } from 'react-router-dom';
 
-export default function ProductInquiryViewPageComponent (){
+export default function ProductInquiryViewComponent (){
     return (
         <div id='productView'>
             <div className="container">
@@ -33,9 +33,9 @@ export default function ProductInquiryViewPageComponent (){
                     </div>
                 </div>
                 <div className="btn_right_box">
-                    <button><Link to='/*'></Link> 수정</button>
+                    <button><Link to='/상품문의글수정'>수정</Link> </button>
                     <button><Link to='/*'></Link> 삭제</button>
-                    <button><Link to='/상품문의글목록'></Link> 목록</button>
+                    <button><Link to='#/상품문의글목록'>목록</Link> </button>
                 </div>
             </div>
         </div>

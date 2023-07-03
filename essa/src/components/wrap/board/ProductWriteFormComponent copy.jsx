@@ -3,7 +3,7 @@ import './board_scss/board_write.scss';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 
-export default function BoardWriteFormComponent (){
+export default function ProductWriteFormComponent (){
     const [state, setState] = React.useState({
         category : '',
         user_name :'',

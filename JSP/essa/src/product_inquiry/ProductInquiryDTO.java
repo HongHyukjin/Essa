@@ -4,7 +4,7 @@ package product_inquiry;
  * ProductInquiryDTO
  */
 public class ProductInquiryDTO {
-               
+                   
     private int idx;
     private String category;
     private String user_name;
@@ -15,7 +15,7 @@ public class ProductInquiryDTO {
     public int getIdx() {               
         return this.idx;
     }
-
+     
     public void setIdx(int idx) {
         this.idx = idx;
     }      

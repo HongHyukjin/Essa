@@ -50,4 +50,79 @@ public class ProductInquiryDAO {
         return -1;
     }
     
+    public int update(ProductInquiryDTO productInquiryDTO){
+        String SQL = "UPDATE product_inquiry SET category=?, subject=?, content=? WHERE user_name=?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, productInquiryDTO.getCategory());
+            ps.setString(2, productInquiryDTO.getUser_name());
+            ps.setString(3, productInquiryDTO.getSubject());
+            ps.setString(4, productInquiryDTO.getSubject());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO: handle exception
+        }
+        finally{
+            try {
+                if(rs!=null){rs.close();}
+                if(ps!=null){ps.close();}
+                if(conn!=null){conn.close();}
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    public ProductInquiryDTO getJoin(String user_name){
+        ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
+        String SQL = "SELECT * FROM product_inquiry WHERE user_name=?";
+        try{     
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_name);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                productInquiryDTO.setCategory(rs.getString("category"));
+                productInquiryDTO.setUser_name(rs.getString("user_name"));
+                productInquiryDTO.setSubject(rs.getString("subject"));
+                productInquiryDTO.setContent(rs.getString("content"));
+            }
+        }         
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            try {
+                if(rs!=null){rs.close();}
+                if(ps!=null){ps.close();}
+                if(conn!=null){conn.close();}
+            }        
+            catch(Exception e){
+                e.printStackTrace();
+            }         
+        }
+        return productInquiryDTO;          
+    }
+
+    public int delete(ProductInquiryDTO productInquiryDTO){
+        String SQL = "DELETE FROM product_inquiry WHERE idx=?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, productInquiryDTO.getIdx());
+
+            return ps.executeUpdate();
+        }
+        catch(Exception e){}
+        finally{
+            try{
+                if(rs!=null){rs.close();}
+                if(ps!=null){ps.close();}
+                if(conn!=null){conn.close();}
+            }
+            catch(Exception e){ }
+        }
+        return -1;
+    }
 }                      

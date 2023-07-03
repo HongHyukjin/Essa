@@ -12,9 +12,10 @@ import BasketComponent from './wrap/mypage/BasketComponent';
 import UpdateComponent from './wrap/mypage/UpdateComponent';
 import BoardComponent from './wrap/board/BoardComponent';
 import ProductInquiryComponent from './wrap/board/ProductInquiryComponent.jsx';
-import BoardWriteFormComponent from './wrap/board/BoardWriteFormComponent';
-import BoardViewPageComponent from './wrap/board/BoardViewPageComponent';
-import ProductInquiryViewPageComponent from './wrap/board/ProductInquiryViewPageComponent';
+import ProductWriteFormComponent from './wrap/board/ProductInquiryUpdateComponent';
+import BoardViewComponent from './wrap/board/BoardViewComponent';
+import ProductInquiryViewComponent from './wrap/board/ProductInquiryViewComponent';
+import ProductInquiryUpdateComponent from './wrap/board/ProductInquiryUpdateComponent';
 
 export default function WrapComponent ()  {
     return (
@@ -30,10 +31,11 @@ export default function WrapComponent ()  {
                     <Route path='/쇼핑' element={<ProductComponent />}/>
                     <Route path='/상세보기' element={<ProductDetailComponent />}/>
                     <Route path='/고객센터' element={<BoardComponent/>}/>
-                    <Route path='/공지사항글내용' element={<BoardViewPageComponent/>}/>
+                    <Route path='/공지사항글내용' element={<BoardViewComponent/>}/>
                     <Route path='/상품문의글목록' element={<ProductInquiryComponent/>}/>
-                    <Route path='/상품문의글내용' element={<ProductInquiryViewPageComponent/>}/>
-                    <Route path='/상품문의글작성' element={<BoardWriteFormComponent/>}/>
+                    <Route path='/상품문의글내용' element={<ProductInquiryViewComponent/>}/>
+                    <Route path='/상품문의글작성' element={<ProductWriteFormComponent/>}/>
+                    <Route path='/상품문의글수정' element={<ProductInquiryUpdateComponent/>}/>
                     <Route path='/장바구니' element={<UpdateComponent/>}/>
                 </Routes>
             </HashRouter>
