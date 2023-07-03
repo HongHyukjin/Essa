@@ -1,8 +1,87 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import FooterComponent from './FooterComponent';
 import HeaderComponent from './HeaderComponent';
 
 export default function ProductDetailComponent () {
+
+  const {id} = useParams();
+
+  const [state,setState]=React.useState({
+      쇼핑:{},
+      option1:'',
+      option2:'',
+      cnt:1
+  });
+
+  React.useState(()=>{
+
+    const data = JSON.parse(localStorage.getItem('쇼핑'));
+    let res = data.filter((item)=>
+      item.제품코드 ===Number(id)
+    )
+   
+    setState({
+      ...state,
+      쇼핑 :res[0]
+    })
+
+  },[]);
+
+  const onChangeOption1=(e)=>{
+    setState({
+      ...state,
+      option1:e.target.value
+    })
+  }
+  const onChangeOption2=(e)=>{
+    setState({
+      ...state,
+      option2:e.target.value
+    })
+  }
+
+  const onChangeCnt=(e)=>{
+    setState({
+      ...state,
+      cnt:e.target.value
+    })
+  }
+
+  const onClickUp=(e)=>{
+    e.preventDefault();
+    let cnt=state.cnt;
+    cnt++;
+    setState({
+      ...state,
+      cnt:cnt
+    })
+    
+  }
+  const onClickDown=(e)=>{
+    e.preventDefault();
+    let cnt=state.cnt;
+    if(cnt===1){
+      cnt=1;
+    }
+    else{
+      cnt--;
+    }
+    setState({
+      ...state,
+      cnt:cnt
+    }) 
+  }
+
+  const onClickDel =(e)=>{
+    e.preventDefault();
+    setState({
+      ...state,
+      option1:'',
+      option2:''
+    })
+  }
+
   return (
     <>
       <HeaderComponent />
@@ -10,45 +89,47 @@ export default function ProductDetailComponent () {
         <div className="container">
           <div className="content">
             <div className="item_photo">
-              <img src="https://essasvr.kr/site/data/goods/22/02/07/1000004220/1000004220_main_095.jpg" alt="" />
+              <img src={state.쇼핑.이미지} alt="" />
             </div>
             <div className="item_info">
               <div className="tit">
-                <h2>엠마 4인 코너형 리프트기능 카시미라 패브릭 소파</h2>
-                <h3>#베스트소파 10% (~6/30)</h3>
+                <h2>{state.쇼핑.제품명} </h2>
+                <h3>{state.쇼핑.제품설명} </h3>
               </div>
               <div className="price">
-                <div className="sale_per">
-                  8%
+                <div className="sale_per" style={{"display":`${state.쇼핑.할인율===0?'none':'inline'}`}}>
+                  {state.쇼핑.할인율}% 
                 </div>
-                <div className="sale_price">
-                  3,504,280원
+                <div className="sale_price" >
+                  {`${state.쇼핑.할인가===0?(Number)(state.쇼핑.원가).toLocaleString('ko-KR'):(Number)(state.쇼핑.할인가).toLocaleString('ko-KR')}`}원
                 </div>
-                <div className="origin_price">
-                  3,809,000원
+                <div className="origin_price" style={{"display":`${state.쇼핑.할인율===0?'none':'inline'}`}}>
+                {(Number)(state.쇼핑.원가).toLocaleString('ko-KR')}원
                 </div>
-                <div className="cardinfo"><button>무이자 안내</button></div>
-                <a href="!#">
-                  <img src="./img/product/cardinfo.svg" alt="" />
-                </a>
+                <div className="cardinfo">
+                  <button>무이자 안내</button>
+                  <a href="!#">
+                    <img src="./img/product/cardinfo.svg" alt="" />
+                  </a>
+                </div>
               </div>
               <div className="item_choice">
                 <div className="item_choice_option">
                   <dl>
                     <dt>패브릭타입</dt>
                     <dd>
-                      <select name="optionNo1">
-                        <option value>= 패브릭타입 선택 =</option>
+                      <select name="optionNo1" onChange={onChangeOption1} value={state.option1}>
+                        <option value='' selected disabled={`${state.option1!==''?true:false}`}>= 패브릭타입 선택 =</option>
                         <option value="카시미라">카시미라</option>
-                        <option value="러스티카(-350,000)">러스티카(-350,000)</option>
+                        <option value="러스티카">러스티카</option>
                       </select>
                     </dd>
                   </dl>
                   <dl>
                     <dt>색상</dt>
                     <dd>
-                      <select name="optionNo2">
-                        <option value>= 색상 선택 =</option>
+                      <select name="optionNo2" onChange={onChangeOption2} value={state.option2}>
+                        <option value='' selected disabled={`${state.option2!==''?true:false}`}>= 색상 선택 =</option>
                         <option value="바닐라화이트">바닐라화이트</option>
                         <option value="토프그레이">토프그레이</option>
                         <option value="피콕그린">피콕그린</option>
@@ -74,35 +155,35 @@ export default function ProductDetailComponent () {
                   <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/site/re2023/pc/goods_view/goods_view_sh_bn.jpg" alt=""/>
                 </a>
               </div>
-              <div className="goods-box">
+              <div className="goods-box" style={{"display":`${state.option1!==''&state.option2!==''?"block":"none"}`}}>
                 <table>
                   <tbody>
                     <tr>
-                      <td>러스티카(-350,000)/딥그레이</td>
+                      <td>{state.option1}/{state.option2}</td>
                       <td>
                         <div className="count">
-                          <input type="text" />
+                          <input type="text" onChange={onChangeCnt} value={state.cnt}/>
                           <span>
-                            <button className='up'></button>
-                            <button className='down'></button>
+                            <button className='up' onClick={onClickUp}></button>
+                            <button className='down' onClick={onClickDown}></button>
                           </span>
                         </div>
                       </td>
-                      <td>13,800,000원</td>
+                      <td>{state.쇼핑.할인가!==0?((state.쇼핑.할인가)*state.cnt).toLocaleString('ko-KR'):((state.쇼핑.원가)*state.cnt).toLocaleString('ko-KR')}원</td>
                       <td>
-                        <button><img src="./img/product/ico_cart_del.png" alt="" /></button>
+                        <button onClick={onClickDel}><img src="./img/product/ico_cart_del.png" alt="" /></button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div className="total">
+              <div className="total" style={{"display":`${state.option1!==''&state.option2!==''?"block":"none"}`}}>
                 <div className="row1">
-                  <h5>총 상품금액<span>2,600,000원</span></h5>
-                  <h6>총 할안금액<span>-728,000원</span></h6>
+                  <h5>총 상품금액<span>{((state.쇼핑.원가)*state.cnt).toLocaleString('ko-KR')}원</span></h5>
+                  <h6 style={{"display":`${state.쇼핑.할인가===0?"none":"block"}`}}>총 할안금액<span>-{((state.쇼핑.원가-state.쇼핑.할인가)*state.cnt).toLocaleString('ko-KR')}원</span></h6>
                 </div>
                 <div className="row2">
-                  <h3>총 합계금액<span>1,827,000원</span></h3>
+                  <h3>총 합계금액<span>{state.쇼핑.할인가!==0?((state.쇼핑.할인가)*state.cnt).toLocaleString('ko-KR'):((state.쇼핑.원가)*state.cnt).toLocaleString('ko-KR')}원</span></h3>
                 </div>
               </div>
               <div className="btn-box">
@@ -119,5 +200,4 @@ export default function ProductDetailComponent () {
       <FooterComponent />
     </>
   );
-};
-
+}

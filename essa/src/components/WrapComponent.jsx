@@ -24,7 +24,7 @@ export default function WrapComponent ()  {
                     <Route path='/마이페이지' element={<MypageComponent/>}/>
                     <Route path='/찜페이지' element={<ZzimComponent/>}/>
                     <Route path='/쇼핑' element={<ProductComponent />}/>
-                    <Route path='/상세보기' element={<ProductDetailComponent />}/>
+                    <Route path='/쇼핑/상세보기/:id' element={<ProductDetailComponent />}/>
                     <Route path='/고객센터' element={<BoardComponent/>}/>
                     <Route path='/장바구니' element={<UpdateComponent/>}/>
                 </Routes>

@@ -29,8 +29,9 @@ export default function ProductComponent () {
   }
 
   React.useEffect(()=>{
+        localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
       getProduct();
-  },[]);
+  },[ state.viewnum, state.쇼핑]);
 
   const [list, setList] = React.useState(4);  // 한화면에 보여질 목록개수
   const [pageNumber, setPageNumber] = React.useState(1); // 페이지번호
@@ -230,10 +231,10 @@ export default function ProductComponent () {
                     state.쇼핑.map((item, idx) => {
                       if( Math.ceil((idx+1)/list) === pageNumber ){
                         return (
-                          <li>
+                          <li key={item.제품코드}>
                             <div className="item_cont">
                               <div className="photo_box">
-                                <Link to="/상세보기">
+                                <Link to={`/쇼핑/상세보기/${item.제품코드}`}>
                                   <img src={item.이미지} alt="" />
                                   <div className="item_link">
                                     <div className="inner">
@@ -255,9 +256,9 @@ export default function ProductComponent () {
                                   </a>
                                 </div>
                                 <div className="money_box">
-                                  <span className={`origin_price ${item.할인율===''?'on':''}`}>{item.원가}</span>
-                                  <span className='sale_price'>{item.할인가}</span>
-                                  <span className='sale_per'>{item.할인율}</span>
+                                  <span className={`origin_price ${item.할인율===0?'on':''}`}>{item.원가.toLocaleString('ko-KR')}원</span>
+                                  <span className='sale_price' style={{"display":`${item.할인가===0?'none':'inline'}`}}>{item.할인가.toLocaleString('ko-KR')}원</span>
+                                  <span className='sale_per' style={{"display":`${item.할인가===0?'none':'inline'}`}}>{item.할인율}%</span>
                                 </div>
                                 <div className="icon_box">
                                   <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/icon/goods_icon/i_boutique.png" alt="" />
