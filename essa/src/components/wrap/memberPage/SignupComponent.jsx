@@ -19,7 +19,6 @@ export default function SignupComponent(props) {
         user_name: "",
         isNameMsg:'',
         user_email: "",
-        user_domain: '',
         isEmailMsg: '',
         isEmailErr:false,
         user_hp: "",
@@ -214,15 +213,6 @@ export default function SignupComponent(props) {
             user_email: value,
             isEmailErr:isEmailErr,
             isEmailMsg:isEmailMsg
-        })
-    }
-
-
-    const onChangeUserDomain = (e) => {
-        const { value } = e.target;
-        setState({
-            ...state,
-            user_domain: value
         })
     }
 
@@ -496,18 +486,8 @@ export default function SignupComponent(props) {
                                         </tr>
                                         <tr>
                                             <th className='important'><span>이메일</span></th>
-                                            <td className='email'>
+                                            <td >
                                                 <input type="text" name='user_email' id='userEmail' onChange={onChangeUserEmail} value={state.user_email} />
-                                                <select name="user_domain" id="userDomain" onChange={onChangeUserDomain} value={state.user_domain}>
-                                                    <option value="">직접입력</option>
-                                                    <option value="naver.com">naver.com</option>
-                                                    <option value="hanmail.net">hanmail.net</option>
-                                                    <option value="daum.net">daum.net</option>
-                                                    <option value="nate.com">nate.com</option>
-                                                    <option value="hotmail.com">hotmail.com</option>
-                                                    <option value="gmail.com">gmail.com</option>
-                                                    <option value="icloud.com">icloud.com</option>
-                                                </select>
                                                 <p className={`err errEmail ${state.isEmailMsg !== '' ? ' on' : ''}`}>{state.isEmailMsg}</p>
                                                 <label className='agr1' htmlFor="" onClick={onClickAgr1}>정보/이벤트 메일 수신에 동의합니다.</label>
                                             </td>
