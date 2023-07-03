@@ -78,7 +78,7 @@ public class ProductInquiryDAO {
           
     public ProductInquiryDTO getJoin(String user_name){
         ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
-        String SQL = "SELECT * FROM product_inquiry WHERE user_name='ㅇㄴㅁㅇㅁㄴ'"; 
+        String SQL = "SELECT * FROM product_inquiry WHERE user_name=?"; 
         try{                      
             stmt = conn.createStatement();  
             rs = stmt.executeQuery(SQL);
@@ -109,7 +109,6 @@ public class ProductInquiryDAO {
 
          
     public List<ProductInquiryDTO> getJoinList(){
-        // ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
         List<ProductInquiryDTO> list = new ArrayList<>();
       
         String SQL = "SELECT * FROM product_inquiry";

@@ -1,0 +1,11 @@
+                 {/* <tr>
+                                            <td>114</td>
+                                            <td className='board_tit'>
+                                                <a href="!#">
+                                                    <strong>에싸 현대 판교점 가죽소파 출시 프로모션 당첨자</strong>
+                                                </a>
+                                            </td>
+                                            <td> 2023.05.08 </td>
+                                            <td>  ESSA  </td>
+                                            <td>   49   </td>
+                                        </tr> */}

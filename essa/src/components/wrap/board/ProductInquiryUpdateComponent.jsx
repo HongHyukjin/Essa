@@ -66,10 +66,10 @@ export default function ProductInquiryUpdateComponent (){
                 console.log(res.result); // 결과 데이터 출력 
                 setState((prevState) => ({
                     ...prevState,
-                    category : res.result.category === "null" ? '' : res.result.category,
-                    user_name : res.result.user_name === "null" ? '' : res.result.user_name,
-                    subject : res.result.subject === "null" ? '' : res.result.subject,
-                    content : res.result.content === "null" ? '' :res.result.content
+                    category : res.result.카테고리 === "null" ? '' : res.result.카테고리,
+                    user_name : res.result.이름 === "null" ? '' : res.result.이름,
+                    subject : res.result.제목 === "null" ? '' : res.result.제목,
+                    content : res.result.내용 === "null" ? '' :res.result.내용
                 }))
             },
             error(err){
@@ -85,9 +85,9 @@ export default function ProductInquiryUpdateComponent (){
     const onSubmitProductInquiryUpdate=(e)=>{
         e.preventDefault();
         const formData = {
-            "user_name":sessionStorage.getItem("user_name"),
+            "ㅇㄴㅁㅇㅁㄴ":sessionStorage.getItem("ㅇㄴㅁㅇㅁㄴ"),
             "category":state.category,
-            "user_name":state.user_name,
+            "ㅇㄴㅁㅇㅁㄴ":state.user_name,
             "subject":state.subject,
             "content":state.content
         }

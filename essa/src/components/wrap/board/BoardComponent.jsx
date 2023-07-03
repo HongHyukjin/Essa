@@ -1,10 +1,44 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import './board_scss/board.scss'
 import { Link } from 'react-router-dom';
 import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
+import axios from 'axios';
 
 export default function BoardComponent(props){
+
+    const [notice, setNotice] = React.useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+
+    React.useEffect(() => {
+        axios({
+            url: './data/notice_page/board.json',
+            method:'GET'
+        })
+          .then((res) => {
+            if (res.status === 200) {
+              setNotice(res.data.notice);
+            }
+          })
+          .catch((err) => {
+            console.log(err+"AXIOS 오류!");
+          });
+      }, []);
+
+        // 페이지별로 공지사항 데이터를 분할하는 함수
+        const getPaginatedData = () => {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            return notice.slice(startIndex, endIndex);
+        };
+
+        // 페이지 변경 시 호출되는 함수
+        const handlePageChange = (pageNumber) => {
+            setCurrentPage(pageNumber);
+        };
+
     return (
         <>
         <HeaderComponent/>
@@ -35,126 +69,38 @@ export default function BoardComponent(props){
                                     </colgroup>
                                     <thead>
                                         <tr>
-                                            <th>번호</th>
+                                            <th>NO</th>
                                             <th>제목</th>
                                             <th>날짜</th>
-                                            <th>작성자</th>
-                                            <th>조회</th>
+                                            <th>조회수</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>115</td>
-                                            <td className='board_tit'>
-                                                <Link to='/공지사항글내용'>
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </Link>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>114</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 현대 판교점 가죽소파 출시 프로모션 당첨자</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>113</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>113</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>112</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>111</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>110</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>109</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>108</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                        <tr>
-                                            <td>107</td>
-                                            <td className='board_tit'>
-                                                <a href="!#">
-                                                    <strong>에싸 백화점 구매 고객 2월 프로모션 이벤트 당첨자 안내</strong>
-                                                </a>
-                                            </td>
-                                            <td> 2023.05.08 </td>
-                                            <td>  ESSA  </td>
-                                            <td>   49   </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    {getPaginatedData().map((item) => (
+                      <tr key={item.NO}>
+                        <td>{item.NO}</td>
+                        <td className="board_tit">
+                          <Link to="/고객센터">
+                            <strong>{item.제목}</strong>
+                          </Link>
+                        </td>
+                        <td>{item.날짜}</td>
+                        <td>{item.조회수}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="pagination">
+                  {Array.from({ length: Math.ceil(notice.length / itemsPerPage) }).map((_, index) => (
+                    <button
+                      key={index + 1}
+                      className={currentPage === index + 1 ? 'active' : ''}
+                      onClick={() => handlePageChange(index + 1)}
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
+                </div>
                             </div>
                         </div>
                     </div>

@@ -3,8 +3,11 @@ import './board_scss/product_inquiry.scss';
 import { Link } from 'react-router-dom';
 import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
+import axios from 'axios';
 
 export default function ProductInquiryComponent (props){
+
+
     return (
         <>
             <HeaderComponent/>
