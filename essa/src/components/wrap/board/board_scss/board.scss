@@ -3,7 +3,7 @@
     .container {
         width: 100%;
         max-width: 1903px;
-        height: 1768px;
+        height: 1900px;
         margin: 0 auto;
         .title {
             padding: 120px 0 80px 0;
@@ -119,8 +119,44 @@
                             }
                         }
                     }
+                    
                 }
             }
+            .pagination {
+              display: flex;
+              justify-content: center;
+              margin: 20px 0 160px 0;
+            
+              .page-button-box {
+                padding: 20px 0 0 0;
+            
+                button {
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 40px;
+                  height: 40px;
+                  border: none;
+                  background-color: transparent;
+                  color: #939393;
+                  font-size: 16px;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  transition: background-color 0.3s ease;
+            
+                  &:hover {
+                    background-color: #f1f1f1;
+                  }
+            
+                  &.active {
+                    background-color: #7e9fc2;
+                    color: #fff;
+                    font-weight: 700;
+                  }
+                }
+              }
+            }
+            
         }
     }
 }

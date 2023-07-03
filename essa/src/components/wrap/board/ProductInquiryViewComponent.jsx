@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
 
+
 export default function ProductInquiryViewComponent (props){
+
     return (
         <>
             <HeaderComponent/>

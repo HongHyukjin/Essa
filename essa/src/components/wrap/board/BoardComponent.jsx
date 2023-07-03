@@ -50,7 +50,7 @@ export default function BoardComponent(props){
                     <div className="content">
                         <div className="board_nav">
                             <ul>
-                                <li><Link to="/공지사항" className='on' >공지사항</Link></li>
+                                <li><Link to="/고객센터" className='on' >공지사항</Link></li>
                                 <li><Link to="/상품문의글목록"  className='' >상품문의</Link></li>
                                 <li><a className='' href="!#">자주하는 질문</a></li>
                                 <li><a className='' href="!#">AS문의</a></li>
@@ -77,30 +77,32 @@ export default function BoardComponent(props){
                                     </thead>
                                     <tbody>
                                     {getPaginatedData().map((item) => (
-                      <tr key={item.NO}>
-                        <td>{item.NO}</td>
-                        <td className="board_tit">
-                          <Link to="/고객센터">
-                            <strong>{item.제목}</strong>
-                          </Link>
-                        </td>
-                        <td>{item.날짜}</td>
-                        <td>{item.조회수}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-                <div className="pagination">
-                  {Array.from({ length: Math.ceil(notice.length / itemsPerPage) }).map((_, index) => (
-                    <button
-                      key={index + 1}
-                      className={currentPage === index + 1 ? 'active' : ''}
-                      onClick={() => handlePageChange(index + 1)}
-                    >
-                      {index + 1}
-                    </button>
-                  ))}
-                </div>
+                                    <tr key={item.NO}>
+                                      <td>{item.NO}</td>
+                                      <td className="board_tit">
+                                        <Link to={`/공지사항글내용/?listNum=${item.NO}`}>
+                                          <strong>{item.제목}</strong>
+                                        </Link>
+                                      </td>
+                                      <td>{item.날짜}</td>
+                                      <td>{item.조회수}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                        <div className="pagination">
+                            <div className="page-button-box">
+                              {Array.from({ length: Math.ceil(notice.length / itemsPerPage) }).map((_, index) => (
+                                <button
+                                  key={index + 1}
+                                  className={currentPage === index + 1 ? 'active' : ''}
+                                  onClick={() => handlePageChange(index + 1)}
+                                >
+                                  {index + 1}
+                                </button>
+                              ))}
                             </div>
                         </div>
                     </div>
