@@ -119,6 +119,7 @@ function MypageComponent(props) {
                                     <div className="product_list">
                                         <ul>
                                             {
+                                                state.recentProduct &&
                                                 state.recentProduct.map((item,idx) => {
                                                     return (
                                                         <li>
@@ -129,22 +130,22 @@ function MypageComponent(props) {
                                                             </div>
                                                             <div className="info_box">
                                                                 <div className="tit_box">
-                                                                <a href="!#">
-                                                                    <strong className='item_name'>{item.제품명}</strong>
-                                                                    <span className='item_name_explain'>{item.제품설명}</span>
-                                                                </a>
+                                                                    <a href="!#">
+                                                                        <strong className='item_name'>{item.제품명}</strong>
+                                                                        <span className='item_name_explain'>{item.제품설명}</span>
+                                                                    </a>
                                                                 </div>
                                                                 <div className="money_box">
-                                                                <span className={`origin_price ${item.할인율===''?'on':''}`}>{item.원가}</span>
-                                                                <span className='sale_price'>{item.할인가}</span>
-                                                                <span className='sale_per'>{item.할인율}</span>
+                                                                    <span className={`origin_price ${item.할인율===''?'on':''}`}>{item.원가}</span>
+                                                                    <span className='sale_price'>{item.할인가}</span>
+                                                                    <span className='sale_per'>{item.할인율}</span>
                                                                 </div>
                                                                 <div className="icon_box">
-                                                                <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/icon/goods_icon/i_boutique.png" alt="" />
-                                                                <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/icon/goods_icon/i_essamall_.png" alt="" />
+                                                                    <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/icon/goods_icon/i_boutique.png" alt="" />
+                                                                    <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/icon/goods_icon/i_essamall_.png" alt="" />
                                                                 </div>
                                                                 <div className="review_cnt">
-                                                                <a href="!#">
+                                                                    <a href="!#">
                                                                     <i className='xi-comment-o'></i>
                                                                     <span>{item.리뷰수}</span>
                                                                 </a>

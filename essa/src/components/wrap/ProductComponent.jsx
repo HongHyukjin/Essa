@@ -294,56 +294,61 @@ export default function ProductComponent () {
                   <li><a href="" className='nav-btn' onClick={onClickNav1} >LOVE PET</a></li>
                 </ul>
               </div>
-              <div className="best-seller">
-                <div className="text">
-                  <div className="t01">Best seller</div>
-                  <div className="t02">요즘 가장 많이 구매해 주신 베스트</div>
-                </div>
-                <div className="best-list">
-                  <section className='story-main'>
-                    <div className="main-box one">
-                      <a href="">
-                        <div className="overlay"></div>
-                        <div className="text hashtag">
-                          <p className='t1'>#Swing</p>
-                          <p className='t2'>Daze</p>
-                        </div>
-                        <img src="./img/product/daze.jpg" alt="" />
-                      </a>
+              {
+                state.nav1_last_click === '전체' &&
+                (
+                  <div className="best-seller">
+                    <div className="text">
+                      <div className="t01">Best seller</div>
+                      <div className="t02">요즘 가장 많이 구매해 주신 베스트</div>
                     </div>
-                    <div className="main-box two">
-                      <a href="">
-                        <div className="overlay"></div>
-                        <div className="text hashtag">
-                          <p className='t1'>#Corner</p>
-                          <p className='t2'>New Lido</p>
+                    <div className="best-list">
+                      <section className='story-main'>
+                        <div className="main-box one">
+                          <a href="">
+                            <div className="overlay"></div>
+                            <div className="text hashtag">
+                              <p className='t1'>#Swing</p>
+                              <p className='t2'>Daze</p>
+                            </div>
+                            <img src="./img/product/daze.jpg" alt="" />
+                          </a>
                         </div>
-                        <img src="./img/product/newlido.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="main-box three">
-                      <a href="">
-                        <div className="overlay"></div>
-                        <div className="text hashtag">
-                          <p className='t1'>#Basic</p>
-                          <p className='t2'>Clio</p>
+                        <div className="main-box two">
+                          <a href="">
+                            <div className="overlay"></div>
+                            <div className="text hashtag">
+                              <p className='t1'>#Corner</p>
+                              <p className='t2'>New Lido</p>
+                            </div>
+                            <img src="./img/product/newlido.jpg" alt="" />
+                          </a>
                         </div>
-                        <img src="./img/product/clio.jpg" alt="" />
-                      </a>
-                    </div>
-                    <div className="main-box four">
-                      <a href="">
-                        <div className="overlay"></div>
-                        <div className="text hashtag">
-                          <p className='t1'>#MODULE</p>
-                          <p className='t2'>Bagel</p>
+                        <div className="main-box three">
+                          <a href="">
+                            <div className="overlay"></div>
+                            <div className="text hashtag">
+                              <p className='t1'>#Basic</p>
+                              <p className='t2'>Clio</p>
+                            </div>
+                            <img src="./img/product/clio.jpg" alt="" />
+                          </a>
                         </div>
-                        <img src="./img/product/bagel.jpg" alt="" />
-                      </a>
+                        <div className="main-box four">
+                          <a href="">
+                            <div className="overlay"></div>
+                            <div className="text hashtag">
+                              <p className='t1'>#MODULE</p>
+                              <p className='t2'>Bagel</p>
+                            </div>
+                            <img src="./img/product/bagel.jpg" alt="" />
+                          </a>
+                        </div>
+                      </section>
                     </div>
-                  </section>
-                </div>
-              </div>
+                  </div>
+                )
+              }
               <div className="category">
                 <span className='pick_list_num'>
                   상품
