@@ -16,3 +16,9 @@ create table essa_member(
    	PRIMARY KEY (idx, user_id)
 );
 
+create table zzim(
+	idx        int     auto_increment  PRIMARY KEY ,
+	user_id	 varchar(50)  not  null,
+	product_num    int   not   null,
+	amount    int  not  null
+);
