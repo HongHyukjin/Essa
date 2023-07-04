@@ -111,6 +111,7 @@
   background: #f5f5f5;
   border-radius: 30px;
   transition: 0.3s;
+  font-family: "Pretendard";
 }
 #product .container .gap .content .best-seller {
   display: flex;

@@ -1,6 +1,7 @@
 import React from 'react';
 import FooterComponent from '../FooterComponent';
 import HeaderComponent from '../HeaderComponent';
+import {Link} from 'react-router-dom';
 
 function MypageComponent(props) {
 
@@ -11,7 +12,7 @@ function MypageComponent(props) {
     React.useEffect(() => {
         setState({
             ...state,
-            recentProduct : JSON.parse(localStorage.getItem('최근본상품'))
+            recentProduct : JSON.parse(localStorage.getItem('최근본상품')).slice(0,4)
         })
     }, [])
 
@@ -32,7 +33,7 @@ function MypageComponent(props) {
                                             <li className='detail-tit'>주문목록 / 배송조회</li>
                                             <li className='detail-tit'>취소 / 반품 /교환내역</li>
                                             <li className='detail-tit'>환불 / 입금내역</li>
-                                            <li className='detail-tit'>찜리스트</li>
+                                            <li className='detail-tit'><Link to="/찜페이지">찜리스트</Link></li>
                                         </ul>
                                     </li>
                                     <li className='sub-menu-tit'>
