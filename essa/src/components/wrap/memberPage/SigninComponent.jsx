@@ -32,9 +32,8 @@ function SigninComponent(props) {
 
     const onSubmitSignin=(e)=>{
         e.preventDefault();
-        let index = state.아이디.indexOf();
         const formData = {
-            "user_id" : state.아이디.substring(0,index),
+            "user_id" : state.아이디,
             "user_pw" : state.비밀번호
         }
 
@@ -47,8 +46,11 @@ function SigninComponent(props) {
             success(res){
                 console.log('ajax 성공');
                 console.log(res.result);
+                console.log(state.아이디);
+                console.log(state.비밀번호);
                 if(res.result=== '1'){
                     sessionStorage.setItem('user_id', state.아이디);
+
                     window.location.href='/';
                 }
                 else if(res.result==='0'){

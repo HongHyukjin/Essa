@@ -39,9 +39,7 @@
   width: 33.333%;
   padding: 38px 0;
   position: relative;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   cursor: pointer;
 }
 #section3 .container .gap .content .top .slide-container .slide-view .slide-wrap .slide a {
@@ -150,10 +148,8 @@
   z-index: 2;
   display: block;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  object-fit: cover;
+  object-position: center;
 }
 #section3 .container .gap .content .bottom ul li .tit {
   display: block;

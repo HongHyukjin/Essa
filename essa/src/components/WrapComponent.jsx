@@ -26,7 +26,8 @@ export default function WrapComponent ()  {
                     <Route path='/쇼핑' element={<ProductComponent />}/>
                     <Route path='/쇼핑/상세보기/:id' element={<ProductDetailComponent />}/>
                     <Route path='/고객센터' element={<BoardComponent/>}/>
-                    <Route path='/장바구니' element={<UpdateComponent/>}/>
+                    <Route path='/장바구니' element={<BasketComponent/>}/>
+                    <Route path='/회원정보수정' element={<UpdateComponent/>}/>
                 </Routes>
             </HashRouter>
         </div>

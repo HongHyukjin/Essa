@@ -61,32 +61,106 @@
                             .mypage-inf {
                                 #formJoin {
                                     .member-inf {
-                                        h3   {
-                                            color:#333;
-                                            font-size: 18px;
-                                            font-weight: 400;
-                                            line-height: 27px;
-                                            padding-bottom: 17px;
+                                        .member-inf-tit {
+                                            margin-bottom:20px;
+                                            display:flex;
+                                            justify-content: space-between;
+                                            h3   {
+                                                color:#333;
+                                                font-size: 18px;
+                                                font-weight: 400;
+                                                line-height: 27px;
+                                                padding-bottom: 17px;
+                                            }
+                                            span {
+                                                font-size: 14px;
+                                                color:#a8a8a8;
+                                                line-height: 40px;
+                                                letter-spacing: -1px;
+                                            }
                                         }
-                                        span {}
                                         .member-base-inf {
+                                            border:1px solid #dbdbdb;
+                                            width: 1330px;
+                                            height:775px;
+                                            display:block;
                                             table {
+                                                display:table;
                                                 colgroup {
-                                                    col {}
+
+                                                    col {
+                                                    }
                                                 }
                                                 tbody {
+                                                    display:table-row-group;
                                                     tr {
+                                                        height:110px;
+                                                        text-align: left;
                                                         th {
-                                                            span {}
+                                                            background-color: #f9f9f9;
+                                                            span {
+                                                                margin-left:30px;
+                                                                font-size: 14px;
+                                                                color:#333;
+                                                                line-height: 21px;
+                                                            }
                                                         }
                                                         td {
-                                                            input {}
-                                                            .member-birth {
-                                                                .chosen-single {}
+                                                            display:flex;
+                                                            margin-left:40px;
+                                                            margin-top:30px;
+                                                            justify-content: center;
+                                                            align-items: center;
+                                                            input {
+                                                                height:50px;
+                                                                width:300px;
+                                                                background: #f9f9f9;
+                                                                border:0;
+                                                                font-size: 14px;
+                                                                color:#a8a8a8;
+                                                                line-height: 21px;
+                                                                padding-left:25px;
+                                                            }
+                                                            .member-birth { 
+                                                                &:nth-child(1){
+                                                                    margin-left:50px;
+                                                                }
+                                                                .chosen-single {
+                                                                    height:50px;
+                                                                    text-align: center;
+                                                                    color:#999;
+                                                                    border:1px solid #7e9fc2;
+                                                                    margin-right:10px;
+                                                                }
                                                             }
                                                         }
                                                     }
                                                 }
+                                            }
+                                        }
+                                        .update-btn-box {
+                                            display:flex;
+                                            justify-content: center;
+                                            margin-top:50px;
+                                            button {
+                                                width:243px;
+                                                height:63px;
+                                                padding:17px 0;
+                                                margin-right: 10px;
+                                                background: #fff;
+                                                color:#7e9fc2;
+                                                border:1px solid #7e9fc2;
+                                                font-size: 18px;
+                                            }
+                                            .update-btn {
+                                                width:243px;
+                                                height:63px;
+                                                padding:17px 0;
+                                                margin-right: 10px;
+                                                background: #7e9fc2;
+                                                color:#fff;
+                                                border:1px solid #fff;
+                                                font-size: 18px;
                                             }
                                         }
                                     }
