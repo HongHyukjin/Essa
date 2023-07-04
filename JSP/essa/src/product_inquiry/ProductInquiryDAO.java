@@ -22,17 +22,18 @@ public class ProductInquiryDAO {
         catch(Exception e){
             e.printStackTrace();
         }
-    }
+    }    
       
     // 1. post 
     public int post(ProductInquiryDTO productInquiryDTO){
-        String SQL = "INSERT INTO product_inquiry (category, user_name, subject, content) VALUES (?, ?, ?, ?)";
+        String SQL = "INSERT INTO product_inquiry (user_id, category, user_name, subject, content) VALUES (?,?, ?, ?, ?)";
         try {
             ps = conn.prepareStatement(SQL);
-            ps.setString(1, productInquiryDTO.getCategory());
-            ps.setString(2, productInquiryDTO.getUser_name());
-            ps.setString(3, productInquiryDTO.getSubject());    
-            ps.setString(4, productInquiryDTO.getContent());
+            ps.setString(1, productInquiryDTO.getUser_id());
+            ps.setString(2, productInquiryDTO.getCategory());
+            ps.setString(3, productInquiryDTO.getUser_name());
+            ps.setString(4, productInquiryDTO.getSubject());    
+            ps.setString(5, productInquiryDTO.getContent());
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,14 +101,15 @@ public class ProductInquiryDAO {
         return -1;
     }
           
-    public ProductInquiryDTO getJoin(String user_name){
+    public ProductInquiryDTO getJoin(String user_id){
         ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
-        String SQL = "SELECT * FROM product_inquiry WHERE user_name=?"; 
+        String SQL = "SELECT * FROM product_inquiry WHERE user_id=?"; 
         try{                      
-            stmt = conn.createStatement();  
-            rs = stmt.executeQuery(SQL);
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_id);
             if(rs.next()){
                 productInquiryDTO.setCategory(rs.getString("category"));
+                productInquiryDTO.setUser_id(rs.getString("user_id"));
                 productInquiryDTO.setUser_name(rs.getString("user_name"));
                 productInquiryDTO.setSubject(rs.getString("subject"));
                 productInquiryDTO.setContent(rs.getString("content"));
@@ -190,4 +192,4 @@ public class ProductInquiryDAO {
         }
         return -1;
     }
-}                      
+}                       

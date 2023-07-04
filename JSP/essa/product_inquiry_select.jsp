@@ -9,37 +9,37 @@
 %>
 
 
-<%@ page import="product_inquiry.ProductinquiryDAO"%>
-<%@ page import="product_inquiry.ProductinquiryDTO"%>
+<%@ page import="product_inquiry.ProductInquiryDAO"%>
+<%@ page import="product_inquiry.ProductInquiryDTO"%>
 <%@ page import="java.util.*"%>
 
 <% request.setCharacterEncoding("UTF-8");%>
 
 
 <%
-    ProductinquiryDAO productinquiryDAO = new ProductinquiryDAO();
-    List<ProductinquiryDTO> list = productinquiryDAO.selectAll();
+    ProductInquiryDAO ProductInquiryDAO = new ProductInquiryDAO();
+    List<ProductInquiryDTO> list = ProductInquiryDAO.selectAll();
     
     String jsonData = "{ \"result\": [";
     int cnt = 0;
-    for(ProductinquiryDTO productinquiryDTO : list){
+    for(ProductInquiryDTO productInquiryDTO : list){
         cnt++;
         if(cnt < list.size()){
-            jsonData += "{ \"category\" : \"" + productinquiryDTO.getCategory() + "\","
-                     +   "\"user_id\" : \"" + productinquiryDTO.getUser_id() + "\","
-                     +   "\"user_name\" : \"" + productinquiryDTO.getUser_name() + "\","
-                     +   "\"subject\" : \"" + productinquiryDTO.getSubject() + "\","
-                     +   "\"content\" : \"" + productinquiryDTO.getContent() + "\","
-                     +   "\"write_date\" : \"" + productinquiryDTO.getWrite_date() + "\""
+            jsonData += "{ \"category\" : \"" + productInquiryDTO.getCategory() + "\","
+                     +   "\"user_id\" : \"" + productInquiryDTO.getUser_id() + "\","
+                     +   "\"user_name\" : \"" + productInquiryDTO.getUser_name() + "\","
+                     +   "\"subject\" : \"" + productInquiryDTO.getSubject() + "\","
+                     +   "\"content\" : \"" + productInquiryDTO.getContent() + "\","
+                     +   "\"write_date\" : \"" + productInquiryDTO.getWrite_date() + "\""
                      + "},";
         }
         else{
-            jsonData += "{ \"category\" : \"" + productinquiryDTO.getCategory() + "\","
-                        +   "\"user_id\" : \"" + productinquiryDTO.getUser_id() + "\","
-                        +   "\"user_name\" : \"" + productinquiryDTO.getUser_name() + "\","
-                        +   "\"subject\" : \"" + productinquiryDTO.getSubject() + "\","
-                        +   "\"content\" : \"" + productinquiryDTO.getContent() + "\","
-                        +   "\"write_date\" : \"" + productinquiryDTO.getWrite_date() + "\""
+            jsonData += "{ \"category\" : \"" + productInquiryDTO.getCategory() + "\","
+                        +   "\"user_id\" : \"" + productInquiryDTO.getUser_id() + "\","
+                        +   "\"user_name\" : \"" + productInquiryDTO.getUser_name() + "\","
+                        +   "\"subject\" : \"" + productInquiryDTO.getSubject() + "\","
+                        +   "\"content\" : \"" + productInquiryDTO.getContent() + "\","
+                        +   "\"write_date\" : \"" + productInquiryDTO.getWrite_date() + "\""
                      + "}";
         }
     }

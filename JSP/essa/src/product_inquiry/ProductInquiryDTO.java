@@ -10,23 +10,23 @@ public class ProductInquiryDTO {
     private String user_id;
     private String user_name;
     private String subject;
-    private String content;  
+    private String content;
     private String write_date;
 
-    public int getIdx() {               
-        return this.idx;
+    public int getIdx() {
+        return this.idx; 
     }
-     
+
     public void setIdx(int idx) {
         this.idx = idx;
-    }      
+    }
 
-    public String getCategory() {
+    public String getCategory() { 
         return this.category;
     }
 
     public void setCategory(String category) {
-        this.category = user_id;
+        this.category = category;
     }
 
     public String getUser_id() {
@@ -69,5 +69,5 @@ public class ProductInquiryDTO {
         this.write_date = write_date;
     }
 
-    
+     
 }
