@@ -54,7 +54,7 @@
   animation: slide1_ani 0.5s 1s forwards;
 }
 #section1 .container .gap .content .slide-container .slide-view .slide-wrap .slide .text .t02 {
-  font-family: "ivypresto-display", "Red Hat Display", "Pretendard", sans-serif;
+  font-family: "ivypresto-display", serif;
   opacity: 0;
   margin-bottom: 24px;
   font-size: 100px;

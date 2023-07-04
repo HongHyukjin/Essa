@@ -6,6 +6,27 @@ import FooterComponent from '../FooterComponent';
 import axios from 'axios';
 
 export default function ProductInquiryComponent (props){
+    const [inquiry, setInquiry] = React.useState([]);
+
+    const getlist =()=>{
+        axios({
+            url :'http://localhost:8080/JSP/essa/product_inquiry_select.jsp',
+            method: 'GET'
+        })
+        .then((res)=>{
+            if(res.status === 200){
+                console.log(res.data);
+            }
+        })
+        .catch((err)=>{
+
+        })
+    }
+
+    React.useEffect(()=>{
+        getlist();
+    },[])
+
 
 
     return (

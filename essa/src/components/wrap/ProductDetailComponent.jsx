@@ -16,6 +16,8 @@ export default function ProductDetailComponent () {
 
   React.useState(()=>{
 
+    window.scrollTo(0,0);
+
     const data = JSON.parse(localStorage.getItem('쇼핑'));
     let res = data.filter((item)=>
       item.제품코드 ===Number(id)

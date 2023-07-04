@@ -4,7 +4,7 @@ import java.sql.*;
 
 /**
  * ProductInquiryDAO
- */
+ */  
 public class ProductInquiryDAO {
     private Connection conn;
     private PreparedStatement ps;
@@ -48,6 +48,30 @@ public class ProductInquiryDAO {
             }
         }
         return -1;
+    }
+
+    public ArrayList<ProductInquiryDTO> selectAll(){
+        String SQL = "SELECT * FROM product_inquiry";
+        ProductInquiryDTO productInquiryDTO = null;
+        ArrayList<ProductInquiryDTO> list = new ArrayList<ProductInquiryDTO>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                productInquiryDTO = new ProductInquiryDTO();
+                productInquiryDTO.setCategory(rs.getString("category"));
+                productInquiryDTO.setUser_id(rs.getString("user_id"));
+                productInquiryDTO.setUser_name(rs.getString("user_name"));
+                productInquiryDTO.setSubject(rs.getString("subject"));
+                productInquiryDTO.setContent(rs.getString("content"));
+                productInquiryDTO.setWrite_date(rs.getString("write_date"));
+                list.add(productInquiryDTO);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return list;
     }
     
     public int update(ProductInquiryDTO productInquiryDTO){

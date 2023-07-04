@@ -7,9 +7,10 @@ public class ProductInquiryDTO {
                    
     private int idx;
     private String category;
+    private String user_id;
     private String user_name;
     private String subject;
-    private String content;
+    private String content;  
     private String write_date;
 
     public int getIdx() {               
@@ -25,7 +26,15 @@ public class ProductInquiryDTO {
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.category = user_id;
+    }
+
+    public String getUser_id() {
+        return this.user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getUser_name() {

@@ -65,12 +65,13 @@ export default function ProductWriteFormComponent (props){
    
     const onSubmitProductInquiry=()=>{
         const formData = {
-            "user_name":sessionStorage.getItem("user_name"),
+            "user_id":sessionStorage.getItem("user_id"),
             "category":state.category,
             "user_name":state.user_name,
             "subject":state.subject,
             "content":state.content
         }
+        console.log(formData);
         $.ajax({
             url:'http://localhost:8080/JSP/essa/product_inpuriry_action.jsp',
             type:'post',
@@ -82,7 +83,7 @@ export default function ProductWriteFormComponent (props){
                     alert('모든 항목을 입력해주세요!');
                 }
                 else {
-                    window.location.href = '#/상품문의글목록';
+                    // window.location.href = '#/상품문의글목록';
                 }
             },
             error(err){
