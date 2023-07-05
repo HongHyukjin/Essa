@@ -4,7 +4,7 @@ import java.sql.*;
 
 /**
  * ProductInquiryDAO
- */
+ */  
 public class ProductInquiryDAO {
     private Connection conn;
     private PreparedStatement ps;
@@ -22,17 +22,18 @@ public class ProductInquiryDAO {
         catch(Exception e){
             e.printStackTrace();
         }
-    }
+    }    
       
     // 1. post 
     public int post(ProductInquiryDTO productInquiryDTO){
-        String SQL = "INSERT INTO product_inquiry (category, user_name, subject, content) VALUES (?, ?, ?, ?)";
+        String SQL = "INSERT INTO product_inquiry (user_id, category, user_name, subject, content) VALUES (?,?, ?, ?, ?)";
         try {
             ps = conn.prepareStatement(SQL);
-            ps.setString(1, productInquiryDTO.getCategory());
-            ps.setString(2, productInquiryDTO.getUser_name());
-            ps.setString(3, productInquiryDTO.getSubject());    
-            ps.setString(4, productInquiryDTO.getContent());
+            ps.setString(1, productInquiryDTO.getUser_id());
+            ps.setString(2, productInquiryDTO.getCategory());
+            ps.setString(3, productInquiryDTO.getUser_name());
+            ps.setString(4, productInquiryDTO.getSubject());    
+            ps.setString(5, productInquiryDTO.getContent());
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,7 +50,71 @@ public class ProductInquiryDAO {
         }
         return -1;
     }
+
+    //selectAll
+    public ArrayList<ProductInquiryDTO> selectAll(){
+        String SQL = "SELECT * FROM product_inquiry";
+        ProductInquiryDTO productInquiryDTO = null;
+        ArrayList<ProductInquiryDTO> list = new ArrayList<ProductInquiryDTO>();
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(SQL);
+            while(rs.next()){
+                productInquiryDTO = new ProductInquiryDTO();
+                productInquiryDTO.setCategory(rs.getString("category"));
+                productInquiryDTO.setUser_id(rs.getString("user_id"));
+                productInquiryDTO.setUser_name(rs.getString("user_name"));
+                productInquiryDTO.setSubject(rs.getString("subject"));
+                productInquiryDTO.setContent(rs.getString("content"));
+                productInquiryDTO.setWrite_date(rs.getString("write_date"));
+                list.add(productInquiryDTO);
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return list;
+    }
+  
+    //select 
+    public List<ProductInquiryDTO> select(String user_id){
+        ProductInquiryDTO productInquiryDTO = null;
+        List<ProductInquiryDTO> list = new ArrayList<>();
+        String SQL = "SELECT * FROM essa_member e join product_inquiry p where e.user_id=? && p.user_id=?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_id);
+            ps.setString(2, user_id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                productInquiryDTO = new ProductInquiryDTO();
+                productInquiryDTO.setIdx(rs.getInt("p.idx"));
+                productInquiryDTO.setCategory(rs.getString("category"));
+                productInquiryDTO.setUser_name(rs.getString("user_name"));
+                productInquiryDTO.setSubject(rs.getString("subject"));
+                productInquiryDTO.setContent(rs.getString("content"));
+                productInquiryDTO.setWrite_date(rs.getString("write_date"));
+                list.add(productInquiryDTO);
+            }   
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally{
+            try{
+                if(rs!=null){rs.close();}
+                if(ps!=null){ps.close();}
+                if(conn!=null){conn.close();}
+            }
+            catch(Exception e){ }
+          
+        }
+        return list;
+    }
     
+
+
+
     public int update(ProductInquiryDTO productInquiryDTO){
         String SQL = "UPDATE product_inquiry SET category=?, subject=?, content=? WHERE user_name=?";
         try {
@@ -76,14 +141,15 @@ public class ProductInquiryDAO {
         return -1;
     }
           
-    public ProductInquiryDTO getJoin(String user_name){
+    public ProductInquiryDTO getJoin(String user_id){
         ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
-        String SQL = "SELECT * FROM product_inquiry WHERE user_name=?"; 
-        try{                      
-            stmt = conn.createStatement();  
-            rs = stmt.executeQuery(SQL);
+        String SQL = "SELECT * FROM product_inquiry WHERE user_id=?"; 
+        try{                         
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_id);
             if(rs.next()){
                 productInquiryDTO.setCategory(rs.getString("category"));
+                productInquiryDTO.setUser_id(rs.getString("user_id"));
                 productInquiryDTO.setUser_name(rs.getString("user_name"));
                 productInquiryDTO.setSubject(rs.getString("subject"));
                 productInquiryDTO.setContent(rs.getString("content"));
@@ -166,4 +232,4 @@ public class ProductInquiryDAO {
         }
         return -1;
     }
-}                      
+}                       

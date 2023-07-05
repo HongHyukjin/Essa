@@ -152,11 +152,11 @@
                                         }
                                         tbody {
                                             width: 1360px;
-                                            height:181px;
+                                            // height:181px;
                                             vertical-align: middle;
                                             text-align: center;
                                             border-bottom: 1px solid #dbdbdb;
-                                            .infro-answer {
+                                            .info-answer {
                                                 width: 1360px;
                                                 height:181px;
                                                 text-align: center;
@@ -166,6 +166,121 @@
                                                         font-size: 14px;
                                                         line-height: 21px;
                                                         letter-spacing: -1px;
+                                                    }
+                                                }
+                                            }
+                                            tr{
+                                                td{
+                                                    height : 31px;
+                                                    padding : 30px 10px 29px 10px;
+                                                    color : #777;
+                                                    border-bottom: 1px solid #dbdbdb;
+                                                    font-size: 14px;
+                                                    line-height: 1.5;
+                                                    >strong{
+                                                        color : #6184b1;
+                                                        font-weight: bold;
+                                                    }
+                                                    .btn_gray_list{
+                                                        margin : 5px 0 0 0;
+                                                        a{
+                                                            font-size: 11px;
+                                                            border : 1px solid #dbdbdb;
+                                                            vertical-align: middle;
+                                                            padding : 0 0 0 11px;
+                                                            font-family: 'Pretendard';
+                                                            display: inline-block;
+                                                            span{
+
+                                                                line-height: 22px;
+                                                                display: inline-block;
+                                                                padding : 0 12px 0 0;
+                                                            }
+                                                        }
+                                                    }
+                                                    .benefit_list{
+                                                        display: inline-block;
+                                                        min-width: 90px;
+                                                        text-align: center;
+                                                        .benefit_sale{
+                                                            position: relative;
+                                                            color: #888888;
+                                                            text-align: left;
+                                                            line-height: 1.5;
+                                                            font-family: 'Pretendard';
+                                                            em{
+                                                                padding : 0 5px 1px 20px;
+                                                                background : url('../img/icon_discount.gif') no-repeat 0 2px;
+                                                                display: block;
+                                                            }
+                                                            span{
+                                                                display: block;
+                                                                strong{
+                                                                    padding: 0 0 0 5px;
+                                                                    color: #333333;
+                                                                    font-weight: normal;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    div{
+                                                        font-family: 'Pretendard';
+                                                        .btn_wish_cart{
+                                                            border : 1px solid #7e9fc2;
+                                                            background: #7e9fc2;
+                                                            display: inline-block;
+                                                            min-width: 46px;
+                                                            margin : 2px 1px;
+                                                            padding : 3px 10px 4px 10px;
+                                                            color : #fff;
+                                                            text-align: center;
+                                                            em{
+                                                                font-weight: normal;
+                                                            }
+                                                        }
+                                                        .btn_wish_del{
+                                                            border : 1px solid #7e9fc2;
+                                                            color: #7e9fc2;
+                                                            display: inline-block;
+                                                            min-width: 46px;
+                                                            margin : 2px 1px;
+                                                            padding : 3px 10px 4px 10px;
+                                                            background : #fff;
+                                                            text-align: center;
+                                                            em{
+                                                                font-weight: normal;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                .td_left{
+                                                    text-align: left;
+                                                    .pick_add_cont{
+                                                        display: flex;
+                                                        .pick_add_img{
+                                                            display: block;
+                                                            width : 100px;
+                                                            vertical-align: top;
+                                                            img{
+                                                                width : 100%;
+                                                                height : 72px;
+                                                                border : 1px solid #dbdbdb;
+                                                                vertical-align: middle;
+                                                            }
+                                                        }
+                                                        .pick_add_info{
+                                                            display: table-cell;
+                                                            padding: 0 0 0 10px;
+                                                            vertical-align: middle;
+                                                            word-break: break-all;
+                                                            em{
+                                                                display: block;
+                                                                color: #333333;
+                                                                font-weight: bold;
+                                                                font-family: 'Pretendard';
+                                                                line-height: 72px;
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }

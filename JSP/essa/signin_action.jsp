@@ -16,9 +16,9 @@
     request.setCharacterEncoding("UTF-8"); 
 %>
 
-<JSP:useBean id="userDTO" class="essa.UserDTO" scope="page"/>
-<JSP:setProperty name="userDTO" property="user_id"/>
-<JSP;setProperty name="userDTO" property="user_pw"/>
+<jsp:useBean id="userDTO" class="essa.UserDTO" scope="page"/>
+<jsp:setProperty name="userDTO" property="user_id"/>
+<jsp:setProperty name="userDTO" property="user_pw"/>
 
 <%
     UserDAO userDAO = new UserDAO();

@@ -7,6 +7,7 @@ public class UserDAO {
     private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
+         
 
     public UserDAO(){
         try{
@@ -18,6 +19,9 @@ public class UserDAO {
 
             // 2. 데이터베이스 인증 & 인가 (URL, ID, PW)
             conn = DriverManager.getConnection(URL, ID, PW);
+            
+            
+
         }
         catch(Exception e){
             e.printStackTrace();
@@ -69,7 +73,8 @@ public class UserDAO {
                 if(rs.getString("user_pw").equals(user_pw)){
                     return 1;
                 }
-                else {
+                else { 
+                    
                     return 0;
                 }
             }
@@ -91,5 +96,74 @@ public class UserDAO {
             }
         }
         return -2;
+        
+    }
+
+    public int update(UserDTO userDTO){
+        String SQL = "UPDATE essa_member SET user_pw =?, user_name=?, user_email=?, user_hp=?,  user_ph =?,  user_birth=? WHERE user_id=? ";
+
+        String nn = userDTO.getUser_birth_year()+userDTO.getUser_birth_month()+userDTO.getUser_birth_date();
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, userDTO.getUser_pw());    
+            ps.setString(2, userDTO.getUser_name());    
+            ps.setString(3, userDTO.getUser_email());    
+            ps.setString(4, userDTO.getUser_hp());    
+            ps.setString(5, userDTO.getUser_ph());   
+            ps.setString(6, nn);    
+            ps.setString(7, userDTO.getUser_id());    
+            return ps.executeUpdate();
+        }
+         catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        finally{
+            try {
+                if(rs!=null){rs.close();}
+                if(ps!=null){ps.close();}
+                if(conn!=null){conn.close();}    
+            }
+             catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return -1;
+    }
+
+    public UserDTO getJoin(String user_id){
+        UserDTO userDTO = new UserDTO();
+
+        String SQL = "SELECT * FROM essa_member WHERE user_id=?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_id);
+            rs=ps.executeQuery();    
+            if(rs.next()){ 
+                userDTO.setUser_id(rs.getString("user_id"));
+                userDTO.setUser_pw(rs.getString("user_pw"));
+                userDTO.setUser_name(rs.getString("user_name"));
+                userDTO.setUser_email(rs.getString("user_email"));
+                userDTO.setUser_hp(rs.getString("user_hp"));
+                userDTO.setUser_ph(rs.getString("user_ph"));
+                userDTO.setUser_birth_year(rs.getString("user_birth").substring(0,4));
+                userDTO.setUser_birth_month(rs.getString("user_birth").substring(4,6));
+                userDTO.setUser_birth_date(rs.getString("user_birth").substring(6,8));
+            }
+        }
+         catch (Exception e) {
+           e.printStackTrace();
+        }
+        finally{
+            try {
+                if(rs!=null){rs.close();}
+                if(ps!=null){ps.close();}
+                if(conn!=null){conn.close();}    
+            }
+             catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return userDTO;
     }
 }

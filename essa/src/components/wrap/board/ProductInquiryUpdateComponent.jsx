@@ -50,9 +50,9 @@ export default function ProductInquiryUpdateComponent (){
     }
 
     const getUserData = () => {
-        const user_name = sessionStorage.getItem('ㅇㄴㅁㅇㅁㄴ');
+        const user_id = sessionStorage.getItem('user_id');
         const form_data = {
-            "ㅇㄴㅁㅇㅁㄴ" : user_name
+            "user_id" : user_id
         }
   
         $.ajax({

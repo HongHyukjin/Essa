@@ -65,14 +65,15 @@ export default function ProductWriteFormComponent (props){
    
     const onSubmitProductInquiry=()=>{
         const formData = {
-            "user_name":sessionStorage.getItem("user_name"),
+            "user_id":sessionStorage.getItem("user_id"),
             "category":state.category,
             "user_name":state.user_name,
             "subject":state.subject,
             "content":state.content
         }
+        console.log(formData);
         $.ajax({
-            url:'http://localhost:8080/JSP/essa/product_inpuriry_action.jsp',
+            url:'http://localhost:8080/JSP/essa/product_inquiry_action.jsp',
             type:'post',
             data:formData,
             success(res){
@@ -82,7 +83,7 @@ export default function ProductWriteFormComponent (props){
                     alert('모든 항목을 입력해주세요!');
                 }
                 else {
-                    window.location.href = '#/상품문의글목록';
+                    // window.location.href = '#/상품문의글목록';
                 }
             },
             error(err){
@@ -158,7 +159,7 @@ export default function ProductWriteFormComponent (props){
                                     </div>
                                     <div className="btn_center_box">
                                         <button className='btn_before'><Link to="/상품문의글목록">이전</Link></button>
-                                        <button className='btn_before' onClick={onClickSubmit}><a href="!#" >저장</a> </button>
+                                        <button className='btn_before' onClick={onClickSubmit}><Link to="/상품문의글목록">저장</Link> </button>
                                     </div>
                                 </div>
                             </form>
