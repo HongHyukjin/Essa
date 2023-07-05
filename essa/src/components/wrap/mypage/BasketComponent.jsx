@@ -3,7 +3,7 @@ import FooterComponent from '../FooterComponent';
 import HeaderComponent from '../HeaderComponent';
 import { Link } from 'react-router-dom';
 
-function BasketComponent(props) {
+function BasketComponent({getViewProduct,key,cartCountNumber}) {
     return (
         <>
         <HeaderComponent/>

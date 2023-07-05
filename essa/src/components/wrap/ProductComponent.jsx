@@ -226,6 +226,10 @@ export default function ProductComponent () {
     setViewProduct(obj);
   }
 
+  const onClickCart =(e, item)=>{
+    e.preventDefault();
+  }
+
   const onClickZzim = (e, item) => {
     e.preventDefault();
     let user_id = '';
@@ -438,8 +442,8 @@ export default function ProductComponent () {
                                 <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e)=>onClickProduct(e, item)}>
                                   <img src={item.이미지} alt="" />
                                   <div className="item_link">
-                                    <div className="inner">
-                                      <button type='button'>
+                                    <div className="inner" >
+                                      <button type='button'onClick={(e)=>onClickCart(e, item)}>
                                         <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/img/mimg/cart_thumb.png" alt="" />
                                       </button>
                                       <button type='button' className='right' onClick={(e)=>onClickZzim(e, item)}>
