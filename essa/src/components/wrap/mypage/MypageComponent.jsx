@@ -10,10 +10,12 @@ function MypageComponent(props) {
     })
 
     React.useEffect(() => {
-        setState({
-            ...state,
-            recentProduct : JSON.parse(localStorage.getItem('최근본상품')).slice(0,4)
-        })
+        if(state.recentProduct.length > 4){
+            setState({
+                ...state,
+                recentProduct : JSON.parse(localStorage.getItem('최근본상품')).slice(0,4)
+            })
+        }
     }, [])
 
     return (
