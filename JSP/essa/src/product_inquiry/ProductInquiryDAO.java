@@ -14,7 +14,7 @@ public class ProductInquiryDAO {
     public ProductInquiryDAO() {
         try {
             String DBURL = "jdbc:mysql://localhost:3306/essa";
-            String DBID = "root";
+            String DBID = "essa";
             String DBPW = "1234";
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(DBURL, DBID, DBPW);
