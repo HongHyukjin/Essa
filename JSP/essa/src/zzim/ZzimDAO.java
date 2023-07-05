@@ -6,15 +6,15 @@ public class ZzimDAO {
   private Connection conn;
   private PreparedStatement ps;
   private ResultSet rs;
-
+  
   public ZzimDAO(){
     try{
       String URL = "jdbc:mysql://localhost:3306/essa";
-      String ID = "root";
+      String ID = "essa";
       String PW = "1234";
-      // 1. 데이터베이스 드라이버(JDBC)
+      // 1. 데이터베이스 드라이버(JDBC)   
       Class.forName("com.mysql.jdbc.Driver");
-
+  
       // 2. 데이터베이스 인증 & 인가 (URL, ID, PW)
       conn = DriverManager.getConnection(URL, ID, PW);
     }
