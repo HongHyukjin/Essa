@@ -34,6 +34,17 @@ export default function HeaderComponent() {
         window.location.href="/";
     }
 
+    const onClickMyPage = (e)=>{
+        e.preventDefault();
+        if(sessionStorage.getItem('user_id')!==null){
+            window.location.href="#/마이페이지";
+        }
+        else{
+            alert('로그인 후 이용해 주세요');
+            window.location.href="#/로그인";
+        }
+    }
+
     const getUserData=()=>{
         const user_id = sessionStorage.getItem('user_id');
         const form_data ={
@@ -258,7 +269,7 @@ export default function HeaderComponent() {
                                         }
                                         <div className="two">
                                             <ul>
-                                                <li><Link to="/마이페이지">마이페이지</Link></li>
+                                                <li><Link to="/마이페이지"  onClick={onClickMyPage}>마이페이지</Link></li>
                                                 <li><a href="!#">주문/배송조회</a></li>
                                                 <li><Link to="/찜페이지">관심상품</Link></li>
                                                 <li><a href="!#">쿠폰</a></li>
