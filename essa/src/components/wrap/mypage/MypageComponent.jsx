@@ -16,6 +16,12 @@ function MypageComponent(props) {
                 recentProduct : JSON.parse(localStorage.getItem('최근본상품')).slice(0,4)
             })
         }
+        else{
+            setState({
+                ...state,
+                recentProduct : JSON.parse(localStorage.getItem('최근본상품'))
+            })
+        }
     }, [])
 
     return (
