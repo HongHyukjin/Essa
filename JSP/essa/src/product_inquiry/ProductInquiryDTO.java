@@ -5,7 +5,7 @@ package product_inquiry;
  */
 public class ProductInquiryDTO {
                    
-    private int idx;
+    private int idx;   
     private String category;
     private String user_id;
     private String user_name;

@@ -159,7 +159,7 @@ export default function ProductWriteFormComponent (props){
                                     </div>
                                     <div className="btn_center_box">
                                         <button className='btn_before'><Link to="/상품문의글목록">이전</Link></button>
-                                        <button className='btn_before' onClick={onClickSubmit}><a href="!#" >저장</a> </button>
+                                        <button className='btn_before' onClick={onClickSubmit}><Link to="/상품문의글목록">저장</Link> </button>
                                     </div>
                                 </div>
                             </form>

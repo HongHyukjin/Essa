@@ -10,7 +10,7 @@ export default function ProductInquiryComponent (props){
 
     const getlist =()=>{
         axios({
-            url :'http://localhost:8080/JSP/essa/product_inquiry_select.jsp',
+            url :'http://localhost:8080/JSP/essa/product_inquiry_select.jsp', // select, selectall 두개 있음 참고 
             method: 'GET'
         })
         .then((res)=>{
