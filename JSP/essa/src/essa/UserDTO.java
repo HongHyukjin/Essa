@@ -18,6 +18,8 @@ public class UserDTO {
     private String user_agr2;
     private String create_date;
 
+    
+
     public String getUser_agr1() {
         return this.user_agr1;
     }

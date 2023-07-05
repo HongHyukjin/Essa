@@ -394,6 +394,7 @@ export default function SignupComponent(props) {
                     console.log('AJAX 성공!');
                     console.log(res);
                     console.log(JSON.parse(res));
+                    window.location.href='#/로그인';
                 },
                 error(err) {
                     console.log('AJAX 실패!' + err);
@@ -525,26 +526,6 @@ export default function SignupComponent(props) {
                                             <th className='important'><span>생일</span></th>
                                             <td className='birth'>
                                                 <select name="user_birth_year" id="userBirthYear" onChange={onChangeUserBirthYear}>
-                                                    <option value="1923">1923</option>
-                                                    <option value="1924">1924</option>
-                                                    <option value="1925">1925</option>
-                                                    <option value="1926">1926</option>
-                                                    <option value="1927">1927</option>
-                                                    <option value="1928">1928</option>
-                                                    <option value="1929">1929</option>
-                                                    <option value="1930">1930</option>
-                                                    <option value="1931">1931</option>
-                                                    <option value="1932">1932</option>
-                                                    <option value="1933">1933</option>
-                                                    <option value="1934">1934</option>
-                                                    <option value="1935">1935</option>
-                                                    <option value="1936">1936</option>
-                                                    <option value="1937">1937</option>
-                                                    <option value="1938">1938</option>
-                                                    <option value="1939">1939</option>
-                                                    <option value="1940">1940</option>
-                                                    <option value="1941">1941</option>
-                                                    <option value="1942">1942</option>
                                                     <option value="1943">1943</option>
                                                     <option value="1944">1944</option>
                                                     <option value="1945">1945</option>

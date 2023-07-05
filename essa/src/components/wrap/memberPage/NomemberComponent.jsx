@@ -8,7 +8,6 @@ function SigninComponent(props) {
     return (
         <>
             <HeaderComponent />
-
             <div id='nomember'>
                 <div className="container">
                     <div className="gap">
@@ -65,7 +64,6 @@ function SigninComponent(props) {
                     </div>
                 </div>
             </div>
-
             <FooterComponent />
         </>
     );
