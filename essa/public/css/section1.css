@@ -54,7 +54,7 @@
   animation: slide1_ani 0.5s 1s forwards;
 }
 #section1 .container .gap .content .slide-container .slide-view .slide-wrap .slide .text .t02 {
-  font-family: "ivypresto-display", "Red Hat Display", "Pretendard", sans-serif;
+  font-family: "ivypresto-display", serif;
   opacity: 0;
   margin-bottom: 24px;
   font-size: 100px;
@@ -129,7 +129,8 @@
 #section1 .container .gap .content .slide-container .slide-view .slide-wrap .slide video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #section1 .container .gap .content .slide-container .slide-view .slide-wrap .slide2 {
   background: url("../img/sl8.jpg") no-repeat 50% 50%;

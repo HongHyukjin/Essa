@@ -172,27 +172,27 @@ export default function Section3Component () {
                   <span className='tit'>ESSA CLUB</span>
                 </li>
                 <li>
-                  <a href="!#">
+                  <Link to='/업그레이드페이지'>
                     <span className='round'>
                       <img src="./img/point_thumb1.png" alt="" />
                     </span>
-                  </a>
+                  </Link>
                   <span className='tit'>착석감 UPGRADE</span>
                 </li>
                 <li>
-                  <a href="!#">
+                  <Link to='/러브펫페이지'>
                     <span className='round on'>
                       <img src="./img/point_thumb2.png" alt="" />
                     </span>
-                  </a>
+                  </Link>
                   <span className='tit'>LOVE PET</span>
                 </li>
                 <li>
-                  <a href="!#">
+                  <Link to='/인하우스페이지'>
                     <span className='round'>
                       <img src="./img/point_thumb3.png" alt="" />
                     </span>
-                  </a>
+                  </Link>
                   <span className='tit'>에싸 in 집</span>
                 </li>
                 <li>

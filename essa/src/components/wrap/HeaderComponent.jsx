@@ -4,7 +4,69 @@ import { Link } from 'react-router-dom';
 
 export default function HeaderComponent() {
 
+    const [state, setState] = React.useState({
+        isLogin : false,
+    })
+
     React.useEffect(()=>{
+        const stored_id = sessionStorage.getItem('user_id');
+        let isLogin = false;
+        if(stored_id !==null){
+            isLogin =true;
+        }
+        else {
+            isLogin =false;
+        }
+        setState({
+            ...state,
+            isLogin : isLogin,
+        })
+
+    },[])
+
+    const onClickLogout=(e)=>{
+        e.preventDefault();
+        sessionStorage.removeItem('user_id');
+        setState({
+            ...state,
+            isLogin : false,
+        })
+        window.location.href="/";
+    }
+
+    const getUserData=()=>{
+        const user_id = sessionStorage.getItem('user_id');
+        const form_data ={
+            "user_id" : user_id
+        }
+
+        $.ajax({
+            url : 'http://localhost:8080/JSP/essa/update_getjoin_action.jsp',
+            type : 'POST',
+            data : form_data,
+            dataType : 'json',
+            success(res){
+                // console.log('ajax 성공');
+                // console.log(res.result);
+                setState({
+                    ...state,
+                    user_id : user_id
+                })
+            },
+            errer(err){
+                console.log('ajax 실패' + err);
+            },
+        })
+    }
+
+    React.useEffect(()=>{
+        if(state.isLogin===true){
+            getUserData();
+        }
+    },[state.isLogin])
+
+    React.useEffect(()=>{
+
 
         let newScroll = $(window).scrollTop();  
         let oldScroll = newScroll;   
@@ -55,7 +117,7 @@ export default function HeaderComponent() {
                     <div className="col col1">
                         <ul>
                             <li className='sub-page'>
-                                <a className='sub-up' href="!#"><h3>PRODUCT</h3></a>
+                                <Link className='sub-up' to='/쇼핑'><h3>PRODUCT</h3></Link>
                                 <div className="sub sub1">
                                     <div className="container">
                                         <div className="col1">
@@ -176,29 +238,42 @@ export default function HeaderComponent() {
                                 <a className='sub-up' href="!#"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.25 10C23.25 14.0041 20.0041 17.25 16 17.25C11.9959 17.25 8.75 14.0041 8.75 10C8.75 5.99594 11.9959 2.75 16 2.75C20.0041 2.75 23.25 5.99594 23.25 10Z" stroke="#fff" strokeWidth="1.5"></path><g clipPath="url(#clip0_172_2334)"><rect x="2.75" y="21.75" width="26.5" height="22.5" rx="11.25" stroke="#fff" strokeWidth="1.5"></rect></g><defs><clipPath id="clip0_172_2334"><rect width="28" height="9" fill="white" transform="translate(2 21)"></rect></clipPath></defs></svg></a>
                                 <div className="sub  mypage">
                                     <div className="container-my">
-                                        <div className="one">
-                                            <Link to="/로그인">로그인</Link>
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#333" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="12" transform="translate(14.5674 7.41992) rotate(30)" fill="#111"></rect></svg>
-                                            <Link to="/회원가입">회원가입</Link>
-                                        </div>
+                                        {
+                                            !state.isLogin && (
+                                                <div className="one">
+                                                    <Link to="/로그인">로그인</Link>
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#333" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="12" transform="translate(14.5674 7.41992) rotate(30)" fill="#111"></rect></svg>
+                                                    <Link to="/회원가입">회원가입</Link>
+                                                </div>
+                                            )
+                                        }
+                                        {
+                                            state.isLogin && (
+                                                <div className="one">
+                                                    <Link to="/메인" onClick={onClickLogout}>로그아웃</Link>
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#333" xmlns="http://www.w3.org/2000/svg"><rect width="2" height="12" transform="translate(14.5674 7.41992) rotate(30)" fill="#111"></rect></svg>
+                                                    <Link to="/회원정보수정">회원정보수정</Link>
+                                                </div>
+                                            )
+                                        }
                                         <div className="two">
                                             <ul>
-                                                <li><a href="!#">마이페이지</a></li>
+                                                <li><Link to="/마이페이지">마이페이지</Link></li>
                                                 <li><a href="!#">주문/배송조회</a></li>
-                                                <li><a href="!#">관심상품</a></li>
+                                                <li><Link to="/찜페이지">관심상품</Link></li>
                                                 <li><a href="!#">쿠폰</a></li>
                                             </ul>
                                         </div>
                                         <div className="three">
-                                            <a href="!#">최근 본 상품</a>
+                                            <Link to="/마이페이지">최근 본 상품</Link>
                                         </div>
                                         <div className="four">
-                                            <a href="!#">고객센터</a>
+                                            <Link to="/고객센터">고객센터</Link>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="!#"><svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.75" y="6.75" width="22.5" height="20.5" rx="3.25" stroke="#fff" strokeWidth="1.5"></rect><g clipPath="url(#clip0_1090_1570)"><rect x="5.75" y="0.75" width="12.5" height="26.5" rx="3.25" stroke="#fff" strokeWidth="1.5"></rect></g><defs><clipPath id="clip0_1090_1570"><rect width="14" height="11" fill="white" transform="translate(5)"></rect></clipPath></defs></svg></a></li>
+                            <li><Link to="/장바구니"><svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.75" y="6.75" width="22.5" height="20.5" rx="3.25" stroke="#fff" strokeWidth="1.5"></rect><g clipPath="url(#clip0_1090_1570)"><rect x="5.75" y="0.75" width="12.5" height="26.5" rx="3.25" stroke="#fff" strokeWidth="1.5"></rect></g><defs><clipPath id="clip0_1090_1570"><rect width="14" height="11" fill="white" transform="translate(5)"></rect></clipPath></defs></svg></Link></li>
                             <li><a href="!#"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.25 14C25.25 20.2132 20.2132 25.25 14 25.25C7.7868 25.25 2.75 20.2132 2.75 14C2.75 7.7868 7.7868 2.75 14 2.75C20.2132 2.75 25.25 7.7868 25.25 14Z" stroke="#fff" strokeWidth="1.5"></path><path d="M29.0001 29.5L21.5001 22" stroke="#fff" strokeWidth="1.5"></path></svg></a></li>
                         </ul>
                     </div>
