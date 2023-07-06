@@ -146,9 +146,9 @@ function MypageComponent(props) {
                                                                     </a>
                                                                 </div>
                                                                 <div className="money_box">
-                                                                    <span className={`origin_price ${item.할인율===''?'on':''}`}>{item.원가}</span>
-                                                                    <span className='sale_price'>{item.할인가}</span>
-                                                                    <span className='sale_per'>{item.할인율}</span>
+                                                                    <span className={`origin_price ${item.할인율===0?'on':''}`}>{item.원가.toLocaleString('ko-KR')}원</span>
+                                                                    <span className='sale_price'>{item.할인율===0?'':`${item.할인가.toLocaleString('ko-KR')}원`}</span>
+                                                                    <span className='sale_per'>{item.할인율===0?'':`${item.할인율}%`}</span>
                                                                 </div>
                                                                 <div className="icon_box">
                                                                     <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/icon/goods_icon/i_boutique.png" alt="" />
