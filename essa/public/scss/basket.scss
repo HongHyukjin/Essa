@@ -112,7 +112,7 @@
                                         &:hover{
                                             background-image: url(../img/product/check_over_small.png);
                                         }
-                                        &.on{
+                                        &:checked{
                                             background-image: url(../img/product/check_on_small.png);
                                         }
                                     }
@@ -140,7 +140,7 @@
                                             &:hover{
                                                 background-image: url(../img/product/check_over_small.png);
                                             }
-                                            &.on{
+                                            &:checked{
                                                 background-image: url(../img/product/check_on_small.png);
                                             }
                                         }

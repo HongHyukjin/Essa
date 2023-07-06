@@ -124,7 +124,7 @@
 #basket .container .gap .row2 .row2-cart table thead tr th input:hover {
   background-image: url(../img/product/check_over_small.png);
 }
-#basket .container .gap .row2 .row2-cart table thead tr th input.on {
+#basket .container .gap .row2 .row2-cart table thead tr th input:checked {
   background-image: url(../img/product/check_on_small.png);
 }
 #basket .container .gap .row2 .row2-cart table tbody {
@@ -155,7 +155,7 @@
 #basket .container .gap .row2 .row2-cart table tbody tr td:nth-child(1) input:hover {
   background-image: url(../img/product/check_over_small.png);
 }
-#basket .container .gap .row2 .row2-cart table tbody tr td:nth-child(1) input.on {
+#basket .container .gap .row2 .row2-cart table tbody tr td:nth-child(1) input:checked {
   background-image: url(../img/product/check_on_small.png);
 }
 #basket .container .gap .row2 .row2-cart table tbody tr td:nth-child(2) {
