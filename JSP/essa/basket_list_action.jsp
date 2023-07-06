@@ -4,7 +4,7 @@
 <%@
     page
     language="java"
-    contentType="text/html; charset=UTF-8"
+    contentType="application/json; charset=UTF-8"
     pageEncoding= "UTF-8"
 %>
 
@@ -28,14 +28,14 @@
             jsonData += "{ \"product_code\" : \"" + basketDTO.getProduct_code() + "\","
                      +   "\"num\" : \"" + basketDTO.getNum() + "\","
                      +   "\"option1\" : \"" + basketDTO.getOption1() + "\","
-                     +   "\"option2\" : \"" + basketDTO.getOption2() + "\","
+                     +   "\"option2\" : \"" + basketDTO.getOption2() + "\"" 
                      + "},";
         }
         else{
             jsonData += "{ \"product_code\" : \"" + basketDTO.getProduct_code() + "\","
                         +   "\"num\" : \"" + basketDTO.getNum() + "\","
                         +   "\"option1\" : \"" + basketDTO.getOption1() + "\","
-                        +   "\"option2\" : \"" + basketDTO.getOption2() + "\","
+                        +   "\"option2\" : \"" + basketDTO.getOption2() + "\""
                      + "}";
         }
     }
