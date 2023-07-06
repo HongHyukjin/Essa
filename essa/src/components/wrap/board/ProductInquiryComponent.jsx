@@ -15,7 +15,8 @@ export default function ProductInquiryComponent (props){
         제목 : '',
         작성자 : '',
         isPost:false,
-        noRes:true
+        noRes:true,
+        상품문의 :[]
     })
 
     const getUserData = async () => {
@@ -25,7 +26,7 @@ export default function ProductInquiryComponent (props){
                 "user_id" : user_id
             }
             const res = await $.ajax({
-                url: 'http://localhost:8080/JSP/essa/update_getjoin_action.jsp',
+                url: 'http://localhost:8080/JSP/essa/product_inquiry_action_test.jsp',
                 type: 'POST',
                 data: form_data,
                 dataType: 'json'
@@ -50,54 +51,24 @@ export default function ProductInquiryComponent (props){
 
 
 
-    // const getlist =()=>{
-    //     axios({
-    //         url :'http://localhost:8080/JSP/essa/product_inquiry_select.jsp', // select, selectall 두개 있음 참고 
-    //         method: 'GET'
-    //     })
-    //     .then((res)=>{
-    //         if(res.status === 200){
-    //             console.log(res.data);
-    //         }
-    //     })
-    //     .catch((err)=>{
-
-    //     })
-    // }
-
     const getlist = async () => {
         try {
             const user_id = sessionStorage.getItem('user_id');
             const form_data = {
                 "user_id": user_id
             };
-            const res = await $.ajax({
-                url : 'http://localhost:8080/JSP/essa/product_inquiry_selectall.jsp',
-                type: 'POST',
-                data: form_data,
-                dataType: 'json'
-            });
+            const res = await axios.post('http://localhost:8080/JSP/essa/product_inquiry_selectall.jsp', form_data);
+
 
             console.log('AJAX 성공');
-            console.log(res.result);
-            localStorage.setItem('product_inquiry', JSON.stringify(res.result));
-            let 상품문의 = '';
-            let isPost = false;
-            let noRes = true;
-            if(상품문의 === ''){
-                isPost = true;
-            } else {
-                isPost = false;
-            }
-            if (res.result.length===0){
-                noRes = true;
-            }
-            else {
-                noRes = false;
-            }
+            console.log(res.data.result);
+            localStorage.setItem('product_inquiry', JSON.stringify(res.data.result));
+            
+            let isPost = res.data.result.length > 0 ? true : false;
+            let noRes = res.data.result.length === 0 ? true : false;
             setState((prevState)=>({
                 ...prevState,
-                상품문의: res.result,
+                상품문의: res.data.result,
                 isPost: isPost,
                 noRes: noRes
             }));
@@ -112,6 +83,22 @@ export default function ProductInquiryComponent (props){
     
     },[])
 
+    
+
+        // const getlist =()=>{
+    //     axios({
+    //         url :'http://localhost:8080/JSP/essa/product_inquiry_select.jsp', // select, selectall 두개 있음 참고 
+    //         method: 'GET'
+    //     })
+    //     .then((res)=>{
+    //         if(res.status === 200){
+    //             console.log(res.data);
+    //         }
+    //     })
+    //     .catch((err)=>{
+
+    //     })
+    // }
 
 
     return (
@@ -174,7 +161,7 @@ export default function ProductInquiryComponent (props){
                                             state.isPost && 
                                             <>
                                                     {
-                                                        state.상품문의.map((item, idx)=>{
+                                                        state.상품문의.map((post, idx)=>{
                                                             return(
                                                                 <tr key={idx}>
                                                                     <td>{state.문의날짜}</td>
@@ -187,8 +174,6 @@ export default function ProductInquiryComponent (props){
                                                                         </Link>     
                                                                     </td>
                                                                     <td> {state.작성자}</td>
-                                                                    {/* <td> 접수 </td>
-                                                                    <td> 2023.06.27 </td> */}
                                                                 </tr>
                                                             )
                                                         })
