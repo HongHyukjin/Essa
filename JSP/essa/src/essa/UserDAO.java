@@ -166,4 +166,24 @@ public class UserDAO {
         }
         return userDTO;
     }
+
+    public UserDTO idSearch(String userName, String userEmail){
+        String SQL = "SELECT userEmail, userId FROM user WHERE userName = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setString(1, userName);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                if(rs.getString(1).equals(userEmail)){
+                    UserDTO userDTO = new UserDTO();
+                    userDTO.setUserId(rs.getString(2));
+                    return userDTO;
+                }
+            }   
+        }
+        catch (Exception e) {
+            // TODO: handle exception
+        }
+        return null;
+    }
 }

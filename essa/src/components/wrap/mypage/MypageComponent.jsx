@@ -87,7 +87,7 @@ function MypageComponent(props) {
                                     <li className='sub-menu-tit'>
                                         회원정보
                                         <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'><a href="!#">회원정보 변경</a></li>
+                                            <li className='detail-tit'><Link to='/회원정보수정'>회원정보 변경</Link></li>
                                             <li className='detail-tit'><a href="!#">회원 탈퇴</a></li>
                                             <li className='detail-tit'><a href="!#">배송지 관리</a></li>
                                         </ul>
