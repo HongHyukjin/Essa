@@ -50,9 +50,9 @@ export default function ProductInquiryUpdateComponent (){
     }
 
     const getUserData = () => {
-        const user_name = sessionStorage.getItem('ㅇㄴㅁㅇㅁㄴ');
+        const user_id = sessionStorage.getItem('user_id');
         const form_data = {
-            "ㅇㄴㅁㅇㅁㄴ" : user_name
+            "user_id" : user_id
         }
   
         $.ajax({
@@ -85,9 +85,9 @@ export default function ProductInquiryUpdateComponent (){
     const onSubmitProductInquiryUpdate=(e)=>{
         e.preventDefault();
         const formData = {
-            "ㅇㄴㅁㅇㅁㄴ":sessionStorage.getItem("ㅇㄴㅁㅇㅁㄴ"),
+            "user_id":sessionStorage.getItem("user_id"),
             "category":state.category,
-            "ㅇㄴㅁㅇㅁㄴ":state.user_name,
+            "user_name":state.user_name,
             "subject":state.subject,
             "content":state.content
         }
