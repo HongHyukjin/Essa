@@ -1,34 +1,24 @@
 import React from 'react';
 import $ from 'jquery';
 import TimerComponent from '../TimerComponent';
+import {Link} from 'react-router-dom';
 
-
-export default function Section7Component(props) {
+export default function Section7Component({쇼핑}) {
     
 
-    // const slideWrap = React.useRef();
-    // const [cnt, setCnt] = React.useState(0);
-    
-    // React.useEffect(()=>{
-        
-        
-    //     slideWrap.current.left = `${-418*cnt}%`;
-    //     // if(cnt>n){
-    //     //     setCnt( );
-    //     //     slideWrap.current.style.left = 
-    //     // }
-
-    //     if(cnt<=0){
-    //         setCnt(0);
-    //         slideWrap.current.left= `${-418*cnt}%`;
-    //     }
-
-
-    // },[cnt])
-
-    const [state, setState] = React.useState({
+    const [state,setState] = React.useState({
+        sec7Shop : [],
         cnt : 0
-    });
+    })
+
+    React.useEffect(() => {
+        console.log(쇼핑)
+        setState({
+            ...state,
+            sec7Shop : 쇼핑.slice(20,26)
+        })
+    }, [쇼핑])
+
 
     React.useEffect(()=>{
         const $slideWrap = $('#section7 .slide-wrap');
@@ -134,6 +124,63 @@ export default function Section7Component(props) {
         
     })
 
+    const setViewProduct = (value) =>{
+        let arr = [];
+        if(localStorage.getItem('최근본상품')!==null){
+          arr = JSON.parse(localStorage.getItem('최근본상품'));
+          arr = [value, ...arr]
+          localStorage.setItem('최근본상품', JSON.stringify(arr) );  
+        }
+        else {
+            arr = [value]
+            localStorage.setItem('최근본상품', JSON.stringify(arr) );
+        }     
+    }
+
+    const onClickProduct = (e, item) => {
+        // e.preventDefault();
+        let obj = {
+          제품코드 : item.제폼코드,
+          이미지 : item.이미지,
+          제품명 : item.제품명,
+          원가 : item.원가,
+          할인가 : item.할인가,
+          할인율 : item.할인율,
+          리뷰수 : item.리뷰수
+        }
+        setViewProduct(obj);
+    }
+
+    const onClickZzim = (e, item) => {
+        e.preventDefault();
+        let user_id = '';
+        if(sessionStorage.getItem('user_id') === null){
+          user_id = 'gurwlszx';
+        }
+        else{
+          user_id = sessionStorage.getItem('user_id');
+        }
+        const formData = {
+          "user_id" : user_id,
+          "product_num" : item.제품코드,
+          "amount" : 1
+        }
+    
+        $.ajax({
+          url : 'http://localhost:8080/JSP/essa/zzim_post_action.jsp',
+          type : 'POST',
+          data : formData,
+          success(res){
+              console.log('AJAX 성공!');
+              console.log(res);
+              console.log(JSON.parse(res));
+              alert('상품이 찜 리스트에 담겼습니다!')
+          },
+          error(err){
+            console.log('AJAX 실패!' + err);
+          }
+        })
+    }
 
     const onMouseEnterShowBtnBox=(e)=>{
         e.preventDefault();
@@ -156,6 +203,42 @@ export default function Section7Component(props) {
                         </div>
                         <div className="slide-container">
                             <ul className='slide-view'>
+                                {
+                                    state.sec7Shop.map((item,idx) => {
+                                        return (
+                                            <li className='slide-wrap'>
+                                                <div className="slide">
+                                                    <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
+                                                        <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
+                                                            <img src={item.이미지} alt="" />
+                                                            <div className="button-box">
+                                                                <div className="button">
+                                                                    <button><img src="../img/section5/메인021.png" alt="" /></button>
+                                                                    <button onClick={(e) => onClickZzim(e, item)}><img src="../img/section5/메인022.png" alt="" /></button>
+                                                                </div>
+                                                            </div>
+                                                        </Link>
+                                                    </div>
+                                                    <div className="title-box">
+                                                        <span className='name'>{item.제품명}</span>
+                                                        <div className="title-under">
+                                                            <span className='price'>{item.원가.toLocaleString('ko-KR')}원</span>
+                                                            <span className='price2'>{item.할인가.toLocaleString('ko-KR')}원</span>
+                                                            <span className='percent'>{item.할인율}%</span>
+                                                        </div>
+                                                        <img src="../img/section7/images026.png" alt="" />
+                                                        <img src="../img/section7/images067.jpg" alt="" />
+                                                        <a href="!#">
+                                                            <span class="material-symbols-outlined"></span>
+                                                            <i className='xi-comment-o'></i>
+                                                            <span>{item.리뷰수}</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        )
+                                    })
+                                }
                                 <li className='slide-wrap'>
                                     <div className="slide">
                                         <div  onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
@@ -179,7 +262,7 @@ export default function Section7Component(props) {
                                         </div>
                                     </div>
                                 </li>
-                                <li className='slide-wrap'>
+                                {/* <li className='slide-wrap'>
                                     <div className="slide">
                                         <div  onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
                                             <img src="../img/section7/images068.jpg" alt="" />
@@ -293,7 +376,7 @@ export default function Section7Component(props) {
                                             <img src="../img/section7/images067.jpg" alt="" />
                                         </div>
                                     </div>
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                         <div className="scroll-bar"></div>

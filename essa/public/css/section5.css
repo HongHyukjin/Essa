@@ -135,11 +135,13 @@
   padding: 20px 10px 0 10px;
 }
 #section5 .container .gap .content .right-box .right-content ul li .title-box span {
-  font-size: 15px;
+  font-family: "Pretendard";
+  font-size: 16px;
   color: #1e1e1e;
   font-weight: 600;
   letter-spacing: -1.5px;
   line-height: 1.2;
+  padding: 0 0 8px 0;
 }
 #section5 .container .gap .content .right-box .right-content ul li .title-box .img1 {
   position: absolute;

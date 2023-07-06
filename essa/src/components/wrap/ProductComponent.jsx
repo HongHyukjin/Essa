@@ -35,7 +35,7 @@ export default function ProductComponent () {
   }
 
   React.useEffect(()=>{
-        localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
+      localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
       getProduct();
   },[ state.viewnum, state.쇼핑]);
 
@@ -117,8 +117,6 @@ export default function ProductComponent () {
   }
 
   const mouseenterNav1 = (e) => {
-    console.log("enter")
-    console.log(e.target.innerHTML)
     setState({
       ...state,
       nav1 : e.target.innerHTML
@@ -126,7 +124,6 @@ export default function ProductComponent () {
   }
 
   const mouseleaveNav = (e) => {
-    console.log("leave")
     setState({
       ...state,
       nav1 : state.nav1_last_click
@@ -143,7 +140,7 @@ export default function ProductComponent () {
     let filter_shopping = '';
     nav1_last_click = e.target.innerHTML;
     if(e.target.innerHTML === '전체'){
-      filter_shopping = state.쇼핑
+      filter_shopping = [...state.쇼핑]
     }
     else if(e.target.innerHTML === '사이즈'){
       filter_shopping = state.쇼핑.filter((item) => item.제품명.includes('인'))
@@ -258,14 +255,13 @@ export default function ProductComponent () {
 
   const onClickSort = (e) => {
     e.preventDefault();
-    console.log("클릭")
     $('#product .sort_btn').removeClass('on');
     $(e.target).addClass('on');
     
     let filter_shopping = state.filter_shopping;
     if(e.target.innerHTML === '추천순'){
       if(state.nav1 === '전체'){
-        filter_shopping = state.쇼핑
+        filter_shopping = [...state.쇼핑]
       }
       else if(state.nav1 === '사이즈'){
         filter_shopping = state.쇼핑.filter((item) => item.제품명.includes('인'))
@@ -299,22 +295,20 @@ export default function ProductComponent () {
           (item) => item.제품명.includes('펫')
           )
       }
+      filter_shopping = filter_shopping.filter((item) => item.제품명.includes(state.nav2));
     }
     else if(e.target.innerHTML === '낮은가격순'){
-      console.log('낮은가격순 정렬')
       filter_shopping.sort((a,b) => {
         return a.원가-b.원가;
       })
     }
     else if(e.target.innerHTML === '높은가격순'){
-      console.log('높은가격순 정렬')
       let filter_shopping = state.filter_shopping;
       filter_shopping.sort((a,b) => {
         return b.원가-a.원가;
       })
     }
     else if(e.target.innerHTML === '상품평순'){
-      console.log('상품평순 정렬')
       let filter_shopping = state.filter_shopping;
       filter_shopping.sort((a,b) => {
         return b.리뷰수-a.리뷰수;
@@ -396,7 +390,7 @@ export default function ProductComponent () {
                       )
                     }                    
                   </li>
-                  <li><a href="" className='nav-btn' onClick={onClickNav1} >LOVE PET</a></li>
+                  <li><a href="" className='nav-btn' onClick={onClickNav1} onMouseEnter={mouseenterNav1} >LOVE PET</a></li>
                 </ul>
               </div>
               {

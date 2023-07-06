@@ -1,7 +1,49 @@
 import React from 'react';
 import $ from 'jquery';
+import {Link} from 'react-router-dom';
 
-export default function Section6Component(){
+export default function Section6Component({쇼핑}){
+
+    const [state,setState] = React.useState({
+        sec6Shop : []
+    })
+
+    React.useEffect(() => {
+        console.log(쇼핑)
+        setState({
+            ...state,
+            sec6Shop : 쇼핑.slice(8,14)
+        })
+    }, [쇼핑])
+
+    const setViewProduct = (value) =>{
+        let arr = [];
+        if(localStorage.getItem('최근본상품')!==null){
+          arr = JSON.parse(localStorage.getItem('최근본상품'));
+          arr = [value, ...arr]
+          localStorage.setItem('최근본상품', JSON.stringify(arr) );  
+        }
+        else {
+            arr = [value]
+            localStorage.setItem('최근본상품', JSON.stringify(arr) );
+        }     
+    }
+
+    const onClickProduct = (e, item) => {
+        // e.preventDefault();
+        let obj = {
+          제품코드 : item.제폼코드,
+          이미지 : item.이미지,
+          제품명 : item.제품명,
+          원가 : item.원가,
+          할인가 : item.할인가,
+          할인율 : item.할인율,
+          리뷰수 : item.리뷰수
+        }
+        setViewProduct(obj);
+    }
+
+
     const onMouseEnterShowBtnBox = (e) => {
         e.preventDefault();
         $(e.target).next().animate({opacity:1}, 200)
@@ -34,264 +76,56 @@ export default function Section6Component(){
                             </div>
                         </div>
                         <div className="right-box">
-                            <div className="right-top-box">
-                                <div className="product_box">
-                                    <ul>
-                                        <li>
-                                            <div className="item_cont">
-                                                <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="item_photo_box">
-                                                        <img src="./img/section6/section6_01.jpg" alt="" />
-                                                        <div className="button-box">
-                                                            <div className="button">
-                                                                <button><img src="./img/product_01.png" alt="" /></button>
-                                                                <button><img src="./img/product_02.png" alt="" /></button>
+                            <ul>
+                                {
+                                    state.sec6Shop.map((item,idx) => {
+                                        return (
+                                            <li>
+                                                <div className="item_cont">
+                                                    <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="item_photo_box">
+                                                        <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
+                                                            <img src={item.이미지} alt="" />
+                                                            <div className="button-box">
+                                                                <div className="button">
+                                                                    <button><img src="./img/product_01.png" alt="" /></button>
+                                                                    <button><img src="./img/product_02.png" alt="" /></button>
+                                                                </div>
                                                             </div>
+                                                        </Link>
+
+                                                    </div>
+                                                    <div className="item_info_cont">
+                                                        <div className="item_tit_box">
+                                                            <strong className='item_name'>{item.제품명}</strong>
+
                                                         </div>
-                                                
-                                                </div>
-                                                <div className="item_info_cont">
-                                                    <div className="item_tit_box">
-                                                        <strong className='item_name'>로프트 4인 오픈코너형 리브 패브릭 소파</strong>
-                                                        
-                                                    </div>
-                                                    <div className="item_money_box">
-                                                        <strong className='item_sale'>3,100,000원</strong>
-                                                        <strong className='m_price'>2,945,000원</strong>
-                                                        <span className='sale_per'>5%</span>
-                                                    </div>
-                                                    <div className="item_icon_box">
-                                                        <img src="./img/i_coupon.jpg" alt="" />
-                                                        <img src="./img/gickyoung.png" alt="" />
-                                                    </div>
-                                                    <div className="item_review_cnt">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="!#">
-                                                                <span class="material-symbols-outlined"></span>
-                                                                    <span>12</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="product_box">
-                                    <ul>
-                                        <li>
-                                            <div className="item_cont">
-                                                <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="item_photo_box">
-                                                        <img src="./img/section6/section6_02.jpg" alt="" />
-                                                        <div className="button-box">
-                                                            <div className="button">
-                                                                <button><img src="./img/product_01.png" alt="" /></button>
-                                                                <button><img src="./img/product_02.png" alt="" /></button>
-                                                            </div>
+                                                        <div className="item_money_box">
+                                                            <strong className='item_sale'>{item.원가.toLocaleString('ko-KR')}원</strong>
+                                                            <strong className='m_price'>{item.할인가.toLocaleString('ko-KR')}원</strong>
+                                                            <span className='sale_per'>{item.할인율}%</span>
                                                         </div>
-                                                
-                                                </div>
-                                                <div className="item_info_cont">
-                                                    <div className="item_tit_box">
-                                                        <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    </div>
-                                                    <div className="item_money_box">
-                                                        <strong className='item_sale'>3,100,000원</strong>
-                                                        <strong className='m_price'>2,945,000원</strong>
-                                                        <span className='sale_per'>5%</span>
-                                                    </div>
-                                                    <div className="item_icon_box">
-                                                        <img src="./img/i_coupon.jpg" alt="" />
-                                                        <img src="./img/gickyoung.png" alt="" />
-                                                    </div>
-                                                    <div className="item_review_cnt">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="!#">
-                                                                <span class="material-symbols-outlined"></span>
-                                                                    <span>12</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="product_box">
-                                    <ul>
-                                        <li>
-                                            <div className="item_cont">
-                                                <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="item_photo_box">
-                                                        <img src="./img/section6/section6_03.jpg" alt="" />
-                                                        <div className="button-box">
-                                                            <div className="button">
-                                                                <button><img src="./img/product_01.png" alt="" /></button>
-                                                                <button><img src="./img/product_02.png" alt="" /></button>
-                                                            </div>
+                                                        <div className="item_icon_box">
+                                                            <img src="./img/i_coupon.jpg" alt="" />
+                                                            <img src="./img/gickyoung.png" alt="" />
                                                         </div>
-                                                
-                                                </div>
-                                                <div className="item_info_cont">
-                                                    <div className="item_tit_box">
-                                                        <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    </div>
-                                                    <div className="item_money_box">
-                                                        <strong className='item_sale'>3,100,000원</strong>
-                                                        <strong className='m_price'>2,945,000원</strong>
-                                                        <span className='sale_per'>5%</span>
-                                                    </div>
-                                                    <div className="item_icon_box">
-                                                        <img src="./img/i_coupon.jpg" alt="" />
-                                                        <img src="./img/gickyoung.png" alt="" />
-                                                    </div>
-                                                    <div className="item_review_cnt">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="!#">
-                                                                <span class="material-symbols-outlined"></span>
-                                                                    <span>12</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="right-bottom-box">
-                                <div className="product_box">
-                                    <ul>
-                                        <li>
-                                            <div className="item_cont">
-                                                <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="item_photo_box">
-                                                        <img src="./img/section6/section6_04.jpg" alt="" />
-                                                        <div className="button-box">
-                                                            <div className="button">
-                                                                <button><img src="./img/product_01.png" alt="" /></button>
-                                                                <button><img src="./img/product_02.png" alt="" /></button>
-                                                            </div>
+                                                        <div className="item_review_cnt">
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="!#">
+                                                                        <span class="material-symbols-outlined"></span>
+                                                                        <i className='xi-comment-o'></i>
+                                                                        <span>{item.리뷰수}</span>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
                                                         </div>
-                                                
-                                                </div>
-                                                <div className="item_info_cont">
-                                                    <div className="item_tit_box">
-                                                        <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                        
-                                                    </div>
-                                                    <div className="item_money_box">
-                                                        <strong className='item_sale'>3,100,000원</strong>
-                                                        <strong className='m_price'>2,945,000원</strong>
-                                                        <span className='sale_per'>5%</span>
-                                                    </div>
-                                                    <div className="item_icon_box">
-                                                        <img src="./img/i_coupon.jpg" alt="" />
-                                                        <img src="./img/gickyoung.png" alt="" />
-                                                    </div>
-                                                    <div className="item_review_cnt">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="!#">
-                                                                <span class="material-symbols-outlined"></span>
-                                                                    <span>12</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="product_box">
-                                    <ul>
-                                        <li>
-                                            <div className="item_cont">
-                                                <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="item_photo_box">
-                                                        <img src="./img/section6/section6_05.jpg" alt="" />
-                                                        <div className="button-box">
-                                                            <div className="button">
-                                                                <button><img src="./img/product_01.png" alt="" /></button>
-                                                                <button><img src="./img/product_02.png" alt="" /></button>
-                                                            </div>
-                                                        </div>
-                                                
-                                                </div>
-                                                <div className="item_info_cont">
-                                                    <div className="item_tit_box">
-                                                        <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    </div>
-                                                    <div className="item_money_box">
-                                                        <strong className='item_sale'>3,100,000원</strong>
-                                                        <strong className='m_price'>2,945,000원</strong>
-                                                        <span className='sale_per'>5%</span>
-                                                    </div>
-                                                    <div className="item_icon_box">
-                                                        <img src="./img/i_coupon.jpg" alt="" />
-                                                        <img src="./img/gickyoung.png" alt="" />
-                                                    </div>
-                                                    <div className="item_review_cnt">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="!#">
-                                                                <span class="material-symbols-outlined"></span>
-                                                                    <span>12</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="product_box">
-                                    <ul>
-                                        <li>
-                                            <div className="item_cont">
-                                                <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="item_photo_box">
-                                                        <img src="./img/section6/section6_06.jpg" alt="" />
-                                                        <div className="button-box">
-                                                            <div className="button">
-                                                                <button><img src="./img/product_01.png" alt="" /></button>
-                                                                <button><img src="./img/product_02.png" alt="" /></button>
-                                                            </div>
-                                                        </div>
-                                                
-                                                </div>
-                                                <div className="item_info_cont">
-                                                    <div className="item_tit_box">
-                                                        <strong className='item_name'>미라벨 4인 카시미라 패브릭 소파</strong>
-                                                    </div>
-                                                    <div className="item_money_box">
-                                                        <strong className='item_sale'>3,100,000원</strong>
-                                                        <strong className='m_price'>2,945,000원</strong>
-                                                        <span className='sale_per'>5%</span>
-                                                    </div>
-                                                    <div className="item_icon_box">
-                                                        <img src="./img/i_coupon.jpg" alt="" />
-                                                        <img src="./img/gickyoung.png" alt="" />
-                                                    </div>
-                                                    <div className="item_review_cnt">
-                                                        <ul>
-                                                            <li>
-                                                                <a href="!#">
-                                                                <span class="material-symbols-outlined"></span>
-                                                                    <span>12</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
                         </div>
                     </div>
                 </div>

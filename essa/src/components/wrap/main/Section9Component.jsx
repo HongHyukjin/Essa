@@ -1,9 +1,79 @@
 import React from 'react';
 import $ from 'jquery';
+import {Link} from 'react-router-dom';
 
 
+function Section9Component({쇼핑}) {
 
-function Section9Component(props) {
+    const [state,setState] = React.useState({
+        sec9Shop : []
+    })
+
+    React.useEffect(() => {
+        console.log(쇼핑)
+        setState({
+            ...state,
+            sec9Shop : 쇼핑.slice(77,83)
+        })
+    }, [쇼핑])
+
+    const setViewProduct = (value) =>{
+        let arr = [];
+        if(localStorage.getItem('최근본상품')!==null){
+          arr = JSON.parse(localStorage.getItem('최근본상품'));
+          arr = [value, ...arr]
+          localStorage.setItem('최근본상품', JSON.stringify(arr) );  
+        }
+        else {
+            arr = [value]
+            localStorage.setItem('최근본상품', JSON.stringify(arr) );
+        }     
+    }
+
+    const onClickProduct = (e, item) => {
+        // e.preventDefault();
+        let obj = {
+          제품코드 : item.제폼코드,
+          이미지 : item.이미지,
+          제품명 : item.제품명,
+          원가 : item.원가,
+          할인가 : item.할인가,
+          할인율 : item.할인율,
+          리뷰수 : item.리뷰수
+        }
+        setViewProduct(obj);
+    }
+
+    const onClickZzim = (e, item) => {
+        e.preventDefault();
+        let user_id = '';
+        if(sessionStorage.getItem('user_id') === null){
+          user_id = 'gurwlszx';
+        }
+        else{
+          user_id = sessionStorage.getItem('user_id');
+        }
+        const formData = {
+          "user_id" : user_id,
+          "product_num" : item.제품코드,
+          "amount" : 1
+        }
+    
+        $.ajax({
+          url : 'http://localhost:8080/JSP/essa/zzim_post_action.jsp',
+          type : 'POST',
+          data : formData,
+          success(res){
+              console.log('AJAX 성공!');
+              console.log(res);
+              console.log(JSON.parse(res));
+              alert('상품이 찜 리스트에 담겼습니다!')
+          },
+          error(err){
+            console.log('AJAX 실패!' + err);
+          }
+        })
+    }
 
     const onMouseEnterShowBtnBox =(e)=>{
         e.preventDefault();
@@ -43,7 +113,40 @@ function Section9Component(props) {
                         <div className="content">
                             <div className="left-box">
                                 <ul>
-                                    <li>
+                                    {
+                                        state.sec9Shop.map((item,idx) => {
+                                            return (
+                                                <li>
+                                                    <div className="sec9left-product">
+                                                        <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
+                                                            <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
+                                                                <img className='sec9product' src={item.이미지} alt="" />
+                                                                <div className="button-box">
+                                                                    <div className="button">
+                                                                        <button><img src="../img/section5/메인021.png" alt="" /></button>
+                                                                        <button><img src="../img/section5/메인022.png" alt="" /></button>
+                                                                    </div>
+                                                                </div>
+                                                            </Link>
+                                                        </div>
+                                                        <div className="title-box">
+                                                            <span className='sec9name'>{item.제품명}</span>
+                                                            <span className='sec9price'>{item.원가.toLocaleString('ko-KR')}원</span>
+                                                            <span className='sec9price2'>{item.할인가.toLocaleString('ko-KR')}원</span>
+                                                        </div>
+                                                        <img src="../img/section9/i_coupon.jpg" alt="" />
+                                                        <img src="../img/section9/product_03.png" alt="" />
+                                                        <a href="!#">
+                                                            <span class="material-symbols-outlined"></span>
+                                                            <i className='xi-comment-o'></i>
+                                                            <span>{item.리뷰수}</span>
+                                                        </a>
+                                                    </div>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                    {/* <li>
                                         <div className="sec9left-product">
                                             <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
                                                 <img className='sec9product' src="../img/section9/images008.jpg" alt="" />
@@ -162,7 +265,7 @@ function Section9Component(props) {
                                             <img src="../img/section9/i_coupon.jpg" alt="" />
                                             <img src="../img/section9/product_03.png" alt="" />
                                         </div>
-                                    </li>
+                                    </li> */}
                                 </ul>
                             </div>
                             <div className="right-box">
