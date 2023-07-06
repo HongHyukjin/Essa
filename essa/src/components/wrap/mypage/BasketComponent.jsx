@@ -2,8 +2,34 @@ import React from 'react';
 import FooterComponent from '../FooterComponent';
 import HeaderComponent from '../HeaderComponent';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function BasketComponent({getViewProduct,key,cartCountNumber}) {
+function BasketComponent() {
+
+    const getlist =()=>{
+        const formData = {
+            "user_id":sessionStorage.getItem("user_id")
+        }
+        axios({
+            url :'http://localhost:8080/JSP/essa/basket_list_action.jsp',
+            method: 'post',
+            data:formData
+        })
+        .then((res)=>{
+            if(res.status === 200){
+                console.log(res.data);
+            }
+        })
+        .catch((err)=>{
+            console.log('axios 실패'+err);
+        })
+    }
+
+    React.useEffect(()=>{
+        getlist();
+    },[])
+
+
     return (
         <>
         <HeaderComponent/>

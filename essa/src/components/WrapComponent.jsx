@@ -20,44 +20,6 @@ import UpdateComponent from './wrap/mypage/UpdateComponent';
 
 export default function WrapComponent ()  {
 
-    const [product, setProduct] = React.useState({
-        key: 'viewProductKey',
-        getViewProduct: []
-    });
-
-      // 장바구니 수량 카운트 상태 변수
-      const [cartCount, setCartCount] = React.useState(0);
-
-      // 징비구니 수량 카운트 상태 변수를 전달하는 함수
-      const cartCountNumber = (num) => {
-          setCartCount(num);
-      }
-
-    // 비구조화 구조분할할당
-    const { getViewProduct, key} = product;
-
-    const setViewProduct = (value) => {
-        let arr = [];
-        if (localStorage.getItem(key) !== null) {
-            arr = JSON.parse(localStorage.getItem(key));
-            arr = [value, ...arr]
-            localStorage.setItem(key, JSON.stringify(arr));
-            setProduct({
-                ...product,
-                getViewProduct: arr
-            });
-        }
-        else {
-            arr = [...arr, value];
-            localStorage.setItem(key, JSON.stringify(arr));
-            setProduct({
-                ...product,
-                getViewProduct: arr
-            });
-        }
-
-    }
-    
     return (
         <div id='wrap'>
             <HashRouter>
@@ -77,7 +39,7 @@ export default function WrapComponent ()  {
                     <Route path='/상품문의글내용' element={<ProductInquiryViewComponent/>}/>
                     <Route path='/상품문의글작성' element={<ProductWriteFormComponent/>}/>
                     <Route path='/상품문의글수정폼' element={<ProductInquiryUpdateComponent/>}/>
-                    <Route path='/장바구니' element={<BasketComponent getViewProduct={getViewProduct} key={key} cartCountNumber={cartCountNumber}/>}/>
+                    <Route path='/장바구니' element={<BasketComponent/>}/>
                     <Route path='/회원정보수정' element={<UpdateComponent/>}/>
                 </Routes>
             </HashRouter>

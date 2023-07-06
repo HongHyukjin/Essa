@@ -2,19 +2,138 @@ import React from 'react';
 import FooterComponent from './FooterComponent';
 import HeaderComponent from './HeaderComponent';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import $ from 'jquery';
 
-export default function ProductComponent () {
+export default function ProductComponent() {
 
-  const [state,setState] = React.useState({
-      쇼핑 : [],
-      filter_shopping : [],
-      viewnum : 12,
-      nav1 : '전체',
-      nav1_last_click : '전체',
-      nav2 : ''
+  const [state, setState] = React.useState({
+    쇼핑: [],
+    filter_shopping: [],
+    viewnum: 12,
+    nav1: '전체',
+    nav1_last_click: '전체',
+    nav2: ''
   });
+ 
+  const[cart,setCart] = React.useState({
+    option1:'',
+    option2:'',
+    cnt:1
+  });
+  const[cartClick,setCartClick] =React.useState([
+
+  ]);
+  const [isCartModal, setIsCartModal] = React.useState(false);
+ 
+
+  const onClickExit=(e)=>{
+    e.preventDefault();
+    setIsCartModal(false);
+    setCart({
+      ...cart,
+      option1:'',
+      option2:'',
+      cnt:1
+    })
+  }
+
+  const onClickCart = (e, value) => {
+    e.preventDefault();
+    setIsCartModal(true);
+    let res = state.쇼핑.filter((item)=>item.제품코드===value);
+    setCartClick(res[0]);
+ 
+  }
+  const onClickSubmit=(e)=>{
+    e.preventDefault();
+    onSubmitBasket();
+  }
+
+  const onSubmitBasket=()=>{
+    const formData = {
+      "user_id":sessionStorage.getItem('user_id'),
+      "product_code":cartClick.제품코드,
+      "num":cart.cnt,
+      "option1":cart.option1,
+      "option2":cart.option2
+    }
+    console.log(formData);
+    $.ajax({
+      url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
+      type:'post',
+      data:formData,
+      success(res){
+        console.log('AJAX 성공');
+        console.log(res);
+        if(cart.option1===''||cart.option2===''){
+          alert('옵션이 선택되지 않았습니다!');
+        }
+        else{
+          alert('상품이 장바구니에 담겼습니다.');
+          setIsCartModal(false);
+        }
+      },
+      error(err){
+        console.log('AJAX 실패'+err);
+      }
+    })
+  }
+
+  const onChangeOption1=(e)=>{
+    setCart({
+      ...cart,
+      option1:e.target.value
+    })
+  }
+  const onChangeOption2=(e)=>{
+    setCart({
+      ...cart,
+      option2:e.target.value
+    })
+  }
+
+  const onChangeCnt=(e)=>{
+    setCart({
+      ...cart,
+      cnt:e.target.value
+    })
+  }
+
+  const onClickUp=(e)=>{
+    e.preventDefault();
+    let cnt=cart.cnt;
+    cnt++;
+    setCart({
+      ...cart,
+      cnt:cnt
+    })
+    
+  }
+  const onClickDown=(e)=>{
+    e.preventDefault();
+    let cnt=cart.cnt;
+    if(cnt===1){
+      cnt=1;
+    }
+    else{
+      cnt--;
+    }
+    setCart({
+      ...cart,
+      cnt:cnt
+    }) 
+  }
+
+  const onClickDel =(e)=>{
+    e.preventDefault();
+    setCart({
+      ...cart,
+      option1:'',
+      option2:''
+    })
+  }
+
 
   const getProduct = () => {
     axios({
@@ -25,7 +144,7 @@ export default function ProductComponent () {
         setState({
           ...state,
           쇼핑: res.data.쇼핑,
-          filter_shopping : res.data.쇼핑
+          filter_shopping: res.data.쇼핑
         })
         localStorage.setItem('쇼핑', JSON.stringify(res.data.쇼핑));
       })
@@ -34,10 +153,10 @@ export default function ProductComponent () {
       })
   }
 
-  React.useEffect(()=>{
-        localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
-      getProduct();
-  },[ state.viewnum, state.쇼핑]);
+  React.useEffect(() => {
+    localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
+    getProduct();
+  }, [state.viewnum, state.쇼핑]);
 
   const [list, setList] = React.useState(4);  // 한화면에 보여질 목록개수
   const [pageNumber, setPageNumber] = React.useState(1); // 페이지번호
@@ -52,7 +171,7 @@ export default function ProductComponent () {
   const onClickPageNum = (e, num) => {
     e.preventDefault();
     setPageNumber(num);
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
   // 그룹페이지 클릭  다음카운트 이벤트
@@ -93,13 +212,13 @@ export default function ProductComponent () {
 
   // 그룹 시작페이지 설정 => 그룹페이지 이동시 그룹의 첫페이지 설정
   React.useEffect(() => {
-    if(click === ''){
+    if (click === '') {
       setPageNumber(startNum + 1);
     }
-    else if(click === 'First'){
+    else if (click === 'First') {
       setPageNumber(1);
     }
-    else if(click === 'Last'){
+    else if (click === 'Last') {
       setPageNumber(Math.ceil(state.filter_shopping.length / list));
     }
   }, [endtNum, startNum]);
@@ -109,27 +228,27 @@ export default function ProductComponent () {
   }, [state.viewnum]);
 
   const onChangeViewNum = (e) => {
-    const {value} = e.target;
+    const { value } = e.target;
     setState({
       ...state,
-      viewnum : Number(value)
+      viewnum: Number(value)
     })
   }
 
   React.useEffect(() => {
     $('#product .nav .nav-btn').on({
-      mouseenter(e){
+      mouseenter(e) {
         setState({
           ...state,
-          nav1 : e.target.innerHTML
+          nav1: e.target.innerHTML
         })
       }
     })
     $('#product .nav ul').on({
-      mouseleave(e){
+      mouseleave(e) {
         setState({
           ...state,
-          nav1 : state.nav1_last_click
+          nav1: state.nav1_last_click
         })
       }
     })
@@ -141,48 +260,48 @@ export default function ProductComponent () {
     let nav1_last_click = '';
     let filter_shopping = '';
     nav1_last_click = e.target.innerHTML;
-    if(e.target.innerHTML === '전체'){
+    if (e.target.innerHTML === '전체') {
       filter_shopping = state.쇼핑
     }
-    else if(e.target.innerHTML === '사이즈'){
+    else if (e.target.innerHTML === '사이즈') {
       filter_shopping = state.쇼핑.filter((item) => item.제품명.includes('인'))
     }
-    else if(e.target.innerHTML === '소재'){
+    else if (e.target.innerHTML === '소재') {
       filter_shopping = state.쇼핑.filter(
         (item) => item.제품명.includes('패브릭') ||
-        item.제품명.includes('가죽')
-        )
+          item.제품명.includes('가죽')
+      )
     }
-    else if(e.target.innerHTML === '타입'){
+    else if (e.target.innerHTML === '타입') {
       filter_shopping = state.쇼핑.filter(
         (item) => item.제품명.includes('헤드기능') ||
-        item.제품명.includes('리프트기능') ||
-        item.제품명.includes('스윙기능') ||
-        item.제품명.includes('카우치') ||
-        item.제품명.includes('코너')
-        )
+          item.제품명.includes('리프트기능') ||
+          item.제품명.includes('스윙기능') ||
+          item.제품명.includes('카우치') ||
+          item.제품명.includes('코너')
+      )
     }
-    else if(e.target.innerHTML === 'LIFE'){
+    else if (e.target.innerHTML === 'LIFE') {
       filter_shopping = state.쇼핑.filter(
         (item) => item.제품명.includes('데이비드') ||
-        item.제품명.includes('스툴') ||
-        item.제품명.includes('체어') ||
-        item.제품명.includes('러그') ||
-        item.제품명.includes('조명')
-        )
+          item.제품명.includes('스툴') ||
+          item.제품명.includes('체어') ||
+          item.제품명.includes('러그') ||
+          item.제품명.includes('조명')
+      )
     }
-    else if(e.target.innerHTML === 'LOVE PET'){
+    else if (e.target.innerHTML === 'LOVE PET') {
       filter_shopping = state.쇼핑.filter(
         (item) => item.제품명.includes('펫')
-        )
+      )
     }
     setState({
       ...state,
-      nav1_last_click : nav1_last_click,
-      filter_shopping : filter_shopping
+      nav1_last_click: nav1_last_click,
+      filter_shopping: filter_shopping
     })
     $('#product .nav-btn').on({
-      click(e){
+      click(e) {
         $('#product .nav-btn').removeClass('on');
         $(this).addClass('on');
       }
@@ -195,72 +314,70 @@ export default function ProductComponent () {
     filter_shopping = state.쇼핑.filter((item) => item.제품명.includes(e.target.innerHTML));
     setState({
       ...state,
-      filter_shopping : filter_shopping
+      filter_shopping: filter_shopping
     })
   }
 
-  const setViewProduct = (value) =>{
+  const setViewProduct = (value) => {
     let arr = [];
-    if(localStorage.getItem('최근본상품')!==null){
+    if (localStorage.getItem('최근본상품') !== null) {
       arr = JSON.parse(localStorage.getItem('최근본상품'));
       arr = [value, ...arr]
-      localStorage.setItem('최근본상품', JSON.stringify(arr) );  
+      localStorage.setItem('최근본상품', JSON.stringify(arr));
     }
     else {
-        arr = [value]
-        localStorage.setItem('최근본상품', JSON.stringify(arr) );
-    }     
+      arr = [value]
+      localStorage.setItem('최근본상품', JSON.stringify(arr));
+    }
   }
 
   const onClickProduct = (e, item) => {
     // e.preventDefault();
     let obj = {
-      제품코드 : item.제폼코드,
-      이미지 : item.이미지,
-      제품명 : item.제품명,
-      원가 : item.원가,
-      할인가 : item.할인가,
-      할인율 : item.할인율,
-      리뷰수 : item.리뷰수
+      제품코드: item.제폼코드,
+      이미지: item.이미지,
+      제품명: item.제품명,
+      원가: item.원가,
+      할인가: item.할인가,
+      할인율: item.할인율,
+      리뷰수: item.리뷰수
     }
     setViewProduct(obj);
   }
 
-  const onClickCart =(e, item)=>{
-    e.preventDefault();
-  }
+
 
   const onClickZzim = (e, item) => {
     e.preventDefault();
     let user_id = '';
-    if(sessionStorage.getItem('user_id') === null){
+    if (sessionStorage.getItem('user_id') === null) {
       user_id = 'gurwlszx';
     }
-    else{
+    else {
       user_id = sessionStorage.getItem('user_id');
     }
     const formData = {
-      "user_id" : user_id,
-      "product_num" : item.제품코드,
-      "amount" : 1
+      "user_id": user_id,
+      "product_num": item.제품코드,
+      "amount": 1
     }
 
     $.ajax({
-      url : 'http://localhost:8080/JSP/essa/zzim_post_action.jsp',
-      type : 'POST',
-      data : formData,
-      success(res){
-          console.log('AJAX 성공!');
-          console.log(res);
-          console.log(JSON.parse(res));
-          alert('상품이 찜 리스트에 담겼습니다!')
+      url: 'http://localhost:8080/JSP/essa/zzim_post_action.jsp',
+      type: 'POST',
+      data: formData,
+      success(res) {
+        console.log('AJAX 성공!');
+        console.log(res);
+        console.log(JSON.parse(res));
+        alert('상품이 찜 리스트에 담겼습니다!')
       },
-      error(err){
+      error(err) {
         console.log('AJAX 실패!' + err);
       }
     })
   }
-  
+
 
   return (
     <>
@@ -325,7 +442,7 @@ export default function ProductComponent () {
                           <li><a href="!#" onClick={onClickNav2}>조명</a></li>
                         </ul>
                       )
-                    }                    
+                    }
                   </li>
                   <li><a href="" className='nav-btn' onClick={onClickNav1} >LOVE PET</a></li>
                 </ul>
@@ -395,27 +512,27 @@ export default function ProductComponent () {
                   <div className="pick_list_box">
                     <ul className='pick_list'>
                       <li>
-                        <input type="radio" name="sort" id="sort1" className='radio'  />
+                        <input type="radio" name="sort" id="sort1" className='radio' />
                         <label htmlFor="sort1" className='on' >추천순</label>
                       </li>
                       <li>
-                        <input type="radio" name="sort" id="sort2" className='radio'  />
+                        <input type="radio" name="sort" id="sort2" className='radio' />
                         <label htmlFor="sort2" className='' >판매인기순</label>
                       </li>
                       <li>
-                        <input type="radio" name="sort" id="sort3" className='radio'  />
+                        <input type="radio" name="sort" id="sort3" className='radio' />
                         <label htmlFor="sort3" className='' >낮은가격순</label>
                       </li>
                       <li>
-                        <input type="radio" name="sort" id="sort4" className='radio'  />
+                        <input type="radio" name="sort" id="sort4" className='radio' />
                         <label htmlFor="sort4" className='' >높은가격순</label>
                       </li>
                       <li>
-                        <input type="radio" name="sort" id="sort5" className='radio'  />
+                        <input type="radio" name="sort" id="sort5" className='radio' />
                         <label htmlFor="sort5" className='' >상품평순</label>
                       </li>
                       <li>
-                        <input type="radio" name="sort" id="sort6" className='radio'  />
+                        <input type="radio" name="sort" id="sort6" className='radio' />
                         <label htmlFor="sort6" className='' >등록일순</label>
                       </li>
                     </ul>
@@ -434,19 +551,19 @@ export default function ProductComponent () {
                 <ul>
                   {
                     state.filter_shopping.map((item, idx) => {
-                      if( Math.ceil((idx+1)/list) === pageNumber){
+                      if (Math.ceil((idx + 1) / list) === pageNumber) {
                         return (
                           <li key={item.제품코드}>
                             <div className="item_cont">
                               <div className="photo_box">
-                                <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e)=>onClickProduct(e, item)}>
+                                <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
                                   <img src={item.이미지} alt="" />
                                   <div className="item_link">
                                     <div className="inner" >
-                                      <button type='button'onClick={(e)=>onClickCart(e, item)}>
+                                      <button type='button' onClick={(e) => onClickCart(e, item.제품코드)}>
                                         <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/img/mimg/cart_thumb.png" alt="" />
                                       </button>
-                                      <button type='button' className='right' onClick={(e)=>onClickZzim(e, item)}>
+                                      <button type='button' className='right' onClick={(e) => onClickZzim(e, item)}>
                                         <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/img/mimg/wish_thumb.png" alt="" />
                                       </button>
                                     </div>
@@ -461,9 +578,9 @@ export default function ProductComponent () {
                                   </a>
                                 </div>
                                 <div className="money_box">
-                                  <span className={`origin_price ${item.할인율===0?'on':''}`}>{item.원가.toLocaleString('ko-KR')}원</span>
-                                  <span className='sale_price' style={{"display":`${item.할인가===0?'none':'inline'}`}}>{item.할인가.toLocaleString('ko-KR')}원</span>
-                                  <span className='sale_per' style={{"display":`${item.할인가===0?'none':'inline'}`}}>{item.할인율}%</span>
+                                  <span className={`origin_price ${item.할인율 === 0 ? 'on' : ''}`}>{item.원가.toLocaleString('ko-KR')}원</span>
+                                  <span className='sale_price' style={{ "display": `${item.할인가 === 0 ? 'none' : 'inline'}` }}>{item.할인가.toLocaleString('ko-KR')}원</span>
+                                  <span className='sale_per' style={{ "display": `${item.할인가 === 0 ? 'none' : 'inline'}` }}>{item.할인율}%</span>
                                 </div>
                                 <div className="icon_box">
                                   <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/icon/goods_icon/i_boutique.png" alt="" />
@@ -504,13 +621,94 @@ export default function ProductComponent () {
                   {cnt < Math.ceil(state.filter_shopping.length / list / groupPage) && <a href="!#" className="next-btn" onClick={onClickNextGroup}>&gt;</a>}
                   {cnt < Math.ceil(state.filter_shopping.length / list / groupPage) && <a href="!#" className="next-btn" onClick={onClickNextGroupLastPage}>&gt;&gt;</a>}
 
-                </div>    
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    <FooterComponent />
+      {
+        isCartModal && (
+          <div className="cart-modal">
+            <div className="container">
+              <div className="content">
+                <div className="row1">
+                  <h2>옵션선택</h2>
+                  <a href="!#"><img src="./img/product/btn_layer_close.png" alt="" /></a>
+                </div>
+                <div className="row2">
+                  <div className="img-box"><img src={cartClick.이미지} alt="" /></div>
+                  <div className="txt">
+                    <h3>{cartClick.제품명}</h3>
+                  </div>
+                </div>
+                <div className="row3">
+                  <dl>
+                    <dt>패브릭타입</dt>
+                    <dd>
+                      <select name="optionNo1"  onChange={onChangeOption1} value={cart.option1}>
+                        <option value='' selected disabled={`${cart.option1 !== '' ? true : false}`}>= 패브릭타입 선택 =</option>
+                        <option value="카시미라">카시미라</option>
+                        <option value="러스티카">러스티카</option>
+                      </select>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>색상</dt>
+                    <dd>
+                      <select name="optionNo2"  onChange={onChangeOption2} value={cart.option2}>
+                        <option value='' selected disabled={`${cart.option2 !== '' ? true : false}`}>= 색상 선택 =</option>
+                        <option value="바닐라화이트">바닐라화이트</option>
+                        <option value="토프그레이">토프그레이</option>
+                        <option value="피콕그린">피콕그린</option>
+                        <option value="비스크옐로우">비스크옐로우</option>
+                        <option value="아쿠아블루">아쿠아블루</option>
+                        <option value="울프블루">울프블루</option>
+                        <option value="카민레드">카민레드</option>
+                        <option value="더스티핑크">더스티핑크</option>
+                        <option value="머스크화이트">머스크화이트</option>
+                        <option value="스톤그레이">스톤그레이</option>
+                        <option value="선셋오렌지">선셋오렌지</option>
+                        <option value="빈센트블루">빈센트블루</option>
+                        <option value="인디고블루">인디고블루</option>
+                        <option value="민트">민트</option>
+                        <option value="블루그레이">블루그레이</option>
+                      </select>
+                    </dd>
+                  </dl>
+                  <div className="goods-box"  style={{"display":`${cart.option1!==''&cart.option2!==''?"block":"none"}`}}>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>{cart.option1}/{cart.option2}</td>
+                      <td>
+                        <div className="count">
+                          <input type="text"  onChange={onChangeCnt} value={cart.cnt}/>
+                          <span>
+                            <button className='up' onClick={onClickUp} ></button>
+                            <button className='down' onClick={onClickDown}></button>
+                          </span>
+                        </div>
+                      </td>
+                      <td>{cartClick.할인가!==0?((cartClick.할인가)*cart.cnt).toLocaleString('ko-KR'):((cartClick.원가)*cart.cnt).toLocaleString('ko-KR')}원</td>
+                      <td>
+                        <button onClick={onClickDel}><img src="./img/product/ico_cart_del.png" alt="" /></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+                </div>
+                <div className="row4">
+                  <button onClick={onClickExit}>취소</button>
+                  <button className='ok' onClick={onClickSubmit} type='submit'>확인</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      <FooterComponent />
     </>
   );
 };

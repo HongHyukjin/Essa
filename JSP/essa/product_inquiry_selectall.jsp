@@ -17,9 +17,8 @@
 
 
 <%
-    String user_id = request.getParameter("user_id");
     ProductInquiryDAO ProductInquiryDAO = new ProductInquiryDAO();
-    List<ProductInquiryDTO> list = ProductInquiryDAO.select(user_id);
+    List<ProductInquiryDTO> list = ProductInquiryDAO.selectAll();
     
     String jsonData = "{ \"result\": [";
     int cnt = 0;

@@ -28,3 +28,13 @@ category varchar(1000) not null,
 content    varchar(1000) not null,
 write_date timestamp default current_timestamp
 );
+
+3. 장바구니 테이블
+create table basket(
+    idx     int     auto_increment primary key,
+    user_id            varchar(50)     not null,
+    product_code  	int 	not null,
+    num              int     not null,
+    option1	 varchar(50)  not null,
+    option2	 varchar(50)  not null
+);
