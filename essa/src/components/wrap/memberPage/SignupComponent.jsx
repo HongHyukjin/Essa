@@ -38,7 +38,9 @@ export default function SignupComponent(props) {
         isClick2: false
     });
 
-
+    React.useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
 
     const onClickAgr1 = (e) => {
         if (state.isClick1 === false) {

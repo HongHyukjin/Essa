@@ -88,9 +88,6 @@ function ZzimComponent(props) {
             success(res){
                 console.log('AJAX 성공');
                 console.log(res);
-                // console.log(JSON.parse(res));
-                setZzim(res.result);
-                // setClickBtn(!clickBtn);
                 window.location.reload();
             },
             error(err){

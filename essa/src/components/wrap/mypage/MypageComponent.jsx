@@ -10,7 +10,8 @@ function MypageComponent(props) {
     })
 
     React.useEffect(() => {
-        if(state.recentProduct.length > 4){
+        window.scrollTo(0,0)
+        if(JSON.parse(localStorage.getItem('최근본상품')).length > 4){
             setState({
                 ...state,
                 recentProduct : JSON.parse(localStorage.getItem('최근본상품')).slice(0,4)
@@ -133,9 +134,9 @@ function MypageComponent(props) {
                                                     return (
                                                         <li>
                                                             <div className="photo_box">
-                                                                <a href="">
+                                                                <Link to={`/쇼핑/상세보기/${item.제품코드}`} >
                                                                     <img src={item.이미지} alt="" />
-                                                                </a>
+                                                                </Link>
                                                             </div>
                                                             <div className="info_box">
                                                                 <div className="tit_box">

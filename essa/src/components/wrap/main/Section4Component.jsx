@@ -32,7 +32,7 @@ export default function Section4Component ({쇼핑}) {
     const onClickProduct = (e, item) => {
         // e.preventDefault();
         let obj = {
-          제품코드 : item.제폼코드,
+          제품코드 : item.제품코드,
           이미지 : item.이미지,
           제품명 : item.제품명,
           원가 : item.원가,
