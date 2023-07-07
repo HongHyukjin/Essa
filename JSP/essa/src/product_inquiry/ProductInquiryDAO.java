@@ -51,7 +51,6 @@ public class ProductInquiryDAO {
         return -1;
     }
 
-    //selectAll
     public ArrayList<ProductInquiryDTO> selectAll(){
         String SQL = "SELECT * FROM product_inquiry";
         ProductInquiryDTO productInquiryDTO = null;
@@ -76,7 +75,6 @@ public class ProductInquiryDAO {
         return list;
     }
   
-    //select 
     public List<ProductInquiryDTO> select(String user_id){
         ProductInquiryDTO productInquiryDTO = null;
         List<ProductInquiryDTO> list = new ArrayList<>();

@@ -11,24 +11,23 @@ create table essa_member(
 	user_addr   varchar(250)   null,
 	user_birth     varchar(8)   not null,
 	user_agr	 varchar(100)   not null,
-
    	create_date  timestamp  DEFAULT  CURRENT_TIMESTAMP,
    	PRIMARY KEY (idx, user_id)
 );
 
+create table zzim(
+	idx        int     auto_increment  PRIMARY KEY ,
+	user_id	 varchar(50)  not  null,
+	product_num    int   not   null,
+	amount    int  not  null
+);
 
-  idx
-    category
-    user_name
-    subject
-    content
-    write
-
-create table product_inquiry(
-    idx     int     auto_increment primary key,
-    category      varchar(100)    NOT NULL,
-    user_name      varchar(100)    NOT NULL,
-    subject  varchar(1000) not null,
-    content    varchar(1000) not null,
-    write_date timestamp default current_timestamp
+CREATE TABLE product_inquiry (
+idx INT AUTO_INCREMENT PRIMARY KEY,
+user_id VARCHAR(100) NOT NULL,
+user_name VARCHAR(100) NOT NULL,
+category VARCHAR(100) NOT NULL,
+subject VARCHAR(1000) NOT NULL,
+content VARCHAR(1000) NOT NULL,
+write_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
