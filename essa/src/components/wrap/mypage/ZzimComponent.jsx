@@ -3,6 +3,7 @@ import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
 import $ from 'jquery';
 import axios from 'axios';
+import MypageNavComponent from './MypageNavComponent';
 
 function ZzimComponent(props) {
     const [zzim,setZzim] = React.useState([]);
@@ -22,12 +23,7 @@ function ZzimComponent(props) {
 
     const getZzim = () => {
         let user_id = '';
-        if(sessionStorage.getItem('user_id') === null){
-        user_id = 'gurwlszx';
-        }
-        else{
         user_id = sessionStorage.getItem('user_id');
-        }
         const formData = {
             user_id : user_id
         }
@@ -39,7 +35,6 @@ function ZzimComponent(props) {
             success(res){
                 console.log('AJAX 성공');
                 console.log(res);
-                // console.log(JSON.parse(res));
                 setZzim(res.result);
             },
             error(err){
@@ -104,50 +99,7 @@ function ZzimComponent(props) {
             <div className="container">
                 <div className="gap">
                     <div className="content">
-                        <div className="left-box">
-                            <div className="sub-menu-box">
-                                <h2>마이페이지</h2>
-                                <ul className='sub-menu-mypage'>
-                                    <li className='sub-menu-tit'>
-                                        쇼핑정보
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'>주문목록 / 배송조회</li>
-                                            <li className='detail-tit'>취소 / 반품 /교환내역</li>
-                                            <li className='detail-tit'>환불 / 입금내역</li>
-                                            <li className='detail-tit'>찜리스트</li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        혜택관리
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'>쿠폰</li>
-                                            <li className='detail-tit'>예치금</li>
-                                            <li className='detail-tit'>마일리지</li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        고객센터
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'>1:1 문의</li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        회원정보
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'>회원정보 변경</li>
-                                            <li className='detail-tit'>회원 탈퇴</li>
-                                            <li className='detail-tit'>배송지 관리</li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        나의 상품문의
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        나의 플러스리뷰
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <MypageNavComponent />
                         <div className="right-box">
                             <div className="mypage-main">
                                 <div className="mypage-row1">
@@ -218,7 +170,7 @@ function ZzimComponent(props) {
                                                                                 </div>
                                                                             </td>
                                                                             <td>
-                                                                                <strong>{product[item.product_num-1].할인가}</strong>
+                                                                                <strong>{product[item.product_num-1].할인가===0?product[item.product_num-1].원가.toLocaleString('ko-KR'):product[item.product_num-1].할인가.toLocaleString('ko-KR')}</strong>
                                                                                 /{item.amount}개
                                                                                 <div class="btn_gray_list">
                                                                                     <a href="!#">
@@ -232,7 +184,7 @@ function ZzimComponent(props) {
                                                                                         <em>할인</em>
                                                                                         <span>
                                                                                             상품
-                                                                                            <strong>-330,000원</strong>
+                                                                                            <strong>{product[item.product_num-1].할인가===0?'-0원':`-${(product[item.product_num-1].원가/100*product[item.product_num-1].할인율).toLocaleString('ko-KR')}원`}</strong>
                                                                                         </span>
                                                                                     </li>
                                                                                 </ul>

@@ -39,7 +39,7 @@ export default function ProductComponent () {
       getProduct();
   },[ state.viewnum, state.쇼핑]);
 
-  const [list, setList] = React.useState(4);  // 한화면에 보여질 목록개수
+  const [list, setList] = React.useState(12);  // 한화면에 보여질 목록개수
   const [pageNumber, setPageNumber] = React.useState(1); // 페이지번호
   const [groupPage] = React.useState(10); // 페이지번호 그룹1(1(1~5) 그룹2(6!~10) 그룹3(11~15) 그룹4(16~20))
   const [cnt, setCnt] = React.useState(1); // 페이지번호 그룹 1
@@ -60,12 +60,14 @@ export default function ProductComponent () {
     e.preventDefault();
     setCnt(cnt + 1);
     setClick('');
+    window.scrollTo(0,0);
   }
 
   const onClickNextGroupLastPage = (e) => {
     e.preventDefault();
     setCnt(Math.ceil(state.filter_shopping.length / list / groupPage));
     setClick('Last');
+    window.scrollTo(0,0);
   }
 
   // 그룹페이지 클릭  이전카운트 이벤트
@@ -73,12 +75,14 @@ export default function ProductComponent () {
     e.preventDefault();
     setCnt(cnt - 1);
     setClick('');
+    window.scrollTo(0,0);
   }
 
   const onClickPrevGroupFirstPage = (e) => {
     e.preventDefault();
     setCnt(1);
     setClick('First');
+    window.scrollTo(0,0);
   }
 
   // 그룹 시작번호 설정 => cnt 또는 groupPage 값 변경이 있거나 설정되었다면 시작번호 설정 실행
@@ -110,6 +114,7 @@ export default function ProductComponent () {
 
   const onChangeViewNum = (e) => {
     const {value} = e.target;
+    console.log(value)
     setState({
       ...state,
       viewnum : Number(value)
@@ -475,7 +480,7 @@ export default function ProductComponent () {
                       </li>
                     </ul>
                     <div className="choice_num_view">
-                      <select name="pageNum" value={state.viewnum} onChange={onChangeViewNum} >
+                      <select name="pageNum" onChange={onChangeViewNum} >
                         <option value="12" selected >12개씩보기</option>
                         <option value="24">24개씩보기</option>
                         <option value="36">36개씩보기</option>

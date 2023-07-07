@@ -224,7 +224,7 @@ export default function HeaderComponent() {
                         <ul>
                             <li><a href="!#"><h3 className='dot'>STORY</h3></a></li>
                             <li><a href="!#"><h3>스토어 안내</h3></a></li>
-                            <li><a href="!#"><h3>고객센터</h3></a></li>
+                            <li><Link to="/고객센터"><h3>고객센터</h3></Link></li>
                             <li className='sub-page'>
                                 <a className='sub-up' href="!#"><h3>ABOUT</h3></a>
                                 <div className="sub sub3">
