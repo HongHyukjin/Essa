@@ -46,7 +46,7 @@ public class BasketDAO {
     public List<BasketDTO> basket_select(String user_id){
         BasketDTO basketDTO = null;
         List<BasketDTO> list = new ArrayList<>();
-        String SQL = "SELECT * FROM essa_member e join basket b where e.user_id=? && b.user_id=?";
+        String SQL = "SELECT * FROM essa_member e join basket b where e.user_id=? and b.user_id=?";
         try {
             ps = conn.prepareStatement(SQL);
             ps.setString(1,user_id);
@@ -66,6 +66,25 @@ public class BasketDAO {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public int basket_update(BasketDTO basketDTO,String newOption1,String newOption2){
+        String SQL ="update basket set num=?,option1=?,option2=? where user_id=? and product_code=? and option1=? and option2=?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, basketDTO.getNum());
+            ps.setString(2, newOption1);
+            ps.setString(3, newOption2);
+            ps.setString(4, basketDTO.getUser_id());
+            ps.setInt(5, basketDTO.getProduct_code());
+            ps.setString(6, basketDTO.getOption1());
+            ps.setString(7, basketDTO.getOption2());
+
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
          
 }
