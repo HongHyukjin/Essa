@@ -8,9 +8,10 @@
     pageEncoding= "UTF-8"
 %>
 <%@ page import="product_inquiry.ProductInquiryDAO"%>
+<%@ page import="product_inquiry.ProductInquiryDTO"%>
 <% request.setCharacterEncoding("UTF-8");%>
 
-<jsp:useBean class="product_inquiry.ProductInquiryDTO" id="photoPostDTO" scope="page"/>
+<jsp:useBean class="product_inquiry.ProductInquiryDTO" id="productInquiryDTO" scope="page"/>
 
 <jsp:setProperty name="productInquiryDTO" property="idx"/>
 

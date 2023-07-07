@@ -251,33 +251,4 @@ public class CommunityDAO {
         }
         return -1;
        }
-
-
-        public CommunityDTO getJoin(CommunityDTO communityDTO){
-        String SQL = "SELECT * FROM soomgo_community WHERE idx=?";
-        CommunityDTO DTO = null;
-        try {
-            PreparedStatement ps = conn.prepareStatement(SQL);
-            ps.setInt(1, communityDTO.getIdx());
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                DTO = new CommunityDTO();
-                DTO.setIdx(rs.getInt("idx"));
-                DTO.setUserId(rs.getString("userId"));
-                DTO.setSubject(rs.getString("subject"));
-                DTO.setFile1(rs.getString("file1"));
-                DTO.setFile2(rs.getString("file2"));
-                DTO.setFile3(rs.getString("file3"));
-                DTO.setTitle(rs.getString("title"));
-                DTO.setService(rs.getString("service"));
-                DTO.setLocation(rs.getString("location"));
-                DTO.setContent(rs.getString("content"));
-                DTO.setWriteDate(rs.getString("writeDate"));
-            }
-        } catch(Exception e){ 
-            e.printStackTrace();
-        }
-       
-        return DTO; 
-    }
 }
