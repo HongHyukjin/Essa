@@ -13,6 +13,8 @@ function BasketComponent() {
         total_price:0,
         total_origin_price :0,
         checked:[],
+        option1:[],
+        option2:[]
         
     });
     const [click,setClick]=React.useState(false);
@@ -39,8 +41,8 @@ function BasketComponent() {
                 setClick(!click);
                 alert('변경이 완료되었습니다.');
                 setIsCartModal(false);
-                console.log('AJAX 성공');
-                console.log(res);
+                // console.log('AJAX 성공');
+                // console.log(res);
             },
             error(err){
                 console.log('AJAX 실패');
@@ -48,13 +50,33 @@ function BasketComponent() {
         })
     }
 
+    const onClickDelete =()=>{
+        for(let i=0;i<state.checked.length;i++){
+            let res=cart.filter((item)=>item.product_code===(String)(product[state.checked[i]-1].제품코드)).option1;
+            const formData={
+                "user_id":sessionStorage.getItem('user_id'),
+                "product_code":state.checked[i],
+                "option1":state.option1[i]
+                // "option2":cartClickOrigin.option2
+            }
+            console.log(formData);
+            console.log(res);
+        }
+    }
+
     React.useEffect(()=>{
         getlist();
+        
     },[click]);
 
     const onClickCheckAll =(e)=>{
         let checked=[];
+        let total_sale = 0;
+        let total_price =0;
         let total_origin_price = 0;
+        let option1 =[]
+        let option2 =[]
+
         if(e.target.checked){
             for(let i=0;i<cart.length;i++){
                 checked=[...checked,cart[i].product_code];
@@ -66,38 +88,54 @@ function BasketComponent() {
 
         for(let i=0;i<checked.length;i++){
             console.log(product[checked[i]-1].원가)
-            total_origin_price += product[checked[i]-1].원가;
+            let res = cart.filter((item) => item.product_code===checked[i]);
+            total_origin_price += product[checked[i]-1].원가* Number(res[0].num);
+            total_sale += (product[checked[i]-1].할인가!==0?product[checked[i]-1].원가-product[checked[i]-1].할인가:0) * Number(res[0].num);
+            total_price = total_origin_price - total_sale;
         }
 
         setState({
             ...state,
             checked:checked,
-            total_origin_price : total_origin_price
+            total_origin_price : total_origin_price,
+            total_sale:total_sale,
+            total_price:total_price
         })
 
         
     }
-    const onClickCheck =(e,value)=>{
+    
+    const onClickCheck =(e,value,op1,op2)=>{
      
         let checked=state.checked;
         let total_origin_price = 0;
+        let total_sale = 0;
+        let total_price =0;
+        
         if(e.target.checked){
             checked=[...checked,(value)];
+
         }
         else{
             checked=checked.filter((item)=>item!==value);
+       
         }
         for(let i=0;i<checked.length;i++){
             console.log(product[checked[i]-1].원가)
             let res = cart.filter((item) => item.product_code===checked[i]);
             console.log(Number(res[0].num))
             total_origin_price += product[checked[i]-1].원가 * Number(res[0].num);
+            total_sale += (product[checked[i]-1].할인가!==0?product[checked[i]-1].원가-product[checked[i]-1].할인가:0) * Number(res[0].num);
+            total_price = total_origin_price - total_sale;
         }
-
+        setClick(!click);
+        console.log(state.option1);
         setState({
             ...state,
             checked:checked,
-            total_origin_price : total_origin_price
+            total_origin_price : total_origin_price,
+            total_sale:total_sale,
+            total_price:total_price
         })
     }
 
@@ -258,7 +296,7 @@ function BasketComponent() {
                                                     cart.map((item,idx) => {
                                                         return (
                                                             <tr>
-                                                                <td><input type="checkbox"  onClick={(e)=>onClickCheck(e,item.product_code)} checked={state.checked.includes(item.product_code)}/></td>
+                                                                <td><input type="checkbox"  onClick={(e)=>onClickCheck(e,item.product_code,item.option1,item.option2)} checked={state.checked.includes(item.product_code)}/></td>
                                                                 <td>
                                                                     <div className="pick-img">
                                                                         <a href="!#"><img src={product[(item.product_code)-1].이미지} alt="" /></a>
@@ -315,14 +353,14 @@ function BasketComponent() {
                                 <div className="price-sum-list">
                                     <dl>
                                         <dt>
-                                            총<strong className='total-product'> {cart.length} </strong>개의 상품금액
+                                            총<strong className='total-product'> {state.checked.length} </strong>개의 상품금액
                                         </dt>
                                         <dd>
-                                            <strong className='total-price'>0</strong>원
+                                            <strong className='total-price'>{state.total_origin_price.toLocaleString('ko-KR')}</strong>원
                                         </dd>
                                     </dl>
                                     {     
-                                        cart.length>0&&(
+                                        state.total_sale>0&&(
                                             <>    
                                                 <span><img src="../img/product/order_price_minus.png" alt="" /></span> 
                                                 <dl>
@@ -330,7 +368,7 @@ function BasketComponent() {
                                                         상품할인
                                                     </dt>
                                                     <dd>
-                                                        <strong className='total-price'>0</strong>원
+                                                        <strong className='total-price'>{state.total_sale.toLocaleString('ko-KR')}</strong>원
                                                     </dd>
                                                 </dl>
                                             </>
@@ -347,7 +385,7 @@ function BasketComponent() {
                                     <dl className='price-total'>
                                         <dt>합계</dt>
                                         <dd>
-                                            <strong className='alltotal-price'>0</strong>원
+                                            <strong className='alltotal-price'>{state.total_price.toLocaleString('ko-KR')}</strong>원
                                         </dd>
                                     </dl>
                                 </div>
@@ -355,7 +393,7 @@ function BasketComponent() {
                         </div>
                         <div className="row5">
                             <div className="btn-box">
-                                <button>선택 상품 삭제</button>
+                                <button onClick={onClickDelete}>선택 상품 삭제</button>
                             </div>
                             <div className="sale-info">
                                 <p>주문서 작성단계에서 할인/마일리지 적용을 하실 수 있습니다.</p>

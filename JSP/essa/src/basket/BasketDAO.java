@@ -86,5 +86,20 @@ public class BasketDAO {
         }
         return -1;
     }
+
+    public int basket_delete(BasketDTO basketDTO){
+        String SQL ="delete from basket where user_id=? and product_code=? and option1=? and option2=?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, basketDTO.getUser_id());
+            ps.setInt(2, basketDTO.getProduct_code());
+            ps.setString(3, basketDTO.getOption1());
+            ps.setString(4, basketDTO.getOption2());
+            
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return -1;
+    }
          
 }
