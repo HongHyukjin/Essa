@@ -30,21 +30,40 @@ export default function ProductInquiryUpdateComponent (){
         write_date:''
     })
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         if (localStorage.getItem('COMMUNITY') !== null) {
-            let result = JSON.parse(localStorage.getItem('COMMUNITY'));
-            setList({
-                ...list,
-                idx: result[0].idx,     
-                category: result[0].category,     
-                user_id: result[0].user_id,     
-                user_name: result[0].user_name,     
-                subject: result[0].subject,    
-                content: result[0].content,     
-                write_date: result[0].location
-            })
+          let result = JSON.parse(localStorage.getItem('COMMUNITY'));
+          setList((prevList) => ({
+            ...prevList,
+            idx: result[0].idx,
+            category: result[0].category,
+            user_id: result[0].user_id,
+            user_name: result[0].user_name,
+            subject: result[0].subject,
+            content: result[0].content,
+            write_date: result[0].location
+          }));
         }
-    },[])
+      }, []);
+
+    // React.useEffect(()=>{
+    //     if (localStorage.getItem('COMMUNITY') !== null) {
+    //         let result = JSON.parse(localStorage.getItem('COMMUNITY'));
+    //         setList({
+    //             ...list,
+    //             idx: result[0].idx,     
+    //             category: result[0].category,     
+    //             user_id: result[0].user_id,     
+    //             user_name: result[0].user_name,     
+    //             subject: result[0].subject,    
+    //             content: result[0].content,     
+    //             write_date: result[0].location
+    //         })
+    //     }
+    // },[])
+
+
+    
 
     const getList=()=>{
 
@@ -59,12 +78,11 @@ export default function ProductInquiryUpdateComponent (){
             type : 'POST',
             data : formData,
             dataType : 'json',
-            success(res){
+            success :(res) =>{
                 console.log('ajax 성공');
                 console.log(res.result);
-                //alert('리스트출력');
-                setState({
-                    ...state,
+                setState((prevState) =>({
+                    ...prevState,
                     idx:res.result.idx,
                     category:res.result.category,
                     user_id:res.result.user_id,
@@ -72,7 +90,7 @@ export default function ProductInquiryUpdateComponent (){
                     subject:res.result.subject,
                     content:res.result.content,
                     write_date:res.result.write_date
-                })
+                }))
             },
             error(err){
                 console.log('ajax 실패');
@@ -81,43 +99,41 @@ export default function ProductInquiryUpdateComponent (){
         })
     }
 
+
+
     React.useEffect(()=>{
         getList();
-    },[list.idx])
+    },[list.idx,listNum])
 
 
     const onChangeCategory=(e)=>{
-        const {value} = e.target;
         setState({
             ...state,
-            category: value
+            category: e.target.value
         })
     }
 
     const onChangeUserName = (e) => {
-        const {value} = e.target;
         setState({
             ...state,
-            user_name: value
+            user_name: e.target.value
           
         })
     }
     
     const onChangeSubject=(e)=>{
-        const {value} = e.target;
         setState({
             ...state,
-            subject: value
+            subject: e.target.value
         })
     }
 
     
 
     const onChangeContent=(e)=>{
-        const {value} = e.target;
         setState({
             ...state,
-            content: value
+            content: e.target.value
         })
     }
 
@@ -221,7 +237,7 @@ export default function ProductInquiryUpdateComponent (){
                                                             name='user_name'
                                                             onChange={onChangeUserName}
                                                             value={state.user_name}
-                                                            disabled={true}
+                                                            // disabled={true}
                                                         />
                                                     </td>
                                                 </tr>
