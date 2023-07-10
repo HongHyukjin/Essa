@@ -42,6 +42,23 @@ public class BasketDAO {
         return -1;
     }
 
+    public int basket_search(BasketDTO basketDTO){
+        String SQL ="select * from basket where user_id=? and product_code=?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1,basketDTO.getUser_id());
+            ps.setInt(2,basketDTO.getProduct_code());
+            rs = ps.executeQuery();
+            if(rs.next()){ 
+                return -1; 
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
+
     // 장바구니 목록
     public List<BasketDTO> basket_select(String user_id){
         BasketDTO basketDTO = null;
@@ -88,13 +105,12 @@ public class BasketDAO {
     }
 
     public int basket_delete(BasketDTO basketDTO){
-        String SQL ="delete from basket where user_id=? and product_code=? and option1=? and option2=?";
+        String SQL ="delete from basket where user_id=? and product_code=?";
         try {
             ps = conn.prepareStatement(SQL);
             ps.setString(1, basketDTO.getUser_id());
             ps.setInt(2, basketDTO.getProduct_code());
-            ps.setString(3, basketDTO.getOption1());
-            ps.setString(4, basketDTO.getOption2());
+            return ps.executeUpdate();
             
         } catch (Exception e) {
            e.printStackTrace();

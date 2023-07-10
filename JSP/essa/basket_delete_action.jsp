@@ -13,8 +13,6 @@
 <jsp:useBean class="basket.BasketDTO" id="basketDTO" scope="page"/>
 <jsp:setProperty name="basketDTO" property="user_id"/>
 <jsp:setProperty name="basketDTO" property="product_code"/>
-<jsp:setProperty name="basketDTO" property="option1"/>
-<jsp:setProperty name="basketDTO" property="option2"/>
 
 
 <%

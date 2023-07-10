@@ -4,7 +4,7 @@
 <%@
     page
     language="java"
-    contentType="text/html; charset=UTF-8"
+    contentType="application/json; charset=UTF-8"
     pageEncoding= "UTF-8"
 %>
 <%@ page import="basket.BasketDAO"%>
@@ -19,7 +19,14 @@
 
 <%
     BasketDAO basketDAO = new BasketDAO();
-    int result = basketDAO.basket_post(basketDTO);
+    int search = basketDAO.basket_search(basketDTO);
+    int result=0;
+    if(search==-1){
+        result=-1;
+    }
+    else{
+        result = basketDAO.basket_post(basketDTO);
+    }
 %>
 
-{"result":"<%=result%>"}
+{"result":<%=result%>}

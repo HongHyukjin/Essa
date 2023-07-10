@@ -52,15 +52,23 @@ function BasketComponent() {
 
     const onClickDelete =()=>{
         for(let i=0;i<state.checked.length;i++){
-            let res=cart.filter((item)=>item.product_code===(String)(product[state.checked[i]-1].제품코드)).option1;
             const formData={
                 "user_id":sessionStorage.getItem('user_id'),
-                "product_code":state.checked[i],
-                "option1":state.option1[i]
-                // "option2":cartClickOrigin.option2
+                "product_code":Number(state.checked[i])
             }
             console.log(formData);
-            console.log(res);
+            $.ajax({
+                url:"http://localhost:8080/JSP/essa/basket_delete_action.jsp",
+                type:'post',
+                data:formData,
+                success(res){
+                    console.log('AJAX 성공');
+                    console.log(res);
+                },
+                error(err){
+                    console.log('AJAX 실패');
+                }
+            })
         }
     }
 
@@ -138,6 +146,27 @@ function BasketComponent() {
             total_price:total_price
         })
     }
+
+    React.useEffect(()=>{
+        let total_origin_price = 0;
+        let total_sale = 0;
+        let total_price =0;
+        for(let i=0;i<state.checked.length;i++){
+            console.log(product[state.checked[i]-1].원가)
+            let res = cart.filter((item) => item.product_code===state.checked[i]);
+            console.log(Number(res[0].num))
+            total_origin_price += product[state.checked[i]-1].원가 * Number(res[0].num);
+            total_sale += (product[state.checked[i]-1].할인가!==0?product[state.checked[i]-1].원가-product[state.checked[i]-1].할인가:0) * Number(res[0].num);
+            total_price = total_origin_price - total_sale;
+        }
+        setState({
+            ...state,
+            total_origin_price : total_origin_price,
+            total_sale:total_sale,
+            total_price:total_price
+        })
+
+    },[cart]);
 
     const onClickExit=(e)=>{
         e.preventDefault();

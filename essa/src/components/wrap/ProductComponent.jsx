@@ -15,6 +15,8 @@ export default function ProductComponent() {
     nav1_last_click: '전체',
     nav2: ''
   });
+
+  const [basket,setBasket] = React.useState([]);
  
   const[cart,setCart] = React.useState({
     option1:'',
@@ -50,6 +52,33 @@ export default function ProductComponent() {
     onSubmitBasket();
   }
 
+  const getlist = () => {
+    const formData = {
+        "user_id": sessionStorage.getItem("user_id")
+    }
+    $.ajax({
+        url: 'http://localhost:8080/JSP/essa/basket_list_action.jsp',
+        // url :'./data/product.json',
+        type: 'POST',
+        data: formData,
+        dataType: 'json',
+        // contentType:'json',
+        success(res) {
+            console.log('ajax 성공');
+            setBasket(res.result);
+        },
+        error(err) {
+            console.log('ajax 실패', err);
+        }
+
+    })
+}
+
+  React.useEffect(() => {
+    getlist();
+  }, [])
+
+
   const onSubmitBasket=()=>{
     const formData = {
       "user_id":sessionStorage.getItem('user_id'),
@@ -59,18 +88,29 @@ export default function ProductComponent() {
       "option2":cart.option2
     }
     console.log(formData);
+
+    if(cart.option1===''||cart.option2===''){
+      alert('옵션이 선택되지 않았습니다!');
+    }
+
+    
+
     $.ajax({
       url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
       type:'post',
       data:formData,
+      dataType:'json',
       success(res){
         console.log('AJAX 성공');
-        console.log(res);
-        if(cart.option1===''||cart.option2===''){
-          alert('옵션이 선택되지 않았습니다!');
+        console.log(res.result);
+
+        if(res.result === 1){
+          alert('상품이 장바구니에 담겼습니다.');
+          setIsCartModal(false);
         }
         else{
-          alert('상품이 장바구니에 담겼습니다.');
+          console.log(res.result)
+          alert('같은 상품을 담을 수 없습니다');
           setIsCartModal(false);
         }
       },
