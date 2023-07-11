@@ -2,7 +2,7 @@ package essa;
 
 public class UserDTO {
     private int idx;
-    private String user_id;
+    private String user_id;  
     private String user_pw;
     private String user_name;    
     private String user_email;

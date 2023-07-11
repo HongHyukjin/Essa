@@ -3,6 +3,7 @@ import java.util.*;
 import java.sql.*;
 import product_inquiry.ProductInquiryDTO;
 
+
 /**
  * ProductInquiryDAO
  */  
@@ -13,7 +14,7 @@ public class ProductInquiryDAO {
     private ResultSet rs;
                     
     public ProductInquiryDAO() {
-        try {
+        try {      
             String DBURL = "jdbc:mysql://localhost:3306/essa";
             String DBID = "root";
             String DBPW = "1234";
@@ -189,7 +190,7 @@ public class ProductInquiryDAO {
     public ProductInquiryDTO getJoin(ProductInquiryDTO productInquiryDTO){
         String SQL = "SELECT * FROM product_inquiry WHERE idx=?"; 
         ProductInquiryDTO inquiryDTO = null;
-        try{                         
+        try{                            
             PreparedStatement ps = conn.prepareStatement(SQL);
             ps.setInt(1, productInquiryDTO.getIdx());
             ResultSet rs = ps.executeQuery();
@@ -201,14 +202,15 @@ public class ProductInquiryDAO {
                 inquiryDTO.setUser_name(rs.getString("user_name"));
                 inquiryDTO.setSubject(rs.getString("subject"));
                 inquiryDTO.setContent(rs.getString("content"));
-                inquiryDTO.setContent(rs.getString("write_date"));
-            }
+                inquiryDTO.setWrite_date(rs.getString("write_date"));
+            }   
         }         
         catch(Exception e){
             e.printStackTrace();
         }
         
-        return productInquiryDTO;          
+        // return productInquiryDTO;
+        return inquiryDTO;       
     }
 
      
