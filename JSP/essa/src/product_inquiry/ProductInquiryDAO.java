@@ -7,7 +7,7 @@ import java.sql.*;
  */  
 public class ProductInquiryDAO {
     private Connection conn;
-    private PreparedStatement ps;
+    private PreparedStatement ps; 
     private Statement stmt;
     private ResultSet rs;
               

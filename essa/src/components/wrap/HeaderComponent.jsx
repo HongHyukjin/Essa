@@ -281,7 +281,7 @@ export default function HeaderComponent() {
                     <div className="col col3">
                         <ul>
                             <li className='sub-page'>
-                                <a className='sub-up' href="!#"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.25 10C23.25 14.0041 20.0041 17.25 16 17.25C11.9959 17.25 8.75 14.0041 8.75 10C8.75 5.99594 11.9959 2.75 16 2.75C20.0041 2.75 23.25 5.99594 23.25 10Z" stroke="#fff" strokeWidth="1.5"></path><g clipPath="url(#clip0_172_2334)"><rect x="2.75" y="21.75" width="26.5" height="22.5" rx="11.25" stroke="#fff" strokeWidth="1.5"></rect></g><defs><clipPath id="clip0_172_2334"><rect width="28" height="9" fill="white" transform="translate(2 21)"></rect></clipPath></defs></svg></a>
+                                <Link className='sub-up' to="/로그인"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.25 10C23.25 14.0041 20.0041 17.25 16 17.25C11.9959 17.25 8.75 14.0041 8.75 10C8.75 5.99594 11.9959 2.75 16 2.75C20.0041 2.75 23.25 5.99594 23.25 10Z" stroke="#fff" strokeWidth="1.5"></path><g clipPath="url(#clip0_172_2334)"><rect x="2.75" y="21.75" width="26.5" height="22.5" rx="11.25" stroke="#fff" strokeWidth="1.5"></rect></g><defs><clipPath id="clip0_172_2334"><rect width="28" height="9" fill="white" transform="translate(2 21)"></rect></clipPath></defs></svg></Link>
                                 <div className="sub  mypage">
                                     <div className="container-my">
                                         {

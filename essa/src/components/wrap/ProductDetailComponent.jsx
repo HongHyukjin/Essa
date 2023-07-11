@@ -98,19 +98,28 @@ export default function ProductDetailComponent () {
       "option1":state.option1,
       "option2":state.option2
     }
+    if(state.option1===''||state.option2===''){
+      alert('옵션이 선택되지 않았습니다!');
+    }
+    else if (sessionStorage.getItem('user_id') === null) {
+      alert('로그인 후 이용해주세요');
+      window.location.href='/#/로그인';
+    }
     console.log(formData);
     $.ajax({
       url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
       type:'post',
       data:formData,
+      dataType:'json',
       success(res){
         console.log('AJAX 성공');
-        console.log(res);
-        if(state.option1===''||state.option2===''){
-          alert('옵션이 선택되지 않았습니다!');
+        console.log(res.result);
+        if(res.result === 1){
+          alert('상품이 장바구니에 담겼습니다.');
         }
         else{
-          alert('상품이 장바구니에 담겼습니다.');
+          console.log(res.result)
+          alert('같은 상품을 담을 수 없습니다');
         }
       },
       error(err){

@@ -7,7 +7,7 @@ public class BasketDTO {
     private String option1;
     private String option2;
 
-    public String getUser_id() {
+    public String getUser_id() { 
         return this.user_id;
     }  
 

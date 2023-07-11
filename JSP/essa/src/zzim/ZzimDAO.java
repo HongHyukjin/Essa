@@ -8,7 +8,7 @@ public class ZzimDAO {
   private ResultSet rs;
 
   public ZzimDAO(){
-    try{
+    try{ 
       String URL = "jdbc:mysql://localhost:3306/essa";
       String ID = "root";
       String PW = "1234";

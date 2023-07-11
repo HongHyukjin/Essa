@@ -340,3 +340,55 @@
   background: #7e9fc2;
   color: #fff;
 }
+
+.delete-modal {
+  font-family: "Pretendard";
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.delete-modal .container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.delete-modal .container .content {
+  width: 340px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 5px;
+}
+.delete-modal .container .content .txt {
+  width: 100%;
+  padding: 30px;
+  font-size: 14px;
+  line-height: 23px;
+  word-wrap: break-word;
+  word-break: keep-all;
+  color: #000;
+  font-weight: 700;
+}
+.delete-modal .container .content .btn {
+  width: 100%;
+}
+.delete-modal .container .content .btn button {
+  width: 50%;
+  height: 50px;
+  border: 0;
+  background: #7e9fc2;
+  color: #fff;
+  font-weight: 700;
+  outline: 0;
+}
+.delete-modal .container .content .btn button:nth-child(3) {
+  color: #7e9fc2;
+  background: #fff;
+  border-top: 1px solid #7e9fc2;
+}

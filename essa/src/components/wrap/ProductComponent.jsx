@@ -23,11 +23,9 @@ export default function ProductComponent() {
     option2:'',
     cnt:1
   });
-  const[cartClick,setCartClick] =React.useState([
-
-  ]);
+  const[cartClick,setCartClick] =React.useState([]);
   const [isCartModal, setIsCartModal] = React.useState(false);
- 
+  const [isClick,setIsClick]=React.useState(false);
 
   const onClickExit=(e)=>{
     e.preventDefault();
@@ -76,7 +74,7 @@ export default function ProductComponent() {
 
   React.useEffect(() => {
     getlist();
-  }, [])
+  }, [isClick])
 
 
   const onSubmitBasket=()=>{
@@ -92,8 +90,10 @@ export default function ProductComponent() {
     if(cart.option1===''||cart.option2===''){
       alert('옵션이 선택되지 않았습니다!');
     }
-
-    
+    else if (sessionStorage.getItem('user_id') === null) {
+      alert('로그인 후 이용해주세요');
+      window.location.href='/#/로그인';
+    }
 
     $.ajax({
       url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
@@ -107,11 +107,24 @@ export default function ProductComponent() {
         if(res.result === 1){
           alert('상품이 장바구니에 담겼습니다.');
           setIsCartModal(false);
+          setCart({
+            ...cart,
+            option1:'',
+            option2:'',
+            cnt:1
+          })
+          setIsClick(!isClick);
         }
         else{
           console.log(res.result)
           alert('같은 상품을 담을 수 없습니다');
           setIsCartModal(false);
+          setCart({
+            ...cart,
+            option1:'',
+            option2:'',
+            cnt:1
+          })
         }
       },
       error(err){
@@ -674,7 +687,7 @@ export default function ProductComponent() {
               <div className="content">
                 <div className="row1">
                   <h2>옵션선택</h2>
-                  <a href="!#"><img src="./img/product/btn_layer_close.png" alt="" /></a>
+                  <a href="!#" onClick={onClickExit}><img src="./img/product/btn_layer_close.png" alt="" /></a>
                 </div>
                 <div className="row2">
                   <div className="img-box"><img src={cartClick.이미지} alt="" /></div>

@@ -13,7 +13,7 @@ public class ProductInquiryDTO {
     private String content;
     private String write_date;
 
-    public int getIdx() {
+    public int getIdx() { 
         return this.idx; 
     }
 

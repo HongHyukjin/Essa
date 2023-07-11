@@ -6,7 +6,7 @@ import essa.UserDTO;
 public class UserDAO {
     private Connection conn;
     private PreparedStatement ps;
-    private ResultSet rs;
+    private ResultSet rs; 
          
 
     public UserDAO(){
