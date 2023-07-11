@@ -1,11 +1,8 @@
 package product_inquiry;
 import java.util.*;
 import java.sql.*;
-<<<<<<< HEAD
 import product_inquiry.ProductInquiryDTO;
 
-=======
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
 
 /**
  * ProductInquiryDAO
@@ -15,15 +12,9 @@ public class ProductInquiryDAO {
     private PreparedStatement ps;
     private Statement stmt;
     private ResultSet rs;
-<<<<<<< HEAD
                     
     public ProductInquiryDAO() {
         try {      
-=======
-              
-    public ProductInquiryDAO() {
-        try {
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
             String DBURL = "jdbc:mysql://localhost:3306/essa";
             String DBID = "root";
             String DBPW = "1234";
@@ -69,14 +60,9 @@ public class ProductInquiryDAO {
         try {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(SQL);
-<<<<<<< HEAD
             while(rs.next()){        
                 productInquiryDTO = new ProductInquiryDTO();
                 productInquiryDTO.setIdx(rs.getInt("idx"));
-=======
-            while(rs.next()){
-                productInquiryDTO = new ProductInquiryDTO();
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
                 productInquiryDTO.setCategory(rs.getString("category"));
                 productInquiryDTO.setUser_id(rs.getString("user_id"));
                 productInquiryDTO.setUser_name(rs.getString("user_name"));
@@ -85,20 +71,12 @@ public class ProductInquiryDAO {
                 productInquiryDTO.setWrite_date(rs.getString("write_date"));
                 list.add(productInquiryDTO);
             }
-<<<<<<< HEAD
             return list;
         } catch (Exception e) {     
             // TODO: handle exception
             e.printStackTrace();
         }
         return list;  
-=======
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-        return list;
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
     }
   
     public List<ProductInquiryDTO> select(String user_id){
@@ -135,7 +113,6 @@ public class ProductInquiryDAO {
         }
         return list;
     }
-<<<<<<< HEAD
 
     // private int idx;   
     // private String category;
@@ -190,20 +167,6 @@ public class ProductInquiryDAO {
             ps.setString(5, productInquiryDTO.getContent());
             ps.setString(6, productInquiryDTO.getWrite_date());
             ps.setInt(7, productInquiryDTO.getIdx());
-=======
-    
-
-
-
-    public int update(ProductInquiryDTO productInquiryDTO){
-        String SQL = "UPDATE product_inquiry SET category=?, subject=?, content=? WHERE user_name=?";
-        try {
-            ps = conn.prepareStatement(SQL);
-            ps.setString(1, productInquiryDTO.getCategory());
-            ps.setString(2, productInquiryDTO.getUser_name());
-            ps.setString(3, productInquiryDTO.getSubject());
-            ps.setString(4, productInquiryDTO.getContent());
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -220,7 +183,6 @@ public class ProductInquiryDAO {
             }
         }
         return -1;
-<<<<<<< HEAD
     }    
 
         
@@ -242,44 +204,13 @@ public class ProductInquiryDAO {
                 inquiryDTO.setContent(rs.getString("content"));
                 inquiryDTO.setWrite_date(rs.getString("write_date"));
             }   
-=======
-    }
-          
-    public ProductInquiryDTO getJoin(String user_id){
-        ProductInquiryDTO productInquiryDTO = new ProductInquiryDTO();
-        String SQL = "SELECT * FROM product_inquiry WHERE user_id=?"; 
-        try{                         
-            ps = conn.prepareStatement(SQL);
-            ps.setString(1, user_id);
-            if(rs.next()){
-                productInquiryDTO.setCategory(rs.getString("category"));
-                productInquiryDTO.setUser_id(rs.getString("user_id"));
-                productInquiryDTO.setUser_name(rs.getString("user_name"));
-                productInquiryDTO.setSubject(rs.getString("subject"));
-                productInquiryDTO.setContent(rs.getString("content"));
-            }
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
         }         
         catch(Exception e){
             e.printStackTrace();
         }
-<<<<<<< HEAD
         
         // return productInquiryDTO;
         return inquiryDTO;       
-=======
-        finally{
-            try {
-                if(rs!=null){rs.close();}
-                if(ps!=null){ps.close();}
-                if(conn!=null){conn.close();}
-            }        
-            catch(Exception e){
-                e.printStackTrace();
-            }         
-        }
-        return productInquiryDTO;          
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
     }
 
      

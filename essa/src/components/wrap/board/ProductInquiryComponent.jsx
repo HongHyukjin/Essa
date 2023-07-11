@@ -63,7 +63,6 @@ export default function ProductInquiryComponent (props){
             console.log('AJAX 성공')
             console.log(res.result)
             setInquiry(res.result)
-            alert('문의가 등록되었습니다:)');
             window.location.href='#/상품문의글목록'
         },
         error(err){

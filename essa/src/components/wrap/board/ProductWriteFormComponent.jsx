@@ -73,11 +73,7 @@ export default function ProductWriteFormComponent (props){
         }
         console.log(formData);
         $.ajax({
-<<<<<<< HEAD
             url:'http://localhost:8080/JSP/essa/product_inquiry_action.jsp',
-=======
-            url:'http://localhost:8080/JSP/essa/product_inpuriry_action.jsp',
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
             type:'post',
             data:formData,
             success(res){
@@ -87,7 +83,7 @@ export default function ProductWriteFormComponent (props){
                     alert('모든 항목을 입력해주세요!');
                 }
                 else {
-                    // window.location.href = '#/상품문의글목록';
+                    window.location.href = '#/상품문의글목록';
                 }
             },
             error(err){

@@ -8,11 +8,7 @@ public class ZzimDTO {
 
   public int getIdx() {
     return this.idx;
-<<<<<<< HEAD
   }  
-=======
-  }
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
 
   public void setIdx(int idx) {
     this.idx = idx;
