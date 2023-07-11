@@ -30,6 +30,15 @@ export default function BoardViewComponent (props){
                 // console.log(res.data.notice);
                 let result = res.data.notice.filter((item) => item.NO===Number(listNum));
                 console.log(result);
+<<<<<<< HEAD
+=======
+
+                // res.data.notice.map((item) =>{
+                //     if(item.NO===Number(listNum)){
+                //         console.log(item.NO, item.제목);
+                //     }
+                // })
+>>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
                 setState({
                     notice: result[0]
                 })

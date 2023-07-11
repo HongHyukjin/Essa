@@ -7,10 +7,17 @@ public class UserDAO {
     private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
+<<<<<<< HEAD
            
      
     public UserDAO(){
         try{   
+=======
+         
+
+    public UserDAO(){
+        try{
+>>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
             String URL = "jdbc:mysql://localhost:3306/essa";
             String ID = "root";
             String PW = "1234";
