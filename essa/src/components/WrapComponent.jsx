@@ -36,11 +36,8 @@ export default function WrapComponent ()  {
                     <Route path='/고객센터' element={<BoardComponent/>}/>
                     <Route path='/공지사항글내용' element={<BoardViewComponent/>}/>
                     <Route path='/상품문의글목록' element={<ProductInquiryComponent/>}/>
-<<<<<<< HEAD
                     <Route path='/상품문의글내용/:id' element={<ProductInquiryViewComponent/>}/>
                     <Route path='/상품문의글내용' element={<ProductInquiryViewComponent/>}/>
-=======
->>>>>>> 595d4748e9dce5ba52742618eaf8287581b610fe
                     <Route path='/상품문의글내용' element={<ProductInquiryViewComponent/>}/>
                     <Route path='/상품문의글작성' element={<ProductWriteFormComponent/>}/>
                     <Route path='/상품문의글수정폼' element={<ProductInquiryUpdateComponent/>}/>
