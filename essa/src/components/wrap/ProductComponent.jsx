@@ -37,7 +37,7 @@ export default function ProductComponent () {
   React.useEffect(()=>{
       localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
       getProduct();
-  },[ state.viewnum, state.쇼핑]);
+  },[]);
 
   const [list, setList] = React.useState(12);  // 한화면에 보여질 목록개수
   const [pageNumber, setPageNumber] = React.useState(1); // 페이지번호
@@ -500,7 +500,7 @@ export default function ProductComponent () {
                             <div className="item_cont">
                               <div className="photo_box">
                                 <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e)=>onClickProduct(e, item)}>
-                                  <img src={item.이미지} alt="" />
+                                  <img src={`./img/product/${item.이미지}`} alt="" />
                                   <div className="item_link">
                                     <div className="inner">
                                       <button type='button'>

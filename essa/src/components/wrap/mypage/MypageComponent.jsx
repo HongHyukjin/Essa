@@ -107,11 +107,7 @@ function MypageComponent(props) {
                                                                 </div>
                                                                 <div className="money_box">
                                                                     <span className={`origin_price ${item.할인율===0?'on':''}`}>{item.원가.toLocaleString('ko-KR')}원</span>
-<<<<<<< HEAD
-                                                                    <span className='sale_price'>{item.할인율===0?'':item.할인가.toLocaleString('ko-KR')}</span>
-=======
                                                                     <span className='sale_price'>{item.할인율===0?'':`${item.할인가.toLocaleString('ko-KR')}원`}</span>
->>>>>>> e227d32e6658d5787547c018918684e8eda2d488
                                                                     <span className='sale_per'>{item.할인율===0?'':`${item.할인율}%`}</span>
                                                                 </div>
                                                                 <div className="icon_box">
