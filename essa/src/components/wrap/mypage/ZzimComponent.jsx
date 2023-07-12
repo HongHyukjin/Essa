@@ -160,7 +160,7 @@ function ZzimComponent(props) {
                                                                             <td className='td_left'>
                                                                                 <div className="pick_add_cont">
                                                                                     <span className='pick_add_img'>
-                                                                                        <a href="!#"><img src={product[item.product_num-1].이미지} alt="" /></a>
+                                                                                        <a href="!#"><img src={`./img/product/${product[item.product_num-1].이미지}`} alt="" /></a>
                                                                                     </span>
                                                                                     <div className="pick_add_info">
                                                                                         <em>

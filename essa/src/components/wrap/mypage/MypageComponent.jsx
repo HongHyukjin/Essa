@@ -3,12 +3,46 @@ import FooterComponent from '../FooterComponent';
 import HeaderComponent from '../HeaderComponent';
 import MypageNavComponent from './MypageNavComponent';
 import {Link} from 'react-router-dom';
+import $ from 'jquery';
 
 function MypageComponent(props) {
 
     const [state,setState] = React.useState({
-        recentProduct : []
+        recentProduct : [],
+        이름 : '',
+        아이디 : ''
     })
+
+    const getUserData = async () => {
+        try {
+            const user_id = sessionStorage.getItem('user_id');
+            const form_data = {
+                "user_id" : user_id
+            };
+
+            const res = await $.ajax({
+                url : 'http://localhost:8080/JSP/essa/update_getjoin_action.jsp',
+                type : 'POST',
+                data : form_data,
+                dataType: 'json'
+            });
+
+            console.log('ajax 성공');
+            console.log(res.result);
+            setState((prevState)=>({
+                ...prevState,
+                이름 : res.result.이름 === "null" ? '' : res.result.이름,
+                아이디 : res.result.아이디 === "null" ? '' : res.result.아이디
+            }));
+        }
+        catch (err){
+            console.log('ajax 실패' + err);
+        } 
+    }
+
+    React.useEffect(()=>{
+        getUserData();
+    },[])
 
     React.useEffect(() => {
         window.scrollTo(0,0)
@@ -41,8 +75,8 @@ function MypageComponent(props) {
                                 <div className="mypage-row1">
                                     <div className="mypage-name-box">
                                         <div className="name-box">
-                                            <span className='user-name'>유영현</span>
-                                            <p>marinoma</p>
+                                            <span className='user-name'>{state.이름}</span>
+                                            <p>{state.아이디}</p>
                                         </div>
                                     </div>
                                     <div className="mypage-point-box">
@@ -84,7 +118,7 @@ function MypageComponent(props) {
                                 <div className="mypage-row3">
                                     <div className="mypage-order-tit">
                                         <h3>최근 본 상품</h3>
-                                        <span>홍혁진님께서 본 최근 상품입니다.</span>
+                                        <span>{state.이름}님께서 본 최근 상품입니다.</span>
                                     </div>
                                     <div className="product_list">
                                         <ul>
@@ -95,7 +129,7 @@ function MypageComponent(props) {
                                                         <li>
                                                             <div className="photo_box">
                                                                 <Link to={`/쇼핑/상세보기/${item.제품코드}`} >
-                                                                    <img src={item.이미지} alt="" />
+                                                                    <img src={`./img/product/${item.이미지}`} alt="" />
                                                                 </Link>
                                                             </div>
                                                             <div className="info_box">

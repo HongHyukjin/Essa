@@ -91,7 +91,7 @@ export default function ProductDetailComponent () {
         <div className="container">
           <div className="content">
             <div className="item_photo">
-              <img src={state.쇼핑.이미지} alt="" />
+              <img src={`./img/product/${state.쇼핑.이미지}`} alt="" />
             </div>
             <div className="item_info">
               <div className="tit">
