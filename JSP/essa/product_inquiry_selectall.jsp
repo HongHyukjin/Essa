@@ -25,20 +25,22 @@
     for(ProductInquiryDTO productInquiryDTO : list){
         cnt++;
         if(cnt < list.size()){
-            jsonData += "{ \"category\" : \"" + productInquiryDTO.getCategory() + "\","
+            jsonData += "{ \"idx\" : \"" + productInquiryDTO.getIdx() + "\","
                      +   "\"user_id\" : \"" + productInquiryDTO.getUser_id() + "\","
                      +   "\"user_name\" : \"" + productInquiryDTO.getUser_name() + "\","
                      +   "\"subject\" : \"" + productInquiryDTO.getSubject() + "\","
                      +   "\"content\" : \"" + productInquiryDTO.getContent() + "\","
+                     +   "\"category\" : \"" + productInquiryDTO.getCategory() + "\","
                      +   "\"write_date\" : \"" + productInquiryDTO.getWrite_date() + "\""
                      + "},";
         }
-        else{
-            jsonData += "{ \"category\" : \"" + productInquiryDTO.getCategory() + "\","
+        else{ 
+            jsonData += "{ \"idx\" : \"" + productInquiryDTO.getIdx() + "\","
                         +   "\"user_id\" : \"" + productInquiryDTO.getUser_id() + "\","
                         +   "\"user_name\" : \"" + productInquiryDTO.getUser_name() + "\","
                         +   "\"subject\" : \"" + productInquiryDTO.getSubject() + "\","
                         +   "\"content\" : \"" + productInquiryDTO.getContent() + "\","
+                        +   "\"category\" : \"" + productInquiryDTO.getCategory() + "\","
                         +   "\"write_date\" : \"" + productInquiryDTO.getWrite_date() + "\""
                      + "}";
         }
