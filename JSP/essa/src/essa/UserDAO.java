@@ -12,7 +12,7 @@ public class UserDAO {
     public UserDAO(){
         try{
             String URL = "jdbc:mysql://localhost:3306/essa";
-            String ID = "root";
+            String ID = "essa";
             String PW = "1234";
             // 1. 데이터베이스 드라이버(JDBC)
             Class.forName("com.mysql.jdbc.Driver");
