@@ -22,31 +22,26 @@ function ZzimComponent(props) {
     const onClickDelModal = (e,value) => {
     
         if(value==='확인'){
-            // for (let i = 0; i < state.checked.length; i++) {
-            //     const formData = {
-            //         "user_id": sessionStorage.getItem('user_id'),
-            //         "product_code": Number(state.checked[i])
-            //     }
-            //     console.log(formData);
-            //     $.ajax({
-            //         url: "http://localhost:8080/JSP/essa/basket_delete_action.jsp",
-            //         type: 'post',
-            //         data: formData,
-            //         success(res) {
-            //             console.log('AJAX 성공');
-            //             console.log(res);
-            //             setClick(!click);
-    
-            //             setState({
-            //                 ...state,
-            //                 checked: []
-            //             })
-            //         },
-            //         error(err) {
-            //             console.log('AJAX 실패');
-            //         }
-            //     })
-            // }
+            for (let i = 0; i < state.checked.length; i++) {
+                const formData = {
+                    "user_id": sessionStorage.getItem('user_id'),
+                    "product_num": Number(state.checked[i])
+                }
+                $.ajax({
+                    url : 'http://localhost:8080/JSP/essa/zzim_delete_action.jsp',
+                    type : 'POST',
+                    data : formData,
+                    dataType : 'json',
+                    success(res){
+                        console.log('AJAX 성공');
+                        console.log(res);
+                        window.location.reload();
+                    },
+                    error(err){
+                        console.log('AJAX 실패');
+                    }
+                })
+            }
         }
         setIsDelModal(false);
     }

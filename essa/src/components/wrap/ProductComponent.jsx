@@ -428,8 +428,12 @@ export default function ProductComponent() {
       success(res) {
         console.log('AJAX 성공!');
         console.log(res);
-        console.log(JSON.parse(res));
-        alert('상품이 찜 리스트에 담겼습니다!')
+        if(res.result === 1){
+          alert('상품이 찜 리스트에 담겼습니다!')
+        }
+        else{
+          alert('같은 상품을 담을 수 없습니다')
+        }
       },
       error(err) {
         console.log('AJAX 실패!' + err);
