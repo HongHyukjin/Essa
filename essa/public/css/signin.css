@@ -91,7 +91,7 @@
   display: flex;
   justify-content: flex-end;
 }
-#signin .container .gap .content #formLogin .find-btn-box ul li .btnFindId {
+#signin .container .gap .content #formLogin .find-btn-box ul li > label {
   background: none;
   border: 0;
   cursor: pointer;

@@ -167,22 +167,41 @@ public class UserDAO {
         return userDTO;
     }
 
-    public UserDTO idSearch(String userName, String userEmail){
-        String SQL = "SELECT userEmail, userId FROM user WHERE userName = ?";
+    // 아이디 찾기
+    public String idSearch(String user_name, String user_email){
+        String SQL = "SELEC user_id FROM essa_member WHERE user_name=? and user_email=?";
+        String result = "";
         try {
             PreparedStatement ps = conn.prepareStatement(SQL);
-            ps.setString(1, userName);
+            ps.setString(1, user_name);
+            ps.setString(2, user_email);
             rs = ps.executeQuery();
-            while(rs.next()){
-                if(rs.getString(1).equals(userEmail)){
-                    UserDTO userDTO = new UserDTO();
-                    userDTO.setUserId(rs.getString(2));
-                    return userDTO;
-                }
-            }   
+            return rs.getString("user_id");
         }
         catch (Exception e) {
+            
             // TODO: handle exception
+        }
+        return result;
+    }
+
+    // 비밀번호 찾기
+    public UserDTO pwSearch(String user_id, String user_email){
+        String SQL = "SELECT user_email, user_pw FROM user WHERE user_id = ? ";
+        try {
+            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_id);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                if(rs.getString(1).equals(user_email)){
+                    UserDTO userDTO = new UserDTO();
+                    userDTO.setUser_pw(rs.getString(2));
+                    return userDTO;
+                }
+            }    
+        }
+        catch (Exception e) {
+            
         }
         return null;
     }
