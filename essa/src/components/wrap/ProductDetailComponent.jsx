@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import FooterComponent from './FooterComponent';
 import HeaderComponent from './HeaderComponent';
+import $ from 'jquery';
 
 export default function ProductDetailComponent () {
 
@@ -81,6 +82,49 @@ export default function ProductDetailComponent () {
       ...state,
       option1:'',
       option2:''
+    })
+  }
+
+  const onClickSubmit=(e)=>{
+    e.preventDefault();
+    onSubmitBasket();
+  }
+
+    const onSubmitBasket=()=>{
+    const formData = {
+      "user_id":sessionStorage.getItem('user_id'),
+      "product_code":state.쇼핑.제품코드,
+      "num":state.cnt,
+      "option1":state.option1,
+      "option2":state.option2
+    }
+    if(state.option1===''||state.option2===''){
+      alert('옵션이 선택되지 않았습니다!');
+    }
+    else if (sessionStorage.getItem('user_id') === null) {
+      alert('로그인 후 이용해주세요');
+      window.location.href='/#/로그인';
+    }
+    console.log(formData);
+    $.ajax({
+      url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
+      type:'post',
+      data:formData,
+      dataType:'json',
+      success(res){
+        console.log('AJAX 성공');
+        console.log(res.result);
+        if(res.result === 1){
+          alert('상품이 장바구니에 담겼습니다.');
+        }
+        else{
+          console.log(res.result)
+          alert('같은 상품을 담을 수 없습니다');
+        }
+      },
+      error(err){
+        console.log('AJAX 실패'+err);
+      }
     })
   }
 
@@ -192,7 +236,7 @@ export default function ProductDetailComponent () {
                 <button className='heart'>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.639 4.38981L12.1111 4.86562L12.5832 4.38981C14.8649 2.09006 18.5621 2.09006 20.8438 4.38981C23.1284 6.69247 23.1284 10.428 20.8438 12.7306L12.4396 21.2012C12.2627 21.3796 11.9596 21.3796 11.7826 21.2012L3.37844 12.7306C1.09385 10.428 1.09385 6.69247 3.37844 4.38981C5.66015 2.09006 9.35733 2.09006 11.639 4.38981Z" stroke="#1A1A1A" stroke-width="1.33"></path></svg>
                 </button>
-                <button className='cart'>장바구니</button>
+                <button className='cart' onClick={onClickSubmit} type='submit' >장바구니</button>
                 <button className='buy'>바로구매</button>
               </div>
             </div>

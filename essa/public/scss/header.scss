@@ -335,9 +335,21 @@
                         >li{
                             width: 100%;
                             >a{
+                                position: relative;
                                 margin: 0 12px;
                                 display: flex;
                                 align-items: center;
+                                span{
+                                    position: absolute;
+                                    display: block;
+                                    top: 50%;
+                                    left: 50%;
+                                    font-size: 11px;
+                                    line-height: 16px;
+                                    font-weight: 800;
+                                    color: #fff;
+                                    margin: -5px 0 0 -3px;
+                                }
                             }
                             &.sub-page{
                                 position: relative;
@@ -425,6 +437,9 @@
                                         stroke: #000;
                                     }
                                    
+                                }
+                                span{
+                                    color: #000;
                                 }
                             }
                         }
