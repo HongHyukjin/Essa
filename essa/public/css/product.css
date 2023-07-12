@@ -484,3 +484,185 @@
   border-radius: 20px;
   vertical-align: middle;
 }
+.cart-modal {
+  font-family: "Pretendard";
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+}
+.cart-modal > .container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-modal > .container > .content {
+  width: 665px;
+  padding: 20px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #555555;
+}
+.cart-modal > .container > .content .row1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 15px 0;
+  border-bottom: 1px solid #999999;
+}
+.cart-modal > .container > .content .row1 h2 {
+  font-size: 17px;
+  color: #333;
+  font-weight: 700;
+}
+.cart-modal > .container > .content .row2 {
+  display: flex;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.cart-modal > .container > .content .row2 .img-box {
+  padding: 0 50px 0 0;
+}
+.cart-modal > .container > .content .row2 .img-box img {
+  width: 64px;
+}
+.cart-modal > .container > .content .row2 .txt h3 {
+  font-size: 14px;
+  color: #333;
+  font-weight: 700;
+}
+.cart-modal > .container > .content .row3 {
+  padding: 30px 0 50px 0;
+}
+.cart-modal > .container > .content .row3 dl {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px 10px 0;
+}
+.cart-modal > .container > .content .row3 dl dt {
+  width: 160px;
+  padding: 0 20px 0 0;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  font-weight: bold;
+  color: #555;
+}
+.cart-modal > .container > .content .row3 dl dd {
+  width: 325px;
+}
+.cart-modal > .container > .content .row3 dl dd select {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #ddd;
+  outline: 0;
+  padding: 0 10px;
+  color: #717171;
+}
+.cart-modal > .container > .content .row3 .goods-box {
+  width: 100%;
+  padding: 30px 0 10px 0;
+}
+.cart-modal > .container > .content .row3 .goods-box table {
+  width: 100%;
+  background: #f5f5f5;
+  border-collapse: collapse;
+  border-bottom: 1px solid #999999;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr {
+  width: 100%;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td {
+  padding: 15px 0;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(1) {
+  padding-left: 20px;
+  color: #333;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 700;
+  font-family: "Pretendard";
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(2) .count {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 17px;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(2) .count input {
+  width: 42px;
+  padding: 0 5px;
+  height: 33px;
+  border: 1px solid #ccc;
+  color: #3f3f3f;
+  font-size: 12px;
+  line-height: 31px;
+  outline: 0;
+  text-align: center;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(2) .count span {
+  display: block;
+  width: 23px;
+  height: 33px;
+  margin: 0 0 0 -1px;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(2) .count span .up {
+  width: 100%;
+  height: 50%;
+  border: 0;
+  background: url(../img/product/btn_count_up.png) no-repeat 50% 50%;
+  background-size: cover;
+  cursor: pointer;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(2) .count span .down {
+  width: 100%;
+  height: 50%;
+  border: 0;
+  background: url(../img/product/btn_count_down.png) no-repeat 50% 50%;
+  background-size: cover;
+  cursor: pointer;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(3) {
+  width: 112px;
+  color: #333;
+  font-size: 14px;
+  text-align: right;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(4) {
+  width: 30px;
+  text-align: center;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(4) button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.cart-modal > .container > .content .row3 .goods-box table tbody tr td:nth-child(4) button img {
+  width: auto;
+}
+.cart-modal > .container > .content .row4 {
+  border-top: 2px solid #dbdbdb;
+  padding: 30px 0 0 0;
+  text-align: center;
+}
+.cart-modal > .container > .content .row4 button {
+  width: 82px;
+  height: 42px;
+  background: #fff;
+  border: 1px solid #7e9fc2;
+  color: #7e9fc2;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+  margin: 0 5px;
+  font-family: "Pretendard";
+}
+.cart-modal > .container > .content .row4 button.ok {
+  color: #fff;
+  background: #7e9fc2;
+}

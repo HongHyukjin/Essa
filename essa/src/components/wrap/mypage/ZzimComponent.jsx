@@ -6,9 +6,50 @@ import axios from 'axios';
 import MypageNavComponent from './MypageNavComponent';
 
 function ZzimComponent(props) {
+
+    const [state,setState] = React.useState({
+        이름 : '',
+        아이디 : '',
+        checked : []
+    })
+
     const [zzim,setZzim] = React.useState([]);
 
     const [product,setProduct] = React.useState([]);
+
+    const [isDelModal, setIsDelModal] = React.useState(false);
+
+    const onClickDelModal = (e,value) => {
+    
+        if(value==='확인'){
+            // for (let i = 0; i < state.checked.length; i++) {
+            //     const formData = {
+            //         "user_id": sessionStorage.getItem('user_id'),
+            //         "product_code": Number(state.checked[i])
+            //     }
+            //     console.log(formData);
+            //     $.ajax({
+            //         url: "http://localhost:8080/JSP/essa/basket_delete_action.jsp",
+            //         type: 'post',
+            //         data: formData,
+            //         success(res) {
+            //             console.log('AJAX 성공');
+            //             console.log(res);
+            //             setClick(!click);
+    
+            //             setState({
+            //                 ...state,
+            //                 checked: []
+            //             })
+            //         },
+            //         error(err) {
+            //             console.log('AJAX 실패');
+            //         }
+            //     })
+            // }
+        }
+        setIsDelModal(false);
+    }
 
     const myStyle = {
         width: '100px'
@@ -20,6 +61,33 @@ function ZzimComponent(props) {
     const myStyle3 = {
         width : '204px'
     };
+
+    const getUserData = async () => {
+        try {
+            const user_id = sessionStorage.getItem('user_id');
+            const form_data = {
+                "user_id" : user_id
+            };
+
+            const res = await $.ajax({
+                url : 'http://localhost:8080/JSP/essa/update_getjoin_action.jsp',
+                type : 'POST',
+                data : form_data,
+                dataType: 'json'
+            });
+
+            console.log('ajax 성공');
+            console.log(res.result);
+            setState((prevState)=>({
+                ...prevState,
+                이름 : res.result.이름 === "null" ? '' : res.result.이름,
+                아이디 : res.result.아이디 === "null" ? '' : res.result.아이디
+            }));
+        }
+        catch (err){
+            console.log('ajax 실패' + err);
+        } 
+    }
 
     const getZzim = () => {
         let user_id = '';
@@ -58,8 +126,9 @@ function ZzimComponent(props) {
     }
     
     React.useEffect(()=>{
-        getZzim();
+        getUserData();
         getProduct();
+        getZzim();
     },[]);
 
     const onClickDeleteZzim =(e,item) => {
@@ -91,6 +160,47 @@ function ZzimComponent(props) {
         })
     }
 
+    const onClickDeleteCheck = (e) => {
+        e.preventDefault();
+        setIsDelModal(true);
+    }
+
+    const onClickCheckAll = (e) => {
+        let checked = [];
+        console.log('check all')
+
+        if (e.target.checked) {
+            for (let i = 0; i < zzim.length; i++) {
+                checked = [...checked, zzim[i].product_num];
+            }
+        }
+        else {
+            checked = [];
+        }
+
+        setState({
+            ...state,
+            checked: checked,
+        })
+    }
+
+    const onClickCheck = (e, value) => {
+
+        let checked = state.checked;
+
+        if (e.target.checked) {
+            checked = [...checked, (value)];
+        }
+        else {
+            checked = checked.filter((item) => item !== value);
+        }
+
+        setState({
+            ...state,
+            checked: checked,
+        })
+    }
+
 
     return (
         <>
@@ -105,8 +215,8 @@ function ZzimComponent(props) {
                                 <div className="mypage-row1">
                                     <div className="mypage-name-box">
                                         <div className="name-box">
-                                            <span className='user-name'>유영현</span>
-                                            <p>marinoma</p>
+                                            <span className='user-name'>{state.이름}</span>
+                                            <p>{state.아이디}</p>
                                         </div>
                                     </div>
                                     <div className="mypage-point-box">
@@ -128,7 +238,7 @@ function ZzimComponent(props) {
                                                     <tr>
                                                         <th style={myStyle}>
                                                             <div className="form-check">
-                                                                <input type="checkbox" id='allCheck' name='allCheck'  />
+                                                                <input type="checkbox" id='allCheck' name='allCheck' onClick={onClickCheckAll} checked={state.checked.length === zzim.length} />
                                                             </div>
                                                         </th>
                                                         <th style={myStyle2}>상품명/옵션</th>
@@ -154,7 +264,7 @@ function ZzimComponent(props) {
                                                                         <tr key={idx}>
                                                                             <td>
                                                                                 <div className="form-check">
-                                                                                    <input type="checkbox" id='allCheck' name='allCheck'  />
+                                                                                    <input type="checkbox" id='Check' name='Check' onClick={(e) => onClickCheck(e, item.product_num)} checked={state.checked.includes(item.product_num)}/>
                                                                                 </div>
                                                                             </td>
                                                                             <td className='td_left'>
@@ -191,9 +301,6 @@ function ZzimComponent(props) {
                                                                             </td>
                                                                             <td>
                                                                                 <div>
-                                                                                    <a href="!#" className='btn_wish_cart'>
-                                                                                        <em>장바구니</em>
-                                                                                    </a>
                                                                                     <a href="!#" className='btn_wish_del' onClick={(e)=>onClickDeleteZzim(e,item)}>
                                                                                         <em>삭제하기</em>
                                                                                     </a>
@@ -206,8 +313,7 @@ function ZzimComponent(props) {
                                                     }
                                                 </tbody>
                                             </table>
-                                            <button>선택 상품 삭제</button>
-                                            <button>선택 상품 장바구니</button>
+                                            <button onClick={onClickDeleteCheck}>선택 상품 삭제</button>
                                         </div>
                                     </div>
                                 </div>
@@ -217,6 +323,25 @@ function ZzimComponent(props) {
                 </div>
             </div>
         </div>
+            {
+                isDelModal && (
+                    <div className="delete-modal">
+                        <div className="container">
+                            <div className="content">
+                                <div className="txt">
+                                    {state.checked.length > 0 ? <h3>선택하신 {state.checked.length}개상품을 장바구니에서 삭제 하시겠습니까?</h3> : <h3 style={{ "textAlign": "center" }}>선택하신 상품이 없습니다.</h3>}
+
+                                </div>
+                                <div className="btn">
+                                    <button style={{ "width": `${state.checked.length === 0 ? "0" : "50%"}` }} onClick={(e) => onClickDelModal(e, '확인')}>확인</button>
+                                    <button style={{ "width": `${state.checked.length === 0 ? "100%" : "0"}` }} onClick={(e) => onClickDelModal(e, '')}>확인</button>
+                                    <button style={{ "width": `${state.checked.length === 0 ? "0" : "50%"}` }} onClick={(e) => onClickDelModal(e, '취소')}>취소</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         <FooterComponent/>
         </>
     );

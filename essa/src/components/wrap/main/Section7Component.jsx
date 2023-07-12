@@ -210,7 +210,7 @@ export default function Section7Component({쇼핑}) {
                                                 <div className="slide">
                                                     <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
                                                         <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
-                                                            <img src={item.이미지} alt="" />
+                                                            <img src={`img/product/${item.이미지}`} alt="" />
                                                             <div className="button-box">
                                                                 <div className="button">
                                                                     <button><img src="../img/section5/메인021.png" alt="" /></button>

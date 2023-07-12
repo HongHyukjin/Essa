@@ -113,7 +113,7 @@ export default function Section4Component ({쇼핑}) {
                                             <div className="item_cont">
                                                 <div className="photo_box">
                                                     <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
-                                                        <img src={item.이미지} alt="" />
+                                                        <img src={`img/product/${item.이미지}`} alt="" />
                                                         <div className="item_link">
                                                             <div className="inner">
                                                                 <button type='button'>

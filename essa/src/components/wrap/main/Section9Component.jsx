@@ -120,7 +120,7 @@ function Section9Component({쇼핑}) {
                                                     <div className="sec9left-product">
                                                         <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
                                                             <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
-                                                                <img className='sec9product' src={item.이미지} alt="" />
+                                                                <img className='sec9product' src={`img/product/${item.이미지}`} alt="" />
                                                                 <div className="button-box">
                                                                     <div className="button">
                                                                         <button><img src="../img/section5/메인021.png" alt="" /></button>
