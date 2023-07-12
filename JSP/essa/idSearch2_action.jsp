@@ -18,13 +18,13 @@
 
 <jsp:useBean id="userDTO" class="essa.UserDTO" scope="page"/>
 <jsp:setProperty name="userDTO" property="user_name" />
-<jsp:setProperty name="userDTO" property="user_email" />
+<jsp:setProperty name="userDTO" property="user_hp" />
 
 
 
 <%
     UserDAO userDAO = new UserDAO();
-    String result = userDAO.idSearch(userDTO.getUser_name(), userDTO.getUser_email());
+    String result = userDAO.idSearch2(userDTO.getUser_name(), userDTO.getUser_hp());
 %>
 
 <%

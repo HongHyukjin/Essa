@@ -19,6 +19,8 @@ import ProductInquiryUpdateComponent from './wrap/board/ProductInquiryUpdateComp
 import BasketComponent from './wrap/mypage/BasketComponent';
 import UpdateComponent from './wrap/mypage/UpdateComponent';
 import IdSearchComponent from './wrap/memberPage/IdSearchComponent';
+import PwSearchComponent from './wrap/memberPage/PwSearchComponent';
+
 
 export default function WrapComponent() {
 
@@ -50,6 +52,7 @@ export default function WrapComponent() {
                     <Route path='/장바구니' element={<BasketComponent />} />
                     <Route path='/회원정보수정' element={<UpdateComponent />} />
                     <Route path='/아이디찾기' element={<IdSearchComponent/>}/>
+                    <Route path='/비밀번호찾기' element={<PwSearchComponent/>}/>
                 </Routes>
             </HashRouter>
         </div>

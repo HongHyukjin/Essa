@@ -19,9 +19,6 @@ public class UserDAO {
 
             // 2. 데이터베이스 인증 & 인가 (URL, ID, PW)
             conn = DriverManager.getConnection(URL, ID, PW);
-            
-            
-
         }
         catch(Exception e){
             e.printStackTrace();
@@ -167,7 +164,7 @@ public class UserDAO {
         return userDTO;
     }
 
-    // 아이디 찾기
+    // 아이디 찾기 (이메일, 이름)
     public String idSearch(String user_name, String user_email){
         String SQL = "select user_id FROM essa_member WHERE user_name=? and user_email=?";
         String result = "";
@@ -187,24 +184,43 @@ public class UserDAO {
         return result;
     }
 
-    // 비밀번호 찾기
-    public UserDTO pwSearch(String user_id, String user_email){
-        String SQL = "SELECT user_email, user_pw FROM user WHERE user_id = ? ";
-        try {
-            PreparedStatement ps = conn.prepareStatement(SQL);
-            ps.setString(1, user_id);
-            rs=ps.executeQuery();
-            while(rs.next()){
-                if(rs.getString(1).equals(user_email)){
-                    UserDTO userDTO = new UserDTO();
-                    userDTO.setUser_pw(rs.getString(2));
-                    return userDTO;
+        // 아이디 찾기 (번호, 이름)
+        public String idSearch2(String user_name, String user_hp){
+            String SQL = "select user_id FROM essa_member WHERE user_name=? and user_hp=?";
+            String result = "";
+            try {
+                ps = conn.prepareStatement(SQL);
+                ps.setString(1, user_name);
+                ps.setString(2, user_hp);
+                rs = ps.executeQuery();
+                while(rs.next()){
+                    result = rs.getString("user_id");
                 }
-            }    
+                return result;
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+    // 비밀번호 찾기
+    public String pwSearch(String user_id, String user_name){
+        String SQL = "select user_pw FROM essa_member WHERE user_id=? and user_name=?";
+        String result = "";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_id);
+            ps.setString(2, user_name);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                result = rs.getString("user_pw");
+            }
+            return result;
         }
         catch (Exception e) {
-            
+            e.printStackTrace();
         }
-        return null;
+        return result;
     }
 }

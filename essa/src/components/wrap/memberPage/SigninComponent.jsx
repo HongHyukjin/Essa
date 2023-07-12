@@ -117,7 +117,7 @@ function SigninComponent(props) {
                                 <ul>
                                     <li><Link to='/아이디찾기'><label htmlFor="" role='button'>아이디찾기</label></Link></li>
                                     <li><i> | </i></li>
-                                    <li><button className='btnFindPw'>비밀번호 찾기</button></li>
+                                    <li><Link to='/비밀번호찾기'><label htmlFor="" role='button'>비밀번호 찾기</label></Link></li>
                                 </ul>
                             </div>
                         </form>

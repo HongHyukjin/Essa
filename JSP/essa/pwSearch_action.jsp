@@ -17,19 +17,15 @@
 %>
 
 <jsp:useBean id="userDTO" class="essa.UserDTO" scope="page"/>
+<jsp:setProperty name="userDTO" property="user_id" />
 <jsp:setProperty name="userDTO" property="user_name" />
-<jsp:setProperty name="userDTO" property="user_email" />
-
-
 
 <%
     UserDAO userDAO = new UserDAO();
-    String result = userDAO.idSearch(userDTO.getUser_name(), userDTO.getUser_email());
+    String result = userDAO.pwSearch(userDTO.getUser_id(), userDTO.getUser_name());
 %>
 
 <%
     String jsonData = "{\"result\":\"" + result + "\"}";
     response.getWriter().write(jsonData);
 %>
-
-

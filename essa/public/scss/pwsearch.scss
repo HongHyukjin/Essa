@@ -1,4 +1,4 @@
-#idsearch {
+#pwsearch {
     width:100%;
     padding: 150px 0;
     .container {
@@ -28,14 +28,14 @@
                 form {
                     .find-id-box {
                         .choose-btn {
-                            input {
-                                margin-right:2px;
-                            }
-                            label {
-                                font-size: 11px;
-                                line-height: 21px;
-                                color:#333;
-                                margin-right:10px;
+                            .title-2 {
+                                // color:#222;
+                                // font-size: 18px;
+                                // font-weight: 400;
+                                // line-height: 27px;
+                                li {
+
+                                }
                             }
                         }
                         .idsearch-main-box {
