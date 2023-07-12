@@ -10,7 +10,7 @@ public class ZzimDAO {
   public ZzimDAO(){
     try{
       String URL = "jdbc:mysql://localhost:3306/essa";
-      String ID = "essa";
+      String ID = "root";
       String PW = "1234";
       // 1. 데이터베이스 드라이버(JDBC)
       Class.forName("com.mysql.jdbc.Driver");

@@ -12,7 +12,7 @@ public class UserDAO {
     public UserDAO(){
         try{
             String URL = "jdbc:mysql://localhost:3306/essa";
-            String ID = "essa";
+            String ID = "root";
             String PW = "1234";
             // 1. 데이터베이스 드라이버(JDBC)
             Class.forName("com.mysql.jdbc.Driver");
@@ -169,18 +169,20 @@ public class UserDAO {
 
     // 아이디 찾기
     public String idSearch(String user_name, String user_email){
-        String SQL = "SELEC user_id FROM essa_member WHERE user_name=? and user_email=?";
+        String SQL = "select user_id FROM essa_member WHERE user_name=? and user_email=?";
         String result = "";
         try {
-            PreparedStatement ps = conn.prepareStatement(SQL);
+            ps = conn.prepareStatement(SQL);
             ps.setString(1, user_name);
             ps.setString(2, user_email);
             rs = ps.executeQuery();
-            return rs.getString("user_id");
+            while(rs.next()){
+                result = rs.getString("user_id");
+            }
+            return result;
         }
         catch (Exception e) {
-            
-            // TODO: handle exception
+            e.printStackTrace();
         }
         return result;
     }

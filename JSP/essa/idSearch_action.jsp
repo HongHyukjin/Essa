@@ -5,8 +5,8 @@
 <%@ 
     page 
     language="java" 
-    contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
+    contentType="application/json; charset=UTF-8"
+    pageEncoding="UTF-8"    
 %>
 
 <%@ page import = "essa.UserDAO" %>
@@ -21,12 +21,14 @@
 <jsp:setProperty name="userDTO" property="user_email" />
 
 
-
 <%
     UserDAO userDAO = new UserDAO();
     String result = userDAO.idSearch(userDTO.getUser_name(), userDTO.getUser_email());
 %>
 
+<%
+    String jsonData = "{\"result\":\"" + result + "\"}";
+    response.getWriter().write(jsonData);
+%>
 
-{"AJAX실행 DTO & DAO 결과":"<%=result%>"}
 

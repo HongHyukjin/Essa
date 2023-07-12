@@ -91,13 +91,11 @@ function IdSearchComponent(props) {
             url : 'http://localhost:8080/JSP/essa/idSearch_action.jsp',
             type : 'post',
             data : formData,
-            // dataType : 'json',
+            dataType : 'json',
             success(res){
                 console.log('Ajax 성공')
                 console.log(res);
-                console.log(state.userName1);
-                console.log(state.userEmail);
-                console.log(formData);
+                console.log(res.result);
             },  
             error(err){
                 console.log('Ajax 실패')
