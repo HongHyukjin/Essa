@@ -86,23 +86,27 @@
                                                 opacity: 0;
                                                 width:100%;
                                                 position: absolute;
-                                                bottom:15px;
+                                                bottom:0;
                                                 left:0;
                                                 transform: translateY(200%);
                                                 background: rgba(255,255,255,0.5);
-                                                transition: all 0.2s;
+                                                transition: all 0.3s;
                                                 backdrop-filter: blur(4px);
                                                 cursor: pointer;
-                                                transition: all 0.5s;
+                                                // transition: all 0.5s;
                                                 .button {
                                                     display:flex;
                                                     justify-content: space-around;
+                                                    height: 40px;
+                                                    
                                                     button {
                                                         background: none;
                                                         border:0;
+                                                        cursor: pointer;
                                                         img {
                                                             width:25px;
                                                             height:24px;
+                                                           
                                                         }
                                                     }
                                                 }

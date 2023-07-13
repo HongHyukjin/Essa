@@ -105,16 +105,17 @@ function Section9Component({쇼핑}) {
         }
       }
 
-    const onMouseEnterShowBtnBox =(e)=>{
+      const onMouseEnterShowBtnBox =(e)=>{
         e.preventDefault();
         $(e.target).next().animate({opacity :1}, 200)
         $(e.target).next().css({ transform : "translateY(0)"})
     }
     const onMouseLeaveHideBtnBox=(e)=>{
         e.preventDefault();
-        $(e.target).next().animate({opacity:0},200)
-        $(e.target).next().css({transform : "translateY(200%)"})
+        $('.button-box').animate({opacity:0},200)
+        $('.button-box').css({transform : "translateY(200%)"})
     }
+
 
     const [cart, setCart] = React.useState({
         option1: '',
@@ -294,9 +295,9 @@ function Section9Component({쇼핑}) {
                                             return (
                                                 <li>
                                                     <div className="sec9left-product">
-                                                        <div onMouseEnter={onMouseEnterShowBtnBox} onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
+                                                        <div  onMouseLeave={onMouseLeaveHideBtnBox} className="img-box">
                                                             <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
-                                                                <img className='sec9product' src={`img/product/${item.이미지}`} alt="" />
+                                                                <img className='sec9product' src={`img/product/${item.이미지}`} alt="" onMouseEnter={onMouseEnterShowBtnBox}/>
                                                                 <div className="button-box">
                                                                     <div className="button">
                                                                         <button onClick={(e) => onClickCart(e, item.제품코드)}><img src="../img/section5/메인021.png" alt="" /></button>

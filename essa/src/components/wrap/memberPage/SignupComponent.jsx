@@ -395,8 +395,16 @@ export default function SignupComponent(props) {
                 success(res) {
                     console.log('AJAX 성공!');
                     console.log(res);
-                    console.log(JSON.parse(res));
-                    window.location.href="#/로그인";
+                    if(res.result=== '1'){
+                        alert('회원가입 되었습니다.');
+                        window.location.href="#/로그인";
+                    }
+                    else if(res.result=== '-2'){
+                        alert('중복된 아이디입니다.다른 아이디를 사용해주세요.');
+                    }
+                    else{
+                        alert('데이터베이스 오류 다시 시도해주세요');
+                    }
                 },
                 error(err) {
                     console.log('AJAX 실패!' + err);
@@ -583,7 +591,7 @@ export default function SignupComponent(props) {
                                                     <option value="1995">1995</option>
                                                     <option value="1996">1996</option>
                                                     <option value="1997">1997</option>
-                                                    <option value="1998">1998</option>
+                                                    <option value="1998" selected>1998</option>
                                                     <option value="1999">1999</option>
                                                     <option value="2000">2000</option>
                                                     <option value="2001">2001</option>

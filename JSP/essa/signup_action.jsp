@@ -5,7 +5,7 @@
 <%@ 
     page 
     language="java" 
-    contentType="text/html; charset=UTF-8"
+    contentType="application/json; charset=UTF-8"
     pageEncoding="UTF-8"
 %>
 
@@ -33,7 +33,19 @@
 
 <%
     UserDAO userDAO = new UserDAO();
-    int result = userDAO.signup(userDTO);
+    int search = userDAO.id_search(userDTO); 
+    int result=0;
+    if(search==-1){
+        result=-2;
+    }
+    else{
+        result = userDAO.signup(userDTO);
+    }
+    
 %>
 
-{"AJAX실행 DTO & DAO 결과":"<%=result%>"}
+<%
+    String jsonData = "{ \"result\": \"" + result + "\"" + "}";
+
+    response.getWriter().write(jsonData);
+%>

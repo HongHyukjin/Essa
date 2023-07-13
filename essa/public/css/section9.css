@@ -91,23 +91,24 @@
   opacity: 0;
   width: 100%;
   position: absolute;
-  bottom: 15px;
+  bottom: 0;
   left: 0;
   transform: translateY(200%);
   background: rgba(255, 255, 255, 0.5);
-  transition: all 0.2s;
+  transition: all 0.3s;
   -webkit-backdrop-filter: blur(4px);
           backdrop-filter: blur(4px);
   cursor: pointer;
-  transition: all 0.5s;
 }
 #section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box a .button-box .button {
   display: flex;
   justify-content: space-around;
+  height: 40px;
 }
 #section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box a .button-box .button button {
   background: none;
   border: 0;
+  cursor: pointer;
 }
 #section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box a .button-box .button button img {
   width: 25px;
