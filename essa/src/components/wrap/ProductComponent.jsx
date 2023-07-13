@@ -94,43 +94,46 @@ export default function ProductComponent() {
       alert('로그인 후 이용해주세요');
       window.location.href='/#/로그인';
     }
-
-    $.ajax({
-      url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
-      type:'post',
-      data:formData,
-      dataType:'json',
-      success(res){
-        console.log('AJAX 성공');
-        console.log(res.result);
-
-        if(res.result === 1){
-          alert('상품이 장바구니에 담겼습니다.');
-          setIsCartModal(false);
-          setCart({
-            ...cart,
-            option1:'',
-            option2:'',
-            cnt:1
-          })
-          setIsClick(!isClick);
+    else{
+      $.ajax({
+        url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
+        type:'post',
+        data:formData,
+        dataType:'json',
+        success(res){
+          console.log('AJAX 성공');
+          console.log(res.result);
+  
+          if(res.result === 1){
+            alert('상품이 장바구니에 담겼습니다.');
+            setIsCartModal(false);
+            setCart({
+              ...cart,
+              option1:'',
+              option2:'',
+              cnt:1
+            })
+            setIsClick(!isClick);
+          }
+          else{
+            console.log(res.result)
+            alert('같은 상품을 담을 수 없습니다');
+            setIsCartModal(false);
+            setCart({
+              ...cart,
+              option1:'',
+              option2:'',
+              cnt:1
+            })
+          }
+        },
+        error(err){
+          console.log('AJAX 실패'+err);
         }
-        else{
-          console.log(res.result)
-          alert('같은 상품을 담을 수 없습니다');
-          setIsCartModal(false);
-          setCart({
-            ...cart,
-            option1:'',
-            option2:'',
-            cnt:1
-          })
-        }
-      },
-      error(err){
-        console.log('AJAX 실패'+err);
-      }
-    })
+      })
+    }
+
+
   }
 
   const onChangeOption1=(e)=>{

@@ -32,6 +32,7 @@ export default function ProductInquiryUpdateComponent (){
     })
 
     React.useEffect(()=>{
+        window.scrollTo(0,0);
         if (localStorage.getItem('COMMUNITY') !== null) {
             let result = JSON.parse(localStorage.getItem('COMMUNITY'));
             setList({

@@ -72,7 +72,8 @@ export default function ProductInquiryComponent (props){
     };
   
     React.useEffect(() => {
-      getlist();
+        window.scrollTo(0,0);
+        getlist();
     }, []);
 
     return (
@@ -86,8 +87,8 @@ export default function ProductInquiryComponent (props){
                         <div className="content">
                             <div className="board_nav">
                                 <ul>
-                                    <li><Link to="/고객센터" className='on'>공지사항</Link></li>
-                                    <li><Link to="/상품문의글목록" className=''>상품문의</Link></li>
+                                    <li><Link to="/고객센터" className=''>공지사항</Link></li>
+                                    <li><Link to="/상품문의글목록" className='on'>상품문의</Link></li>
                                     <li><a className='' href="!#">자주하는 질문</a></li>
                                     <li><a className='' href="!#">AS문의</a></li>
                                     <li><a className='' href="!#">케어서비스</a></li>

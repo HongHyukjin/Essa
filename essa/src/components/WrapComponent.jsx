@@ -19,6 +19,7 @@ import BasketComponent from './wrap/mypage/BasketComponent';
 import UpdateComponent from './wrap/mypage/UpdateComponent';
 import IdSearchComponent from './wrap/memberPage/IdSearchComponent'
 import PwSearchComponent from './wrap/memberPage/PwSearchComponent';
+import MyProductInquiryComponent from './wrap/mypage/MyProductInquiryComponent';
 
 export default function WrapComponent ()  {
     return (
@@ -32,6 +33,7 @@ export default function WrapComponent ()  {
                     <Route path='/쇼핑' element={<ProductComponent />}/>
                     <Route path='/상세보기' element={<ProductDetailComponent />}/>
                     <Route path='/마이페이지' element={<MypageComponent/>}/>
+                    <Route path='/1대1문의' element={<MyProductInquiryComponent />}/>
                     <Route path='/찜페이지' element={<ZzimComponent/>}/>
                     <Route path='/쇼핑' element={<ProductComponent />}/>
                     <Route path='/쇼핑/상세보기/:id' element={<ProductDetailComponent />}/>

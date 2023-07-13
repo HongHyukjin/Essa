@@ -92,6 +92,10 @@ export default function ProductWriteFormComponent (props){
         })
     }
 
+    React.useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
+
     return (
         <>
             <HeaderComponent/>

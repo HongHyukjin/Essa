@@ -28,7 +28,7 @@ export default function MypageNavComponent() {
             <li className='sub-menu-tit'>
               고객센터
               <ul className='sub-menu-detail'>
-                <li className='detail-tit'>1:1 문의</li>
+                <li className='detail-tit'><Link to="/1대1문의">1:1 문의</Link></li>
               </ul>
             </li>
             <li className='sub-menu-tit'>

@@ -19,8 +19,8 @@ export default function ProductInquiryViewComponent (props){
     })
     
     const [data, setData] = useState({
-        view:{}
-       
+        view:{},
+        canUpdate : false
     });
 
     const {view,updata}=data;
@@ -28,12 +28,19 @@ export default function ProductInquiryViewComponent (props){
     
 
     React.useEffect(()=>{
+        window.scrollTo(0,0);
+        let view = [];
+        let canUpdate = false;
         if (localStorage.getItem('COMMUNITY') !== null) {
             let result = JSON.parse(localStorage.getItem('COMMUNITY'));
+            view = result[0];
+            if(result[0].user_id === sessionStorage.getItem('user_id')){
+                canUpdate = true;
+            }
             setData({
                 ...data,
-                view: result[0]
-                
+                view: view,
+                canUpdate : canUpdate
             })
             console.log(data.view)
         }
@@ -65,6 +72,7 @@ export default function ProductInquiryViewComponent (props){
         }
     }
     React.useEffect(()=>{
+        window.scrollTo(0,0);
         getList();
     },[]);
 
@@ -123,8 +131,14 @@ export default function ProductInquiryViewComponent (props){
                             </div>
                         </div>
                         <div className="btn_right_box">
-                            <button><Link to='/상품문의글수정폼'>수정</Link> </button>
-                            <button onClick={onClickDelete}>삭제</button>
+                            {
+                                data.canUpdate && (
+                                    <>
+                                        <button><Link to='/상품문의글수정폼'>수정</Link> </button>
+                                        <button onClick={onClickDelete}>삭제</button>
+                                    </>
+                                )
+                            }
                             <button><Link to='/상품문의글목록'>목록</Link> </button>
                         </div>
                     </div>
