@@ -10,7 +10,7 @@ public class ZzimDAO {
   public ZzimDAO(){
     try{
       String URL = "jdbc:mysql://localhost:3306/essa";
-      String ID = "essa";
+      String ID = "root";
       String PW = "1234";
       // 1. 데이터베이스 드라이버(JDBC)   
       Class.forName("com.mysql.jdbc.Driver");
@@ -46,6 +46,23 @@ public class ZzimDAO {
           
         }
         return -1;
+  }
+
+  public int zzim_search(ZzimDTO zzimDTO) {
+      String SQL = "select * from zzim where user_id=? and product_num=?";
+      try {
+          ps = conn.prepareStatement(SQL);
+          ps.setString(1, zzimDTO.getUser_id());
+          ps.setInt(2, zzimDTO.getProduct_num());
+          rs = ps.executeQuery();
+          if (rs.next()) {
+              return -1;
+          }
+
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+      return 1;
   }
 
   public List<ZzimDTO> select(String user_id){

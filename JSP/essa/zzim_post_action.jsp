@@ -17,7 +17,14 @@
 
 <%
     ZzimDAO zzimDAO = new ZzimDAO();
-    int result = zzimDAO.post(zzimDTO);
+    int search = zzimDAO.zzim_search(zzimDTO);
+    int result = 0;
+    if(search == -1){
+        result = -1;
+    }
+    else{
+        result = zzimDAO.post(zzimDTO);
+    }
 %>
 
-{"result":"<%=result%>"}
+{"result":<%=result%>}

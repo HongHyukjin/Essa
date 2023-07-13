@@ -16,18 +16,41 @@ export default function Section6Component({쇼핑}){
         })
     }, [쇼핑])
 
-    const setViewProduct = (value) =>{
+    const setViewProduct = (value) => {
         let arr = [];
-        if(localStorage.getItem('최근본상품')!==null){
+        if (localStorage.getItem('최근본상품') !== null) {
           arr = JSON.parse(localStorage.getItem('최근본상품'));
-          arr = [value, ...arr]
-          localStorage.setItem('최근본상품', JSON.stringify(arr) );  
+          let tmp = [];
+          let dup = false;
+          if(arr.length > 4){
+            tmp = arr.slice(0,4);
+            for(let i=0; i<tmp.length; i++){
+              if(tmp[i].제품코드 === value.제품코드){
+                dup = true;
+              }
+            }
+            if(dup === false){
+              arr = [value, ...arr];
+            }
+          }
+          else{
+            tmp = arr;
+            for(let i=0; i<tmp.length; i++){
+              if(tmp[i].제품코드 === value.제품코드){
+                dup = true;
+              }
+            }
+            if(dup === false){
+              arr = [value, ...arr];
+            }
+          }
+          localStorage.setItem('최근본상품', JSON.stringify(arr));
         }
         else {
-            arr = [value]
-            localStorage.setItem('최근본상품', JSON.stringify(arr) );
-        }     
-    }
+          arr = [value]
+          localStorage.setItem('최근본상품', JSON.stringify(arr));
+        }
+      }
 
     const onClickProduct = (e, item) => {
         // e.preventDefault();

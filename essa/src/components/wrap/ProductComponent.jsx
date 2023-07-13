@@ -207,6 +207,8 @@ export default function ProductComponent() {
   }
 
   React.useEffect(()=>{
+      console.log('프로덕트 컴포넌트')
+      window.scrollTo(0,0);
       localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
       getProduct();
   },[]);
@@ -381,7 +383,30 @@ export default function ProductComponent() {
     let arr = [];
     if (localStorage.getItem('최근본상품') !== null) {
       arr = JSON.parse(localStorage.getItem('최근본상품'));
-      arr = [value, ...arr]
+      let tmp = [];
+      let dup = false;
+      if(arr.length > 4){
+        tmp = arr.slice(0,4);
+        for(let i=0; i<tmp.length; i++){
+          if(tmp[i].제품코드 === value.제품코드){
+            dup = true;
+          }
+        }
+        if(dup === false){
+          arr = [value, ...arr];
+        }
+      }
+      else{
+        tmp = arr;
+        for(let i=0; i<tmp.length; i++){
+          if(tmp[i].제품코드 === value.제품코드){
+            dup = true;
+          }
+        }
+        if(dup === false){
+          arr = [value, ...arr];
+        }
+      }
       localStorage.setItem('최근본상품', JSON.stringify(arr));
     }
     else {
@@ -393,7 +418,7 @@ export default function ProductComponent() {
   const onClickProduct = (e, item) => {
     // e.preventDefault();
     let obj = {
-      제품코드: item.제폼코드,
+      제품코드: item.제품코드,
       이미지: item.이미지,
       제품명: item.제품명,
       원가: item.원가,
@@ -425,9 +450,11 @@ export default function ProductComponent() {
       url: 'http://localhost:8080/JSP/essa/zzim_post_action.jsp',
       type: 'POST',
       data: formData,
+      dataType:'json',
       success(res) {
         console.log('AJAX 성공!');
         console.log(res);
+        console.log(res.result);
         if(res.result === 1){
           alert('상품이 찜 리스트에 담겼습니다!')
         }
