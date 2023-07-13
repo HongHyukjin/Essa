@@ -69,33 +69,40 @@ export default function Section5Component({쇼핑}) {
     const onClickZzim = (e, item) => {
         e.preventDefault();
         let user_id = '';
-        if(sessionStorage.getItem('user_id') === null){
-          user_id = 'gurwlszx';
+        if (sessionStorage.getItem('user_id') === null) {
+          alert('로그인 후 이용해주세요');
+          window.location.href='/#/로그인';
         }
-        else{
+        else {
           user_id = sessionStorage.getItem('user_id');
-        }
-        const formData = {
-          "user_id" : user_id,
-          "product_num" : item.제품코드,
-          "amount" : 1
-        }
-    
-        $.ajax({
-          url : 'http://localhost:8080/JSP/essa/zzim_post_action.jsp',
-          type : 'POST',
-          data : formData,
-          success(res){
+          const formData = {
+            "user_id": user_id,
+            "product_num": item.제품코드,
+            "amount": 1
+          }
+      
+          $.ajax({
+            url: 'http://localhost:8080/JSP/essa/zzim_post_action.jsp',
+            type: 'POST',
+            data: formData,
+            dataType:'json',
+            success(res) {
               console.log('AJAX 성공!');
               console.log(res);
-              console.log(JSON.parse(res));
-              alert('상품이 찜 리스트에 담겼습니다!')
-          },
-          error(err){
-            console.log('AJAX 실패!' + err);
-          }
-        })
-    }
+              console.log(res.result);
+              if(res.result === 1){
+                alert('상품이 찜 리스트에 담겼습니다!')
+              }
+              else{
+                alert('같은 상품을 담을 수 없습니다')
+              }
+            },
+            error(err) {
+              console.log('AJAX 실패!' + err);
+            }
+          })
+        }
+      }
 
     const onMouseEnterShowBtnBox = (e) => {
         e.preventDefault();

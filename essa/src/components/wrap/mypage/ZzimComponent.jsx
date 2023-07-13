@@ -244,7 +244,7 @@ function ZzimComponent(props) {
                                                 </thead>
                                                 <tbody>
                                                     {
-                                                        zzim.length === 0 && (
+                                                        zzim.length === 0 && product.length === 0 && (
                                                             <tr className='info-answer'>
                                                                 <td colSpan="6">
                                                                     <p>찜리스트에 상품이 없습니다.</p>
@@ -253,7 +253,7 @@ function ZzimComponent(props) {
                                                         )
                                                     }
                                                     {
-                                                        zzim.length !== 0 && (
+                                                        zzim.length !== 0 && product.length !== 0 && (
                                                             zzim.map((item,idx) => {
                                                                 return (
                                                                         <tr key={idx}>
