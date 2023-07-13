@@ -61,6 +61,23 @@ public class UserDAO {
         return -1;
     }
 
+    public int id_search(UserDTO userDTO){
+        String SQL ="select * from essa_member where user_id=?";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1,userDTO.getUser_id());
+
+            rs = ps.executeQuery();
+            if(rs.next()){ 
+                return -1; 
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 1;
+    }
+
     // 로그인
 
     public int signin(String user_id, String user_pw){
