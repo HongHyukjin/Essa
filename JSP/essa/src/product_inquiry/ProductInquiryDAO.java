@@ -83,16 +83,16 @@ public class ProductInquiryDAO {
     public List<ProductInquiryDTO> select(String user_id){
         ProductInquiryDTO productInquiryDTO = null;
         List<ProductInquiryDTO> list = new ArrayList<>();
-        String SQL = "SELECT * FROM essa_member e join product_inquiry p where e.user_id=? && p.user_id=?";
+        String SQL = "SELECT * FROM product_inquiry where user_id=?";
         try {
             ps = conn.prepareStatement(SQL);
             ps.setString(1, user_id);
-            ps.setString(2, user_id);
             rs = ps.executeQuery();
             while(rs.next()){
                 productInquiryDTO = new ProductInquiryDTO();
-                productInquiryDTO.setIdx(rs.getInt("p.idx"));
+                productInquiryDTO.setIdx(rs.getInt("idx"));
                 productInquiryDTO.setCategory(rs.getString("category"));
+                productInquiryDTO.setUser_id(rs.getString("user_id"));
                 productInquiryDTO.setUser_name(rs.getString("user_name"));
                 productInquiryDTO.setSubject(rs.getString("subject"));
                 productInquiryDTO.setContent(rs.getString("content"));
