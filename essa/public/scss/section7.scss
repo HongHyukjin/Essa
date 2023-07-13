@@ -11,16 +11,23 @@
                 .slide-container {
                     width:100%;
                     padding-left:400px;
-                    .slide-view {
+                    
+                    .slide-gap{
+                        width: 100%;
                         overflow:hidden;
+
+                        .slide-view {
+                        position: relative;  
+                        width : 396.719px * 6;                      
+                        
                         display:flex;
                         .slide-wrap {
-                            width : 396.719px * 6;
+                            width:396.719px;
                             display:flex;
-                            padding: 0 11px;
+                            margin: 0 11px;
                             position: relative;
                             .slide {
-                                width:396.719px;
+                                
                                 position: relative;
                                 .img-box {
                                     position: relative;
@@ -116,6 +123,8 @@
                             }
                         }
                     }
+                    }
+                    
                 }
             }
         }
