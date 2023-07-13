@@ -65,7 +65,6 @@ export default function BoardComponent(props){
                                         <col Style ="width:6%"/>
                                         <col Style ="width:37%"/>
                                         <col Style ="width:7%"/>
-                                        <col Style ="width:15%"/>
                                         <col Style ="width:6%"/>
                                     </colgroup>
                                     <thead>

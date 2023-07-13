@@ -82,24 +82,11 @@ export default function BoardViewComponent (props){
                                 </div>
                                 <div className="board_view_content">
                                     <div className="seem_cont">
-                                        {/* <ul>
-                                            <li><b>2022년 설날 연휴 고객센터 조기 업무종료 안내</b></li>
-                                            <li><span>■ C/S(콜센터) 조기 업무종료 안내 ■</span></li>
-                                            <li><span>에싸 콜센터 : 1월 28일(금) 오후 4시 업무 종료</span></li>
+                                        <ul>
                                             <li>
-                                                <span>
-                                                    궁금하신 사항은 에싸몰
-                                                    <b>게시판을 이용</b>
-                                                    해주시면
-                                                </span>
+                                                <p dangerouslySetInnerHTML={{ __html: (notice && notice.내용) ? notice.내용.replace(/\n/g, '<br>') : '' }}></p>
                                             </li>
-                                            <li>신속히 답변드리도록 하겠습니다.</li>
-                                        </ul> */}
-                                            {/* <p dangerouslySetInnerHTML={{ __html: notice.내용.replace(/\n/g, '<br>') }}></p> */}
-                                            {/* {notice.내용} */}
-                                            <p dangerouslySetInnerHTML={{ __html: (notice && notice.내용) ? notice.내용.replace(/\n/g, '<br>') : '' }}></p>
-                                            {/* <p id='result'></p> */}
-                                            {/* {document.getElementById("result").innerHTML=notice.내용} */}
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
