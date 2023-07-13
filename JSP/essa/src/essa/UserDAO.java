@@ -12,7 +12,7 @@ public class UserDAO {
     public UserDAO(){
         try{
             String URL = "jdbc:mysql://localhost:3306/essa";
-            String ID = "essa";
+            String ID = "root";
             String PW = "1234";
             // 1. 데이터베이스 드라이버(JDBC)
             Class.forName("com.mysql.jdbc.Driver");
@@ -44,6 +44,7 @@ public class UserDAO {
             
             return ps.executeUpdate();
         } catch(Exception e){
+
             
             e.printStackTrace();
         }
@@ -67,7 +68,7 @@ public class UserDAO {
         try {
             ps = conn.prepareStatement(SQL);
             ps.setString(1, user_id);
-            
+
             rs = ps.executeQuery();
             if(rs.next()){
                 if(rs.getString("user_pw").equals(user_pw)){
@@ -166,4 +167,66 @@ public class UserDAO {
         }
         return userDTO;
     }
+
+        // 아이디 찾기 (이메일, 이름)
+    public String idSearch(String user_name, String user_email){
+        String SQL = "select user_id FROM essa_member WHERE user_name=? and user_email=?";
+        String result = "";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_name);
+            ps.setString(2, user_email);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                result = rs.getString("user_id");
+            }
+            return result;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+        // 아이디 찾기 (번호, 이름)
+        public String idSearch2(String user_name, String user_hp){
+            String SQL = "select user_id FROM essa_member WHERE user_name=? and user_hp=?";
+            String result = "";
+            try {
+                ps = conn.prepareStatement(SQL);
+                ps.setString(1, user_name);
+                ps.setString(2, user_hp);
+                rs = ps.executeQuery();
+                while(rs.next()){
+                    result = rs.getString("user_id");
+                }
+                return result;
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            return result;
+        }
+
+    // 비밀번호 찾기
+    public String pwSearch(String user_id, String user_name){
+        String SQL = "select user_pw FROM essa_member WHERE user_id=? and user_name=?";
+        String result = "";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setString(1, user_id);
+            ps.setString(2, user_name);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                result = rs.getString("user_pw");
+            }
+            return result;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    
 }

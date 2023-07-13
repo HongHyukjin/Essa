@@ -20,6 +20,7 @@ public class ProductInquiryDTO {
     public void setIdx(int idx) {
         this.idx = idx;
     }
+    
 
     public String getCategory() { 
         return this.category;

@@ -21,6 +21,7 @@ public class ZzimDAO {
     catch(Exception e){
         e.printStackTrace();
     }   
+    
   } 
 
   public int post(ZzimDTO zzimDTO){

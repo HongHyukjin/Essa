@@ -23,6 +23,7 @@ public class ProductInquiryDAO {
         }
         catch(Exception e){
             e.printStackTrace();
+            
         }
     }    
       

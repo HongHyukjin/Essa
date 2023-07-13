@@ -114,9 +114,7 @@
   width: 775px;
 }
 #basket .container .gap .row2 .row2-cart table thead tr th input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   width: 20px;
   height: 20px;
   background: url(../img/product/check_off_small.png) no-repeat 50% 50%;
@@ -145,9 +143,7 @@
   border-right-color: transparent;
 }
 #basket .container .gap .row2 .row2-cart table tbody tr td:nth-child(1) input {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   width: 20px;
   height: 20px;
   background: url(../img/product/check_off_small.png) no-repeat 50% 50%;
