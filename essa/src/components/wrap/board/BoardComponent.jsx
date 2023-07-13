@@ -13,6 +13,7 @@ export default function BoardComponent(props){
     const itemsPerPage = 10;
 
     React.useEffect(() => {
+        window.scrollTo(0,0);
         axios({
             url: './data/notice_page/board.json',
             method:'GET'

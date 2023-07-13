@@ -72,6 +72,7 @@ export default function ProductInquiryViewComponent (props){
         }
     }
     React.useEffect(()=>{
+        console.log('!')
         window.scrollTo(0,0);
         getList();
     },[]);

@@ -20,7 +20,7 @@ export default function BoardViewComponent (props){
     const {notice} = state;
 
     React.useEffect(()=>{
-
+        window.scrollTo(0,0);
         axios({
             url:'./data/notice_page/board.json',
             method:'GET',
