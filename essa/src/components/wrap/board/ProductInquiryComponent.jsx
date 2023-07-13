@@ -3,31 +3,77 @@ import './board_scss/product_inquiry.scss';
 import { Link } from 'react-router-dom';
 import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import $ from 'jquery';
 
 export default function ProductInquiryComponent (props){
+  
+  
     const [inquiry, setInquiry] = React.useState([]);
-
-    const getlist =()=>{
-        axios({
-            url :'http://localhost:8080/JSP/essa/product_inquiry_select.jsp', // select, selectall 두개 있음 참고 
-            method: 'GET'
-        })
-        .then((res)=>{
-            if(res.status === 200){
-                console.log(res.data);
-            }
-        })
-        .catch((err)=>{
-
-        })
+    const [key,setKey] =React.useState({
+        key:'COMMUNITY',
+        list :[]
+    });
+      
+    const setList=(value)=>{
+        let arr=[];
+        if(localStorage.getItem('COMMUNITY')!==null){
+            arr=JSON.parse(localStorage.getItem('COMMUNITY'));
+            arr=[value, ...arr]
+            localStorage.setItem('COMMUNITY',JSON.stringify(arr));
+            setKey({
+                ...key,
+                list:arr
+            })
+        }
+        else{
+            arr=[value]
+            localStorage.setItem('COMMUNITY',JSON.stringify(arr));
+            setKey({
+                ...key,
+                list:arr
+            })
+        }
     }
 
-    React.useEffect(()=>{
-        getlist();
-    },[])
+    const onClickList=(e, item)=>{
+       
+        let obj ={
+            idx:item.idx,
+            user_id:item.user_id,
+            user_name:item.user_name,
+            subject:item.subject,
+            content:item.content,
+            category:item.category,
+            write_date:item.write_date,
+        }
+        console.log(obj);   
+        setList(obj);
+            
 
+    }
 
+    const getlist = async () => {
+      $.ajax({
+        url:'http://localhost:8080/JSP/essa/product_inquiry_selectall.jsp',
+        type:'GET',
+        dataType:'JSON',
+        success(res){
+            console.log('AJAX 성공')
+            console.log(res.result)
+            setInquiry(res.result)
+            window.location.href='#/상품문의글목록'
+        },
+        error(err){
+            console.log('AJAX 실패'+ err);
+        }
+      })
+    };
+  
+    React.useEffect(() => {
+      getlist();
+    }, []);
 
     return (
         <>
@@ -77,209 +123,29 @@ export default function ProductInquiryComponent (props){
                                                 <th>카테고리</th>
                                                 <th>제목</th>
                                                 <th>작성자</th>
-                                                <th>문의상태</th>
-                                                <th>답변시간</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 19:50 </td>
-                                                <td> [상품] </td>
-                                                <td className='board_tit'>
-                                                    <Link to="/상품문의글내용">
-                                                        <strong>상품문의입니다.</strong>
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
-                                                        <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
-                                                    </Link>     
-                                                </td>
-                                                <td> 신** </td>
-                                                <td> 접수 </td>
-                                                <td> 2023.06.27 </td>
-                                            </tr>
-                            
+                                            {
+                                                inquiry.map((item,idx)=>{
+                                                    return(
+                                                <tr key={idx} onClick={(e)=>onClickList(e,item)} >
+                                                    <td> {item.write_date} </td>
+                                                    <td> {item.category}</td>
+                                                    <td className='board_tit'>
+                                                        <Link to={`/상품문의글내용/${item.idx}`}>
+                                                            <strong>{item.subject}</strong>
+                                                            <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_attach_file.png" alt="" />
+                                                            <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/skin/front/essa2023/board/skin/qa/img/icon/icon_board_new.png" alt="" />
+                                                        </Link>     
+                                                    </td>
+                                                    <td> {item.user_id} </td>
+                                                </tr>
+                                                    )    
+                                                })
+                                            }
                                         </tbody>
+                                        
                                     </table>
                                 
                                 </div>

@@ -15,6 +15,7 @@ public class UserDTO {
     private String user_birth_month;
     private String user_birth_date;
     private String user_agr1;
+    
     private String user_agr2;
     private String create_date;
 

@@ -83,11 +83,11 @@
   position: relative;
   overflow: hidden;
 }
-#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box .sec9product {
+#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box a .sec9product {
   width: 233.906px;
   height: 167.234px;
 }
-#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box .button-box {
+#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box a .button-box {
   opacity: 0;
   width: 100%;
   position: absolute;
@@ -100,15 +100,15 @@
   cursor: pointer;
   transition: all 0.5s;
 }
-#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box .button-box .button {
+#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box a .button-box .button {
   display: flex;
   justify-content: space-around;
 }
-#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box .button-box .button button {
+#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box a .button-box .button button {
   background: none;
   border: 0;
 }
-#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box .button-box .button button img {
+#section9 .container .gap .row3 .content .left-box ul li .sec9left-product .img-box a .button-box .button button img {
   width: 25px;
   height: 24px;
 }
@@ -118,11 +118,12 @@
   display: flex;
   flex-flow: column;
   margin-top: 15px;
+  font-family: "Pretendard";
 }
 #section9 .container .gap .row3 .content .left-box ul li .sec9left-product .title-box .sec9name {
   cursor: pointer;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   color: #1e1e1e;
   line-height: 19.2px;
   margin-bottom: 10px;
@@ -145,6 +146,24 @@
   width: 64px;
   height: 20px;
   margin-left: 9px;
+}
+#section9 .container .gap .row3 .content .left-box ul li .sec9left-product a {
+  margin: 20px 0 0 10px;
+  display: block;
+  width: 100%;
+}
+#section9 .container .gap .row3 .content .left-box ul li .sec9left-product a i {
+  font-size: 20px;
+  vertical-align: top;
+  margin-right: 6px;
+  color: #686868;
+}
+#section9 .container .gap .row3 .content .left-box ul li .sec9left-product a span {
+  font-size: 14px;
+  color: #676767;
+  line-height: 20px;
+  vertical-align: top;
+  font-weight: 500;
 }
 #section9 .container .gap .row3 .content .right-box {
   width: 50%;

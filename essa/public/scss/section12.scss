@@ -58,6 +58,7 @@
                     box-shadow: 0 1px 15px 0 rgba(0,0,0,.2);
                     img {
                         position: absolute;
+                        user-select:none;
                         &:nth-child(1){
                             top: 330px;
                             right: 0px;

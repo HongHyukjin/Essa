@@ -36,7 +36,7 @@ function SigninComponent(props) {
                                             <img src="../img/icon_caution.png" alt="" />
                                             <label htmlFor="saveId" className='check-on'>주문번호와 비밀번호를 잊으신 경우, 고객센터로 문의하여 주시기 바랍니다.</label>
                                         </span>
-                                    </div>               
+                                    </div>
                                 </div>
                                 <div className="login-btn-box">
                                     <button type='submit' className='member-login-btn'>조회하기</button>

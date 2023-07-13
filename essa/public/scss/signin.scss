@@ -97,7 +97,7 @@
                             display:flex;
                             justify-content: flex-end;
                             li {
-                                > label {
+                                .btnFindId {
                                     background: none;
                                     border:0;
                                     cursor: pointer;

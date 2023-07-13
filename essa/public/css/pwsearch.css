@@ -29,6 +29,17 @@
   display: flex;
   width: 100%;
 }
+#pwsearch .container .gap .content form .find-id-box .choose-btn .title-2 li {
+  font-size: 18px;
+  color: #222;
+  font-weight: 500;
+  line-height: 27px;
+}
+#pwsearch .container .gap .content form .find-id-box .choose-btn .title-2 li p {
+  font-size: 14px;
+  line-height: 21px;
+  color: #bebebc;
+}
 #pwsearch .container .gap .content form .find-id-box .idsearch-main-box {
   display: flex;
 }

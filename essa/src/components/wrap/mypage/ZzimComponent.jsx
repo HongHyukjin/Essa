@@ -3,49 +3,48 @@ import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
 import $ from 'jquery';
 import axios from 'axios';
+import MypageNavComponent from './MypageNavComponent';
 
 function ZzimComponent(props) {
 
-    
     const [state,setState] = React.useState({
         이름 : '',
-        아이디 : ''
-    });
-
-    const getUserData = async () => {
-        try {
-            const user_id = sessionStorage.getItem('user_id');
-            const form_data = {
-                "user_id" : user_id
-            };
-
-            const res = await $.ajax({
-                url : 'http://localhost:8080/JSP/essa/update_getjoin_action.jsp',
-                type : 'POST',
-                data : form_data,
-                dataType : 'json'
-            });
-
-            console.log('ajax 성공');
-            console.log(res.result);
-            setState((prevState)=>({
-                ...prevState,
-                이름 : res.result.이름 === "null" ? '' : res.result.이름,
-                아이디 : res.result.아이디 === "null" ? '' : res.result.아이디
-            }));
-        }
-        catch (err) {
-            console.log('ajax 실패' + err);
-        }
-    }
-
-    React.useEffect(()=>{
-        getUserData();
-    },[])
+        아이디 : '',
+        checked : []
+    })
 
     const [zzim,setZzim] = React.useState([]);
 
     const [product,setProduct] = React.useState([]);
+
+    const [isDelModal, setIsDelModal] = React.useState(false);
+
+    const onClickDelModal = (e,value) => {
+    
+        if(value==='확인'){
+            for (let i = 0; i < state.checked.length; i++) {
+                const formData = {
+                    "user_id": sessionStorage.getItem('user_id'),
+                    "product_num": Number(state.checked[i])
+                }
+                $.ajax({
+                    url : 'http://localhost:8080/JSP/essa/zzim_delete_action.jsp',
+                    type : 'POST',
+                    data : formData,
+                    dataType : 'json',
+                    success(res){
+                        console.log('AJAX 성공');
+                        console.log(res);
+                        window.location.reload();
+                    },
+                    error(err){
+                        console.log('AJAX 실패');
+                    }
+                })
+            }
+        }
+        setIsDelModal(false);
+    }
 
     const myStyle = {
         width: '100px'
@@ -58,14 +57,36 @@ function ZzimComponent(props) {
         width : '204px'
     };
 
+    const getUserData = async () => {
+        try {
+            const user_id = sessionStorage.getItem('user_id');
+            const form_data = {
+                "user_id" : user_id
+            };
+
+            const res = await $.ajax({
+                url : 'http://localhost:8080/JSP/essa/update_getjoin_action.jsp',
+                type : 'POST',
+                data : form_data,
+                dataType: 'json'
+            });
+
+            console.log('ajax 성공');
+            console.log(res.result);
+            setState((prevState)=>({
+                ...prevState,
+                이름 : res.result.이름 === "null" ? '' : res.result.이름,
+                아이디 : res.result.아이디 === "null" ? '' : res.result.아이디
+            }));
+        }
+        catch (err){
+            console.log('ajax 실패' + err);
+        } 
+    }
+
     const getZzim = () => {
         let user_id = '';
-        if(sessionStorage.getItem('user_id') === null){
-        user_id = 'gurwlszx';
-        }
-        else{
         user_id = sessionStorage.getItem('user_id');
-        }
         const formData = {
             user_id : user_id
         }
@@ -77,7 +98,6 @@ function ZzimComponent(props) {
             success(res){
                 console.log('AJAX 성공');
                 console.log(res);
-                // console.log(JSON.parse(res));
                 setZzim(res.result);
             },
             error(err){
@@ -101,8 +121,9 @@ function ZzimComponent(props) {
     }
     
     React.useEffect(()=>{
-        getZzim();
+        getUserData();
         getProduct();
+        getZzim();
     },[]);
 
     const onClickDeleteZzim =(e,item) => {
@@ -126,14 +147,52 @@ function ZzimComponent(props) {
             success(res){
                 console.log('AJAX 성공');
                 console.log(res);
-                // console.log(JSON.parse(res));
-                setZzim(res.result);
-                // setClickBtn(!clickBtn);
                 window.location.reload();
             },
             error(err){
                 console.log('AJAX 실패');
             }
+        })
+    }
+
+    const onClickDeleteCheck = (e) => {
+        e.preventDefault();
+        setIsDelModal(true);
+    }
+
+    const onClickCheckAll = (e) => {
+        let checked = [];
+        console.log('check all')
+
+        if (e.target.checked) {
+            for (let i = 0; i < zzim.length; i++) {
+                checked = [...checked, zzim[i].product_num];
+            }
+        }
+        else {
+            checked = [];
+        }
+
+        setState({
+            ...state,
+            checked: checked,
+        })
+    }
+
+    const onClickCheck = (e, value) => {
+
+        let checked = state.checked;
+
+        if (e.target.checked) {
+            checked = [...checked, (value)];
+        }
+        else {
+            checked = checked.filter((item) => item !== value);
+        }
+
+        setState({
+            ...state,
+            checked: checked,
         })
     }
 
@@ -145,50 +204,7 @@ function ZzimComponent(props) {
             <div className="container">
                 <div className="gap">
                     <div className="content">
-                        <div className="left-box">
-                            <div className="sub-menu-box">
-                                <h2>마이페이지</h2>
-                                <ul className='sub-menu-mypage'>
-                                    <li className='sub-menu-tit'>
-                                        쇼핑정보
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'>주문목록 / 배송조회</li>
-                                            <li className='detail-tit'>취소 / 반품 /교환내역</li>
-                                            <li className='detail-tit'>환불 / 입금내역</li>
-                                            <li className='detail-tit'>찜리스트</li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        혜택관리
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'>쿠폰</li>
-                                            <li className='detail-tit'>예치금</li>
-                                            <li className='detail-tit'>마일리지</li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        고객센터
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'>1:1 문의</li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        회원정보
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'>회원정보 변경</li>
-                                            <li className='detail-tit'>회원 탈퇴</li>
-                                            <li className='detail-tit'>배송지 관리</li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        나의 상품문의
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        나의 플러스리뷰
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <MypageNavComponent />
                         <div className="right-box">
                             <div className="mypage-main">
                                 <div className="mypage-row1">
@@ -217,7 +233,7 @@ function ZzimComponent(props) {
                                                     <tr>
                                                         <th style={myStyle}>
                                                             <div className="form-check">
-                                                                <input type="checkbox" id='allCheck' name='allCheck'  />
+                                                                <input type="checkbox" id='allCheck' name='allCheck' onClick={onClickCheckAll} checked={state.checked.length === zzim.length} />
                                                             </div>
                                                         </th>
                                                         <th style={myStyle2}>상품명/옵션</th>
@@ -243,13 +259,13 @@ function ZzimComponent(props) {
                                                                         <tr key={idx}>
                                                                             <td>
                                                                                 <div className="form-check">
-                                                                                    <input type="checkbox" id='allCheck' name='allCheck'  />
+                                                                                    <input type="checkbox" id='Check' name='Check' onClick={(e) => onClickCheck(e, item.product_num)} checked={state.checked.includes(item.product_num)}/>
                                                                                 </div>
                                                                             </td>
                                                                             <td className='td_left'>
                                                                                 <div className="pick_add_cont">
                                                                                     <span className='pick_add_img'>
-                                                                                        <a href="!#"><img src={product[item.product_num-1].이미지} alt="" /></a>
+                                                                                        <a href="!#"><img src={`./img/product/${product[item.product_num-1].이미지}`} alt="" /></a>
                                                                                     </span>
                                                                                     <div className="pick_add_info">
                                                                                         <em>
@@ -259,7 +275,7 @@ function ZzimComponent(props) {
                                                                                 </div>
                                                                             </td>
                                                                             <td>
-                                                                                <strong>{product[item.product_num-1].할인가}</strong>
+                                                                                <strong>{product[item.product_num-1].할인가===0?product[item.product_num-1].원가.toLocaleString('ko-KR'):product[item.product_num-1].할인가.toLocaleString('ko-KR')}</strong>
                                                                                 /{item.amount}개
                                                                                 <div class="btn_gray_list">
                                                                                     <a href="!#">
@@ -273,16 +289,13 @@ function ZzimComponent(props) {
                                                                                         <em>할인</em>
                                                                                         <span>
                                                                                             상품
-                                                                                            <strong>-330,000원</strong>
+                                                                                            <strong>{product[item.product_num-1].할인가===0?'-0원':`-${(product[item.product_num-1].원가/100*product[item.product_num-1].할인율).toLocaleString('ko-KR')}원`}</strong>
                                                                                         </span>
                                                                                     </li>
                                                                                 </ul>
                                                                             </td>
                                                                             <td>
                                                                                 <div>
-                                                                                    <a href="!#" className='btn_wish_cart'>
-                                                                                        <em>장바구니</em>
-                                                                                    </a>
                                                                                     <a href="!#" className='btn_wish_del' onClick={(e)=>onClickDeleteZzim(e,item)}>
                                                                                         <em>삭제하기</em>
                                                                                     </a>
@@ -295,8 +308,7 @@ function ZzimComponent(props) {
                                                     }
                                                 </tbody>
                                             </table>
-                                            <button>선택 상품 삭제</button>
-                                            <button>선택 상품 장바구니</button>
+                                            <button onClick={onClickDeleteCheck}>선택 상품 삭제</button>
                                         </div>
                                     </div>
                                 </div>
@@ -306,6 +318,25 @@ function ZzimComponent(props) {
                 </div>
             </div>
         </div>
+            {
+                isDelModal && (
+                    <div className="delete-modal">
+                        <div className="container">
+                            <div className="content">
+                                <div className="txt">
+                                    {state.checked.length > 0 ? <h3>선택하신 {state.checked.length}개상품을 장바구니에서 삭제 하시겠습니까?</h3> : <h3 style={{ "textAlign": "center" }}>선택하신 상품이 없습니다.</h3>}
+
+                                </div>
+                                <div className="btn">
+                                    <button style={{ "width": `${state.checked.length === 0 ? "0" : "50%"}` }} onClick={(e) => onClickDelModal(e, '확인')}>확인</button>
+                                    <button style={{ "width": `${state.checked.length === 0 ? "100%" : "0"}` }} onClick={(e) => onClickDelModal(e, '')}>확인</button>
+                                    <button style={{ "width": `${state.checked.length === 0 ? "0" : "50%"}` }} onClick={(e) => onClickDelModal(e, '취소')}>취소</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         <FooterComponent/>
         </>
     );

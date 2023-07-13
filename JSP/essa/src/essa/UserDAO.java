@@ -19,6 +19,9 @@ public class UserDAO {
 
             // 2. 데이터베이스 인증 & 인가 (URL, ID, PW)
             conn = DriverManager.getConnection(URL, ID, PW);
+            
+            
+
         }
         catch(Exception e){
             e.printStackTrace();
@@ -41,6 +44,7 @@ public class UserDAO {
             
             return ps.executeUpdate();
         } catch(Exception e){
+
             
             e.printStackTrace();
         }
@@ -64,7 +68,7 @@ public class UserDAO {
         try {
             ps = conn.prepareStatement(SQL);
             ps.setString(1, user_id);
-            
+
             rs = ps.executeQuery();
             if(rs.next()){
                 if(rs.getString("user_pw").equals(user_pw)){
@@ -164,7 +168,7 @@ public class UserDAO {
         return userDTO;
     }
 
-    // 아이디 찾기 (이메일, 이름)
+        // 아이디 찾기 (이메일, 이름)
     public String idSearch(String user_name, String user_email){
         String SQL = "select user_id FROM essa_member WHERE user_name=? and user_email=?";
         String result = "";
@@ -223,4 +227,6 @@ public class UserDAO {
         }
         return result;
     }
+
+    
 }

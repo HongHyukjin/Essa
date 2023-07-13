@@ -1,8 +1,9 @@
 import React from 'react';
-import $ from 'jquery';
 import FooterComponent from '../FooterComponent';
 import HeaderComponent from '../HeaderComponent';
+import MypageNavComponent from './MypageNavComponent';
 import {Link} from 'react-router-dom';
+import $ from 'jquery';
 
 function MypageComponent(props) {
 
@@ -44,17 +45,20 @@ function MypageComponent(props) {
     },[])
 
     React.useEffect(() => {
-        if(state.recentProduct.length > 4){
-            setState({
-                ...state,
-                recentProduct : JSON.parse(localStorage.getItem('최근본상품')).slice(0,4)
-            })
-        }
-        else{
-            setState({
-                ...state,
-                recentProduct : JSON.parse(localStorage.getItem('최근본상품'))
-            })
+        window.scrollTo(0,0)
+        if(localStorage.getItem('최근본상품') !== null){
+            if(JSON.parse(localStorage.getItem('최근본상품')).length > 4){
+                setState({
+                    ...state,
+                    recentProduct : JSON.parse(localStorage.getItem('최근본상품')).slice(0,4)
+                })
+            }
+            else{
+                setState({
+                    ...state,
+                    recentProduct : JSON.parse(localStorage.getItem('최근본상품'))
+                })
+            }
         }
     }, [])
 
@@ -65,50 +69,7 @@ function MypageComponent(props) {
             <div className="container">
                 <div className="gap">
                     <div className="content">
-                        <div className="left-box">
-                            <div className="sub-menu-box">
-                                <h2>마이페이지</h2>
-                                <ul className='sub-menu-mypage'>
-                                    <li className='sub-menu-tit'>
-                                        쇼핑정보
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'><a href="!#">주문목록 / 배송조회</a></li>
-                                            <li className='detail-tit'><a href="!#">취소 / 반품 /교환내역</a></li>
-                                            <li className='detail-tit'><a href="!#">환불 / 입금내역</a></li>
-                                            <li className='detail-tit'><Link to="/찜페이지">찜리스트</Link></li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        혜택관리
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'><a href="!#">쿠폰</a></li>
-                                            <li className='detail-tit'><a href="!#">예치금</a></li>
-                                            <li className='detail-tit'><a href="!#">마일리지</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        고객센터
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'><a href="!#">1:1 문의</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        회원정보
-                                        <ul className='sub-menu-detail'>
-                                            <li className='detail-tit'><Link to='/회원정보수정'>회원정보 변경</Link></li>
-                                            <li className='detail-tit'><a href="!#">회원 탈퇴</a></li>
-                                            <li className='detail-tit'><a href="!#">배송지 관리</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        <a href="!#">나의 상품문의</a>
-                                    </li>
-                                    <li className='sub-menu-tit'>
-                                        <a href="!#">나의 플러스리뷰</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        <MypageNavComponent />
                         <div className="right-box">
                             <div className="mypage-main">
                                 <div className="mypage-row1">
@@ -157,7 +118,7 @@ function MypageComponent(props) {
                                 <div className="mypage-row3">
                                     <div className="mypage-order-tit">
                                         <h3>최근 본 상품</h3>
-                                        <span>홍혁진님께서 본 최근 상품입니다.</span>
+                                        <span>{state.이름}님께서 본 최근 상품입니다.</span>
                                     </div>
                                     <div className="product_list">
                                         <ul>
@@ -167,9 +128,9 @@ function MypageComponent(props) {
                                                     return (
                                                         <li>
                                                             <div className="photo_box">
-                                                                <a href="">
-                                                                    <img src={item.이미지} alt="" />
-                                                                </a>
+                                                                <Link to={`/쇼핑/상세보기/${item.제품코드}`} >
+                                                                    <img src={`./img/product/${item.이미지}`} alt="" />
+                                                                </Link>
                                                             </div>
                                                             <div className="info_box">
                                                                 <div className="tit_box">
@@ -179,9 +140,9 @@ function MypageComponent(props) {
                                                                     </a>
                                                                 </div>
                                                                 <div className="money_box">
-                                                                    <span className={`origin_price ${item.할인율===''?'on':''}`}>{item.원가}</span>
-                                                                    <span className='sale_price'>{item.할인가}</span>
-                                                                    <span className='sale_per'>{item.할인율}</span>
+                                                                    <span className={`origin_price ${item.할인율===0?'on':''}`}>{item.원가.toLocaleString('ko-KR')}원</span>
+                                                                    <span className='sale_price'>{item.할인율===0?'':`${item.할인가.toLocaleString('ko-KR')}원`}</span>
+                                                                    <span className='sale_per'>{item.할인율===0?'':`${item.할인율}%`}</span>
                                                                 </div>
                                                                 <div className="icon_box">
                                                                     <img src="https://cdn-pro-web-153-127.cdn-nhncommerce.com/jakomo2_godomall_com/data/icon/goods_icon/i_boutique.png" alt="" />

@@ -307,9 +307,21 @@
   width: 100%;
 }
 #header .container .gap .col.col3 > ul > li > a {
+  position: relative;
   margin: 0 12px;
   display: flex;
   align-items: center;
+}
+#header .container .gap .col.col3 > ul > li > a span {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 800;
+  color: #fff;
+  margin: -5px 0 0 -3px;
 }
 #header .container .gap .col.col3 > ul > li.sub-page {
   position: relative;
@@ -376,4 +388,7 @@
 }
 #header:hover .container .gap .col ul li a svg path, #header:hover .container .gap .col ul li a svg rect {
   stroke: #000;
+}
+#header:hover .container .gap .col ul li a span {
+  color: #000;
 }

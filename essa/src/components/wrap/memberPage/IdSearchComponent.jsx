@@ -2,6 +2,7 @@ import React from 'react';
 import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
 import $ from 'jquery';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 function IdSearchComponent(props) {
@@ -215,8 +216,8 @@ function IdSearchComponent(props) {
 
                                 <div className="btn-member-sec">
                                     <ul>
-                                        <li><button className='pwsearch-btn'>비밀번호 찾기</button></li>
-                                        <li><button className='login-btn'>로그인하기</button></li>
+                                        <li><Link to='/비밀번호찾기'><button className='pwsearch-btn'>비밀번호 찾기</button></Link></li>
+                                        <li><Link to='/로그인'><button className='login-btn'>로그인하기</button></Link></li>
                                     </ul>
                                 </div>
                             </form>
