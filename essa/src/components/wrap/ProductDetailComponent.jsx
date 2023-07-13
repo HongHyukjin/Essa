@@ -105,27 +105,30 @@ export default function ProductDetailComponent () {
       alert('로그인 후 이용해주세요');
       window.location.href='/#/로그인';
     }
-    console.log(formData);
-    $.ajax({
-      url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
-      type:'post',
-      data:formData,
-      dataType:'json',
-      success(res){
-        console.log('AJAX 성공');
-        console.log(res.result);
-        if(res.result === 1){
-          alert('상품이 장바구니에 담겼습니다.');
+    else{
+      $.ajax({
+        url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
+        type:'post',
+        data:formData,
+        dataType:'json',
+        success(res){
+          console.log('AJAX 성공');
+          console.log(res.result);
+          if(res.result === 1){
+            alert('상품이 장바구니에 담겼습니다.');
+          }
+          else{
+            console.log(res.result)
+            alert('같은 상품을 담을 수 없습니다');
+          }
+        },
+        error(err){
+          console.log('AJAX 실패'+err);
         }
-        else{
-          console.log(res.result)
-          alert('같은 상품을 담을 수 없습니다');
-        }
-      },
-      error(err){
-        console.log('AJAX 실패'+err);
-      }
-    })
+      })
+    }
+
+
   }
 
   const onClickZzim = (e, item) => {

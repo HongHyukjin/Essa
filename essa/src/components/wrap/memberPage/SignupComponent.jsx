@@ -29,9 +29,9 @@ export default function SignupComponent(props) {
         user_addr2: "",
         user_addr3: "",
         isPost: false,
-        user_birth_year: "",
-        user_birth_month: "",
-        user_birth_date: "",
+        user_birth_year: "1998",
+        user_birth_month: "01",
+        user_birth_date: "01",
         user_agr1: "메일 수신 : 비동의",
         user_agr2: "SMS 수신 : 비동의",
         isClick1: false,
@@ -396,6 +396,7 @@ export default function SignupComponent(props) {
                     console.log('AJAX 성공!');
                     console.log(res);
                     console.log(JSON.parse(res));
+                    window.location.href="#/로그인";
                 },
                 error(err) {
                     console.log('AJAX 실패!' + err);
