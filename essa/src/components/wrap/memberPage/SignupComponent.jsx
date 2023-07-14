@@ -30,15 +30,17 @@ export default function SignupComponent(props) {
         user_addr3: "",
         isPost: false,
         user_birth_year: "1998",
-        user_birth_month: "03",
-        user_birth_date: "17",
+        user_birth_month: "01",
+        user_birth_date: "01",
         user_agr1: "메일 수신 : 비동의",
         user_agr2: "SMS 수신 : 비동의",
         isClick1: false,
         isClick2: false
     });
 
-
+    React.useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
 
     const onClickAgr1 = (e) => {
         if (state.isClick1 === false) {
@@ -390,11 +392,22 @@ export default function SignupComponent(props) {
                 url: 'http://localhost:8080/JSP/essa/signup_action.jsp',
                 type: 'POST',
                 data: formData,
+                dataType : 'json',
                 success(res) {
                     console.log('AJAX 성공!');
                     console.log(res);
-                    console.log(JSON.parse(res));
-                    window.location.href='#/로그인';
+               
+                    if(res.result=== '1'){
+                        alert('회원가입 되었습니다.');
+                        window.location.href="#/로그인";
+                    }
+                    else if(res.result=== '-2'){
+                        alert('중복된 아이디입니다.다른 아이디를 사용해주세요.');
+                    }
+                    else{
+                        alert('데이터베이스 오류 다시 시도해주세요');
+                    }
+                    
                 },
                 error(err) {
                     console.log('AJAX 실패!' + err);

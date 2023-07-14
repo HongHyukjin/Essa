@@ -4,15 +4,89 @@ import $ from 'jquery';
 import { Link } from 'react-router-dom';
 import HeaderComponent from '../HeaderComponent';
 import FooterComponent from '../FooterComponent';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 export default function ProductInquiryUpdateComponent (){
-    const [state, setState] = React.useState({
+    const { listNum } = useParams();
+    const [list, setList] = React.useState({
+        idx:'',
         category : '',
+        user_id:'',
         user_name :'',
         subject: '',
         isSubjectError:false,
-        content: ''
+        content: '',
+        write_date:''
     })
+    const {view}=list;
+    const [state, setState] = React.useState({
+        idx:'',
+        category : '',
+        user_id:'',
+        user_name :'',
+        subject: '',
+        isSubjectError:false,
+        content: '',
+        write_date:''
+    })
+
+    React.useEffect(()=>{
+        if (localStorage.getItem('COMMUNITY') !== null) {
+            let result = JSON.parse(localStorage.getItem('COMMUNITY'));
+            setList({
+                ...list,
+                idx: result[0].idx,     
+                category: result[0].category,     
+                user_id: result[0].user_id,     
+                user_name: result[0].user_name,     
+                subject: result[0].subject,    
+                content: result[0].content,     
+                write_date: result[0].location
+            })
+            console.log()
+        }
+    },[])
+
+    const getList=()=>{
+
+        // let formData = new URLSearchParams();
+        // formData.append("idx", list.idx);
+        let formData = {
+            "idx" : list.idx,
+            "listNum" : listNum
+        }
+        $.ajax({
+            url : 'http://localhost:8080/JSP/essa/product_getListUpdate.jsp',
+            type : 'POST',
+            data : formData,
+            dataType : 'json',
+            success(res){
+                console.log('ajax 성공');
+                console.log(res.result);
+                //alert('리스트출력');
+                setState({
+                    ...state,
+                    idx:res.result.idx,
+                    category:res.result.category,
+                    user_id:res.result.user_id,
+                    user_name:res.result.user_name,
+                    subject:res.result.subject,
+                    content:res.result.content,
+                    write_date:res.result.write_date
+                })
+            },
+            error(err){
+                console.log('ajax 실패');
+                console.log(err);
+            }
+        })
+    }
+
+    React.useEffect(()=>{
+        getList();
+    },[list.idx])
+
 
     const onChangeCategory=(e)=>{
         const {value} = e.target;
@@ -49,64 +123,33 @@ export default function ProductInquiryUpdateComponent (){
         })
     }
 
-    const getUserData = () => {
-        const user_name = sessionStorage.getItem('ㅇㄴㅁㅇㅁㄴ');
-        const form_data = {
-            "ㅇㄴㅁㅇㅁㄴ" : user_name
-        }
-  
-        $.ajax({
-            url: 'http://localhost:8080/JSP/essa/product_update_getjoin_action.jsp',
-            type:'POST',
-            data:form_data, 
-            dataType:'json',
-            success(res) {
-                console.log('AJAX 성공!');
-                console.log('---------');
-                console.log(res.result); // 결과 데이터 출력 
-                setState((prevState) => ({
-                    ...prevState,
-                    category : res.result.카테고리 === "null" ? '' : res.result.카테고리,
-                    user_name : res.result.이름 === "null" ? '' : res.result.이름,
-                    subject : res.result.제목 === "null" ? '' : res.result.제목,
-                    content : res.result.내용 === "null" ? '' :res.result.내용
-                }))
-            },
-            error(err){
-                console.log('AJAX 실패' + err);
-            }
-        })
-    }
-
-    React.useEffect(()=>{
-        getUserData();
-    },[])
-
-    const onSubmitProductInquiryUpdate=(e)=>{
+    const onClickUpdataSubmit =(e)=>{
         e.preventDefault();
-        const formData = {
-            "ㅇㄴㅁㅇㅁㄴ":sessionStorage.getItem("ㅇㄴㅁㅇㅁㄴ"),
-            "category":state.category,
-            "ㅇㄴㅁㅇㅁㄴ":state.user_name,
-            "subject":state.subject,
-            "content":state.content
-        }
-        $.ajax({
-            url:'http://localhost:8080/JSP/essa/product_inquiry_update_action.jsp',
-            type:'POST',
-            data:formData,
-            success(res){
-                console.log('AJAX 성공!');
-                console.log(res);
-                console.log(JSON.parse(res));
-                alert('회원 정보가 성공적으로 바뀌었습니다.');
-                // window.location.href = '/마이페이지/회원정보수정';
-                window.location.href='/상품문의글목록';
-            },
-            error(err){
-                console.log('AJAX 실패'+err);
-            }
-        });
+        let formData = new URLSearchParams();
+        formData.append("idx", list.idx);
+        formData.append("category", state.category);
+        formData.append("user_id", state.user_id);
+        formData.append("user_name", state.user_name);
+        formData.append("subject", state.subject);
+        formData.append("content", state.content);
+        formData.append("write_date", state.write_date);
+        console.log(formData);
+        axios({
+            url:'http://localhost:8080/JSP/essa/product_update_action.jsp',
+            method:'post',
+            data: formData,
+            // params:formData
+        })
+        .then((res)=>{
+            console.log('axios 성공');
+            console.log(res);
+            alert('글 수정이 완료되었습니다:)');
+            window.location.href='#/상품문의글목록'
+        })
+        .catch((err)=>{
+            console.log('axios 실패'+err);
+        })
+        
     }
 
 
@@ -120,7 +163,7 @@ export default function ProductInquiryUpdateComponent (){
                             <h2>상품문의 수정</h2>
                         </div>
                         <div className="content">
-                            <form action="" name='product_inquiry_update_form' id='productInquiryUpdateForm' onSubmit={onSubmitProductInquiryUpdate}>
+                            <form action="" name='product_inquiry_update_form' id='productInquiryUpdateForm' /* onSubmit={onSubmitProductInquiryUpdate} */>
                                 <div className="board_zone_write">
                                     <div className="board_write_box">
                                         <table className='board_write_table'>
@@ -181,7 +224,7 @@ export default function ProductInquiryUpdateComponent (){
                                     </div>
                                     <div className="btn_center_box">
                                         <button className='btn_before'><Link to="/상품문의글목록">이전</Link></button>
-                                        <button className='btn_before' type='submit'><a href="!#" >저장</a> </button>
+                                        <button className='btn_before' type='submit' onClick={onClickUpdataSubmit}><a href="!#" >저장</a> </button>
                                     </div>
                                 </div>
                             </form>

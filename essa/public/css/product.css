@@ -103,7 +103,7 @@
 #product .container .gap .content .nav > ul > li .subCategory li {
   display: inline-block;
 }
-#product .container .gap .content .nav > ul > li .subCategory li a {
+#product .container .gap .content .nav > ul > li .subCategory li .nav2-btn {
   font-size: 15px;
   color: #000;
   padding: 2px 12px;
@@ -112,6 +112,10 @@
   border-radius: 30px;
   transition: 0.3s;
   font-family: "Pretendard";
+}
+#product .container .gap .content .nav > ul > li .subCategory li .nav2-btn.on {
+  color: #fff;
+  background: #7e9fc2;
 }
 #product .container .gap .content .best-seller {
   display: flex;

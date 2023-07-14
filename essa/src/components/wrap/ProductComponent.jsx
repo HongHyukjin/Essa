@@ -94,43 +94,46 @@ export default function ProductComponent() {
       alert('로그인 후 이용해주세요');
       window.location.href='/#/로그인';
     }
-
-    $.ajax({
-      url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
-      type:'post',
-      data:formData,
-      dataType:'json',
-      success(res){
-        console.log('AJAX 성공');
-        console.log(res.result);
-
-        if(res.result === 1){
-          alert('상품이 장바구니에 담겼습니다.');
-          setIsCartModal(false);
-          setCart({
-            ...cart,
-            option1:'',
-            option2:'',
-            cnt:1
-          })
-          setIsClick(!isClick);
+    else{
+      $.ajax({
+        url:'http://localhost:8080/JSP/essa/basket_post_action.jsp',
+        type:'post',
+        data:formData,
+        dataType:'json',
+        success(res){
+          console.log('AJAX 성공');
+          console.log(res.result);
+  
+          if(res.result === 1){
+            alert('상품이 장바구니에 담겼습니다.');
+            setIsCartModal(false);
+            setCart({
+              ...cart,
+              option1:'',
+              option2:'',
+              cnt:1
+            })
+            setIsClick(!isClick);
+          }
+          else{
+            console.log(res.result)
+            alert('같은 상품을 담을 수 없습니다');
+            setIsCartModal(false);
+            setCart({
+              ...cart,
+              option1:'',
+              option2:'',
+              cnt:1
+            })
+          }
+        },
+        error(err){
+          console.log('AJAX 실패'+err);
         }
-        else{
-          console.log(res.result)
-          alert('같은 상품을 담을 수 없습니다');
-          setIsCartModal(false);
-          setCart({
-            ...cart,
-            option1:'',
-            option2:'',
-            cnt:1
-          })
-        }
-      },
-      error(err){
-        console.log('AJAX 실패'+err);
-      }
-    })
+      })
+    }
+
+
   }
 
   const onChangeOption1=(e)=>{
@@ -206,12 +209,12 @@ export default function ProductComponent() {
       })
   }
 
-  React.useEffect(() => {
-    localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
-    getProduct();
-  }, [state.viewnum, state.쇼핑]);
+  React.useEffect(()=>{
+      localStorage.setItem('쇼핑', JSON.stringify(state.쇼핑));
+      getProduct();
+  },[]);
 
-  const [list, setList] = React.useState(4);  // 한화면에 보여질 목록개수
+  const [list, setList] = React.useState(12);  // 한화면에 보여질 목록개수
   const [pageNumber, setPageNumber] = React.useState(1); // 페이지번호
   const [groupPage] = React.useState(10); // 페이지번호 그룹1(1(1~5) 그룹2(6!~10) 그룹3(11~15) 그룹4(16~20))
   const [cnt, setCnt] = React.useState(1); // 페이지번호 그룹 1
@@ -232,12 +235,14 @@ export default function ProductComponent() {
     e.preventDefault();
     setCnt(cnt + 1);
     setClick('');
+    window.scrollTo(0,0);
   }
 
   const onClickNextGroupLastPage = (e) => {
     e.preventDefault();
     setCnt(Math.ceil(state.filter_shopping.length / list / groupPage));
     setClick('Last');
+    window.scrollTo(0,0);
   }
 
   // 그룹페이지 클릭  이전카운트 이벤트
@@ -245,12 +250,14 @@ export default function ProductComponent() {
     e.preventDefault();
     setCnt(cnt - 1);
     setClick('');
+    window.scrollTo(0,0);
   }
 
   const onClickPrevGroupFirstPage = (e) => {
     e.preventDefault();
     setCnt(1);
     setClick('First');
+    window.scrollTo(0,0);
   }
 
   // 그룹 시작번호 설정 => cnt 또는 groupPage 값 변경이 있거나 설정되었다면 시작번호 설정 실행
@@ -281,40 +288,39 @@ export default function ProductComponent() {
   }, [state.viewnum]);
 
   const onChangeViewNum = (e) => {
-    const { value } = e.target;
+    const {value} = e.target;
+    console.log(value)
     setState({
       ...state,
       viewnum: Number(value)
     })
   }
 
-  React.useEffect(() => {
-    $('#product .nav .nav-btn').on({
-      mouseenter(e) {
-        setState({
-          ...state,
-          nav1: e.target.innerHTML
-        })
-      }
+  const mouseenterNav1 = (e) => {
+    setState({
+      ...state,
+      nav1 : e.target.innerHTML
     })
-    $('#product .nav ul').on({
-      mouseleave(e) {
-        setState({
-          ...state,
-          nav1: state.nav1_last_click
-        })
-      }
+  }
+
+  const mouseleaveNav = (e) => {
+    setState({
+      ...state,
+      nav1 : state.nav1_last_click
     })
-  })
+  }
 
   const onClickNav1 = (e) => {
     e.preventDefault();
-    // console.log(e.target.innerHTML);
+    
+    $('#product .nav-btn').removeClass('on');
+    $(e.target).addClass('on');
+
     let nav1_last_click = '';
     let filter_shopping = '';
     nav1_last_click = e.target.innerHTML;
-    if (e.target.innerHTML === '전체') {
-      filter_shopping = state.쇼핑
+    if(e.target.innerHTML === '전체'){
+      filter_shopping = [...state.쇼핑]
     }
     else if (e.target.innerHTML === '사이즈') {
       filter_shopping = state.쇼핑.filter((item) => item.제품명.includes('인'))
@@ -363,11 +369,14 @@ export default function ProductComponent() {
 
   const onClickNav2 = (e) => {
     e.preventDefault();
+    $('#product .nav2-btn').removeClass('on');
+    $(e.target).addClass('on');
     let filter_shopping = '';
     filter_shopping = state.쇼핑.filter((item) => item.제품명.includes(e.target.innerHTML));
     setState({
       ...state,
-      filter_shopping: filter_shopping
+      filter_shopping : filter_shopping,
+      nav2 : e.target.innerHTML
     })
   }
 
@@ -422,8 +431,12 @@ export default function ProductComponent() {
       success(res) {
         console.log('AJAX 성공!');
         console.log(res);
-        console.log(JSON.parse(res));
-        alert('상품이 찜 리스트에 담겼습니다!')
+        if(res.result === 1){
+          alert('상품이 찜 리스트에 담겼습니다!')
+        }
+        else{
+          alert('같은 상품을 담을 수 없습니다')
+        }
       },
       error(err) {
         console.log('AJAX 실패!' + err);
@@ -431,6 +444,77 @@ export default function ProductComponent() {
     })
   }
 
+  const onClickSort = (e) => {
+    e.preventDefault();
+    $('#product .sort_btn').removeClass('on');
+    $(e.target).addClass('on');
+    
+    let filter_shopping = state.filter_shopping;
+    if(e.target.innerHTML === '추천순'){
+      if(state.nav1 === '전체'){
+        filter_shopping = [...state.쇼핑]
+      }
+      else if(state.nav1 === '사이즈'){
+        filter_shopping = state.쇼핑.filter((item) => item.제품명.includes('인'))
+      }
+      else if(state.nav1 === '소재'){
+        filter_shopping = state.쇼핑.filter(
+          (item) => item.제품명.includes('패브릭') ||
+          item.제품명.includes('가죽')
+          )
+      }
+      else if(state.nav1 === '타입'){
+        filter_shopping = state.쇼핑.filter(
+          (item) => item.제품명.includes('헤드기능') ||
+          item.제품명.includes('리프트기능') ||
+          item.제품명.includes('스윙기능') ||
+          item.제품명.includes('카우치') ||
+          item.제품명.includes('코너')
+          )
+      }
+      else if(state.nav1 === 'LIFE'){
+        filter_shopping = state.쇼핑.filter(
+          (item) => item.제품명.includes('데이비드') ||
+          item.제품명.includes('스툴') ||
+          item.제품명.includes('체어') ||
+          item.제품명.includes('러그') ||
+          item.제품명.includes('조명')
+          )
+      }
+      else if(state.nav1 === 'LOVE PET'){
+        filter_shopping = state.쇼핑.filter(
+          (item) => item.제품명.includes('펫')
+          )
+      }
+      filter_shopping = filter_shopping.filter((item) => item.제품명.includes(state.nav2));
+    }
+    else if(e.target.innerHTML === '낮은가격순'){
+      filter_shopping.sort((a,b) => {
+        return a.원가-b.원가;
+      })
+    }
+    else if(e.target.innerHTML === '높은가격순'){
+      let filter_shopping = state.filter_shopping;
+      filter_shopping.sort((a,b) => {
+        return b.원가-a.원가;
+      })
+    }
+    else if(e.target.innerHTML === '상품평순'){
+      let filter_shopping = state.filter_shopping;
+      filter_shopping.sort((a,b) => {
+        return b.리뷰수-a.리뷰수;
+      })
+    }
+    setState({
+      ...state,
+      filter_shopping : filter_shopping,
+    })
+  }
+
+
+
+
+  
 
   return (
     <>
@@ -442,62 +526,62 @@ export default function ProductComponent() {
               <h1>Product</h1>
             </div>
             <div className="content">
-              <div className="nav">
+              <div className="nav" onMouseLeave={mouseleaveNav}>
                 <ul>
-                  <li><a href="" className='nav-btn on' onClick={onClickNav1} >전체</a></li>
+                  <li><a href="" className='nav-btn on' onClick={onClickNav1}  onMouseEnter={mouseenterNav1} >전체</a></li>
                   <li>
-                    <a href="!#" className='nav-btn' onClick={onClickNav1} >사이즈</a>
+                    <a href="!#" className='nav-btn' onClick={onClickNav1} onMouseEnter={mouseenterNav1}>사이즈</a>
                     {
                       state.nav1 === '사이즈' && (
                         <ul className='subCategory'>
-                          <li><a href="!#" onClick={onClickNav2}>1인</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>3인</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>4인</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>6인</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='1인'?'on':''}`} onClick={onClickNav2}>1인</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='3인'?'on':''}`} onClick={onClickNav2}>3인</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='4인'?'on':''}`} onClick={onClickNav2}>4인</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='6인'?'on':''}`} onClick={onClickNav2}>6인</a></li>
                         </ul>
                       )
                     }
                   </li>
                   <li>
-                    <a href="" className='nav-btn' onClick={onClickNav1} >소재</a>
+                    <a href="" className='nav-btn' onClick={onClickNav1} onMouseEnter={mouseenterNav1} >소재</a>
                     {
                       state.nav1 === '소재' && (
                         <ul className='subCategory'>
-                          <li><a href="!#" onClick={onClickNav2}>패브릭</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>가죽</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='패브릭'?'on':''}`} onClick={onClickNav2}>패브릭</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='가죽'?'on':''}`} onClick={onClickNav2}>가죽</a></li>
                         </ul>
                       )
                     }
                   </li>
                   <li>
-                    <a href="" className='nav-btn' onClick={onClickNav1} >타입</a>
+                    <a href="" className='nav-btn' onClick={onClickNav1} onMouseEnter={mouseenterNav1} >타입</a>
                     {
                       state.nav1 === '타입' && (
                         <ul className='subCategory'>
-                          <li><a href="!#" onClick={onClickNav2}>헤드기능</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>리프트기능</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>스윙기능</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>카우치</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>코너</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='헤드기능'?'on':''}`} onClick={onClickNav2}>헤드기능</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='리프트기능'?'on':''}`} onClick={onClickNav2}>리프트기능</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='스윙기능'?'on':''}`} onClick={onClickNav2}>스윙기능</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='카우치'?'on':''}`} onClick={onClickNav2}>카우치</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='코너'?'on':''}`} onClick={onClickNav2}>코너</a></li>
                         </ul>
                       )
                     }
                   </li>
                   <li>
-                    <a href="" className='nav-btn' onClick={onClickNav1} >LIFE</a>
+                    <a href="" className='nav-btn' onClick={onClickNav1} onMouseEnter={mouseenterNav1} >LIFE</a>
                     {
                       state.nav1 === 'LIFE' && (
                         <ul className='subCategory'>
-                          <li><a href="!#" onClick={onClickNav2}>데이베드</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>스툴</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>체어</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>러그</a></li>
-                          <li><a href="!#" onClick={onClickNav2}>조명</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='데이베드'?'on':''}`} onClick={onClickNav2}>데이베드</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='스툴'?'on':''}`} onClick={onClickNav2}>스툴</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='체어'?'on':''}`} onClick={onClickNav2}>체어</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='러그'?'on':''}`} onClick={onClickNav2}>러그</a></li>
+                          <li><a href="!#" className={`nav2-btn ${state.nav2==='조명'?'on':''}`} onClick={onClickNav2}>조명</a></li>
                         </ul>
                       )
                     }
                   </li>
-                  <li><a href="" className='nav-btn' onClick={onClickNav1} >LOVE PET</a></li>
+                  <li><a href="" className='nav-btn' onClick={onClickNav1} onMouseEnter={mouseenterNav1} >LOVE PET</a></li>
                 </ul>
               </div>
               {
@@ -565,32 +649,24 @@ export default function ProductComponent() {
                   <div className="pick_list_box">
                     <ul className='pick_list'>
                       <li>
-                        <input type="radio" name="sort" id="sort1" className='radio' />
-                        <label htmlFor="sort1" className='on' >추천순</label>
+                        <input type="radio" name="sort" id="sort1" className='radio'  />
+                        <label htmlFor="sort1" className='sort_btn on' onClick={onClickSort} >추천순</label>
                       </li>
                       <li>
-                        <input type="radio" name="sort" id="sort2" className='radio' />
-                        <label htmlFor="sort2" className='' >판매인기순</label>
+                        <input type="radio" name="sort" id="sort3" className='radio'  />
+                        <label htmlFor="sort3" className='sort_btn' onClick={onClickSort} >낮은가격순</label>
                       </li>
                       <li>
-                        <input type="radio" name="sort" id="sort3" className='radio' />
-                        <label htmlFor="sort3" className='' >낮은가격순</label>
+                        <input type="radio" name="sort" id="sort4" className='radio'  />
+                        <label htmlFor="sort4" className='sort_btn' onClick={onClickSort} >높은가격순</label>
                       </li>
                       <li>
-                        <input type="radio" name="sort" id="sort4" className='radio' />
-                        <label htmlFor="sort4" className='' >높은가격순</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="sort" id="sort5" className='radio' />
-                        <label htmlFor="sort5" className='' >상품평순</label>
-                      </li>
-                      <li>
-                        <input type="radio" name="sort" id="sort6" className='radio' />
-                        <label htmlFor="sort6" className='' >등록일순</label>
+                        <input type="radio" name="sort" id="sort5" className='radio'  />
+                        <label htmlFor="sort5" className='sort_btn' onClick={onClickSort} >상품평순</label>
                       </li>
                     </ul>
                     <div className="choice_num_view">
-                      <select name="pageNum" value={state.viewnum} onChange={onChangeViewNum} >
+                      <select name="pageNum" onChange={onChangeViewNum} >
                         <option value="12" selected >12개씩보기</option>
                         <option value="24">24개씩보기</option>
                         <option value="36">36개씩보기</option>
@@ -609,8 +685,8 @@ export default function ProductComponent() {
                           <li key={item.제품코드}>
                             <div className="item_cont">
                               <div className="photo_box">
-                                <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e) => onClickProduct(e, item)}>
-                                  <img src={item.이미지} alt="" />
+                                <Link to={`/쇼핑/상세보기/${item.제품코드}`} onClick={(e)=>onClickProduct(e, item)}>
+                                  <img src={`./img/product/${item.이미지}`} alt="" />
                                   <div className="item_link">
                                     <div className="inner" >
                                       <button type='button' onClick={(e) => onClickCart(e, item.제품코드)}>

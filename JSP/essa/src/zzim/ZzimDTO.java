@@ -5,7 +5,7 @@ public class ZzimDTO {
   private String user_id;
   private int product_num;
   private int amount;
- 
+
   public int getIdx() {
     return this.idx;
   }
@@ -19,6 +19,7 @@ public class ZzimDTO {
   }
 
   public void setUser_id(String user_id) {
+    
     this.user_id = user_id;
   }
 

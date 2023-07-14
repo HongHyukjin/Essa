@@ -334,7 +334,7 @@ export default function BasketComponent() {
                                                                 <td><input type="checkbox" onClick={(e) => onClickCheck(e, item.product_code)} checked={state.checked.includes(item.product_code)} /></td>
                                                                 <td>
                                                                     <div className="pick-img">
-                                                                        <a href="!#"><img src={product[(item.product_code) - 1].이미지} alt="" /></a>
+                                                                        <a href="!#"><img src={`./img/product/${product[(item.product_code) - 1].이미지}`} alt="" /></a>
                                                                     </div>
                                                                     <div className="pick-info">
                                                                         <img src="./img/product/btn_coupon_apply.png" alt="" />
